@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "723282782856",
+    "firebase_url": "https://rgbled-a857d.firebaseio.com",
+    "project_id": "rgbled-a857d",
+    "storage_bucket": "rgbled-a857d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723282782856:android:c123aadc975834d5",
+        "android_client_info": {
+          "package_name": "com.madebyatomicrobot.things"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723282782856-fasq85qcdn37n325cf97ranqdmlf6kft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgrQ7cpTqGZgNhJvhpI2Ym-A30LYPV32k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

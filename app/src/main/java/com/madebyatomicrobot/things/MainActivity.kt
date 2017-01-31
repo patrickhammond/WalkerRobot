@@ -3,76 +3,114 @@ package com.madebyatomicrobot.things
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import com.google.android.things.pio.Gpio
+import android.widget.SeekBar
 import com.google.android.things.pio.PeripheralManagerService
+import com.google.android.things.pio.Pwm
 import java.io.IOException
+
 
 class MainActivity : Activity() {
     companion object {
         private val TAG = MainActivity::class.java.simpleName
+
+        private val DEFAULT_FREQUENCY_HZ = 50.0
+
+        private val DEFAULT_MIN_PULSE_DURATION_MS = 0.5
+        private val DEFAULT_MAX_PULSE_DURATION_MS = 2.5
+
+        private val DEFAULT_MIN_ANGLE_DEG = 0
+        private val DEFAULT_MAX_ANGLE_DEG = 180.0
     }
 
-    lateinit var startView: Button
-    lateinit var stopView: Button
+    lateinit var angle1View: SeekBar
+    lateinit var angle2View: SeekBar
 
-    var gpioPins: MutableList<Gpio> = mutableListOf()
+    lateinit var pwm0: Pwm
+    lateinit var pwm1: Pwm
+
+    private var minPulseDuration = DEFAULT_MIN_PULSE_DURATION_MS
+    private var maxPulseDuration = DEFAULT_MAX_PULSE_DURATION_MS
+
+    private var minAngle = DEFAULT_MIN_ANGLE_DEG
+    private var maxAngle = DEFAULT_MAX_ANGLE_DEG
+
+    private var period = 1000.0 / DEFAULT_FREQUENCY_HZ
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
-        startView = findViewById(R.id.start) as Button
-        stopView = findViewById(R.id.stop) as Button
-
-        startView.setOnClickListener { start() }
-        stopView.setOnClickListener { stop() }
-
-        startView.isEnabled = true
-        stopView.isEnabled = false
+        angle1View = findViewById(R.id.angle1) as SeekBar
+        angle2View = findViewById(R.id.angle2) as SeekBar
 
         val manager = PeripheralManagerService()
         try {
-            Log.i(TAG, "Pins: " + manager.gpioList)
+            Log.i(TAG, "PWM: " + manager.pwmList)
+            pwm0 = manager.openPwm("PWM0")
+            pwm0.setEnabled(true)
+            pwm0.setPwmFrequencyHz(DEFAULT_FREQUENCY_HZ)
 
-            listOf(4, 18, 17, 27, 22, 23, 12 /*24*/, 25).forEach {
-                val pin : Gpio = manager.openGpio("BCM$it")
-                gpioPins.add(pin)
-
-                pin.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH)
-                pin.setActiveType(Gpio.ACTIVE_LOW)
-            }
+            pwm1 = manager.openPwm("PWM1")
+            pwm1.setEnabled(true)
+            pwm1.setPwmFrequencyHz(DEFAULT_FREQUENCY_HZ)
         } catch (ex: IOException) {
-            Log.w(TAG, "Unable to access GPIO", ex)
+            Log.w(TAG, "Error in onCreate", ex)
         }
+
+        angle1View.max = (maxAngle - minAngle).toInt()
+        angle2View.max = (maxAngle - minAngle).toInt()
+
+        angle1View.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                moveToAngle(pwm0, progress.toDouble() + minAngle)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // Don't care
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // Don't care
+            }
+        })
+
+        angle2View.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                moveToAngle(pwm1, progress.toDouble() + minAngle)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // Don't care
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // Don't care
+            }
+        })
+
+        angle1View.progress = 90.0.toInt()
+        angle2View.progress = 90.0.toInt()
+    }
+
+    fun moveToAngle(pwm: Pwm, angle: Double) {
+        updateDutyCycle(pwm, angle)
+    }
+
+    fun updateDutyCycle(pwm: Pwm, angle: Double) {
+        val t = (angle - minAngle) / (maxAngle - minAngle)
+        val pw = minPulseDuration + (maxPulseDuration - minPulseDuration) * t
+        val dutyCycle = 100.0 * pw / period
+        pwm.setPwmDutyCycle(dutyCycle)
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         try {
-            gpioPins.forEach(Gpio::close)
+            pwm0.close()
+            pwm1.close()
         } catch (ex: IOException) {
-            Log.w(TAG, "Unable to close BCM17", ex)
+            Log.w(TAG, "Error in onDestroy", ex)
         }
-    }
 
-    private fun start() {
-        startView.isEnabled = false
-        stopView.isEnabled = true
-
-        gpioPins.forEach({ it.value = false })
-        Thread().run {
-            gpioPins.forEach {
-                it.value = true
-                Thread.sleep(250)
-                it.value = false
-            }
-        }
-    }
-
-    private fun stop() {
-        startView.isEnabled = true
-        stopView.isEnabled = false
-
-        gpioPins.forEach({ it.value = false })
+        super.onDestroy()
     }
 }
