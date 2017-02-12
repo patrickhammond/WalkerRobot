@@ -3,23 +3,163 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:padding="32dp">
+              android:padding="16dp">
 
-    <TextView
-        style="?android:textAppearanceLarge"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Angle"/>
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <SeekBar
-        android:id="@+id/angle1"
+        <TextView
+            style="?android:textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Leg"/>
+
+        <Button
+            android:id="@+id/leg_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"/>
+
+        <Button
+            android:id="@+id/leg_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="Down"/>
+
+        <Button
+            android:id="@+id/leg_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Up"/>
+
+        <Button
+            android:id="@+id/left_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="Step Left"/>
+
+        <Button
+            android:id="@+id/right_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step Right"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <SeekBar
-        android:id="@+id/angle2"
+        <TextView
+            android:id="@+id/hip_y_angle_label"
+            style="?android:textAppearanceMedium"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:text="Hip-Y"/>
+
+        <SeekBar
+            android:id="@+id/hip_y_angle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hip_x_angle_label"
+            style="?android:textAppearanceMedium"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:text="Hip-X"/>
+
+        <SeekBar
+            android:id="@+id/hip_x_angle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hip_z_angle_label"
+            style="?android:textAppearanceMedium"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:text="Hip-Z"/>
+
+        <SeekBar
+            android:id="@+id/hip_z_angle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/knee_angle_label"
+            style="?android:textAppearanceMedium"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:text="Knee"/>
+
+        <SeekBar
+            android:id="@+id/knee_angle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ankle_angle_label"
+            style="?android:textAppearanceMedium"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:text="Ankle"/>
+
+        <SeekBar
+            android:id="@+id/ankle_angle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </LinearLayout>
