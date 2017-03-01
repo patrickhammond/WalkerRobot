@@ -1,4 +1,4 @@
-<manifest package="com.madebyatomicrobot.things"
+<manifest package="com.madebyatomicrobot.walker.things"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -7,7 +7,11 @@
 
         <uses-library android:name="com.google.android.things"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.madebyatomicrobot.walker.MainActivity">
+
+        </activity>
+
+        <activity android:name="com.madebyatomicrobot.walker.ServoSetupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -20,6 +24,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

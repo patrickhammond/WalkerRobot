@@ -1,4 +1,4 @@
-package com.madebyatomicrobot.things
+package com.madebyatomicrobot.walker
 
 import com.google.android.things.pio.I2cDevice
 
@@ -36,8 +36,14 @@ class PCA9685(
         val OUTDRV = 0x04
     }
 
+    fun restart() {
+        writeByte(MODE1, 0x06)  // Software reset
+        Thread.sleep(5)
+    }
+
     fun resetI2C() {
         writeByte(MODE1, 0x0)  // FIXME - MAGIC NUMBER
+        Thread.sleep(5)
     }
 
     fun setPWMFreq(frequency: Double) {

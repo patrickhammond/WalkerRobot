@@ -1,4 +1,4 @@
-package com.madebyatomicrobot.things
+package com.madebyatomicrobot.walker
 
 import android.app.Activity
 import android.os.Bundle
@@ -7,6 +7,9 @@ import android.widget.SeekBar
 import android.widget.TextView
 import com.google.android.things.pio.I2cDevice
 import com.google.android.things.pio.PeripheralManagerService
+import com.madebyatomicrobot.walker.PCA9685
+import com.madebyatomicrobot.walker.things.R
+import com.madebyatomicrobot.walker.Servo
 import java.io.IOException
 
 
@@ -23,8 +26,8 @@ class MainActivity : Activity() {
 
     lateinit var i2c: I2cDevice
 
-    lateinit var servo03: Servo
-    lateinit var servo04: Servo
+    lateinit var servo00: Servo
+    lateinit var servo01: Servo
     lateinit var servo05: Servo
     lateinit var servo06: Servo
     lateinit var servo07: Servo
@@ -32,8 +35,8 @@ class MainActivity : Activity() {
     lateinit var servo08: Servo
     lateinit var servo09: Servo
     lateinit var servo10: Servo
-    lateinit var servo11: Servo
-    lateinit var servo12: Servo
+    lateinit var servo14: Servo
+    lateinit var servo15: Servo
 
     lateinit var leftLeg: Leg
     lateinit var rightLeg: Leg
@@ -58,20 +61,20 @@ class MainActivity : Activity() {
             pca9685.resetI2C()
             pca9685.setPWMFreq(50.0)  // 50 Hz
 
-            servo03 = Servo(pca9685, 3)
-            servo04 = Servo(pca9685, 4)
+            servo00 = Servo(pca9685, 0)
+            servo01 = Servo(pca9685, 1)
             servo05 = Servo(pca9685, 5)
-            servo06 = Servo(pca9685, 6)
-            servo07 = Servo(pca9685, 7)
+            servo06 = Servo(pca9685, 6, adjustmentAngle = 5.0)
+            servo07 = Servo(pca9685, 7, adjustmentAngle = -4.5)
 
-            servo08 = Servo(pca9685, 8, invertAngle = false)
-            servo09 = Servo(pca9685, 9, invertAngle = false)
-            servo10 = Servo(pca9685, 10, invertAngle = true, adjustmentAngle = -2.0)
-            servo11 = Servo(pca9685, 11, invertAngle = true, adjustmentAngle = 3.0)
-            servo12 = Servo(pca9685, 12, invertAngle = true, adjustmentAngle = 5.0)
+            servo08 = Servo(pca9685, 8)
+            servo09 = Servo(pca9685, 9, adjustmentAngle = -5.0)
+            servo10 = Servo(pca9685, 10, invertAngle = true)
+            servo14 = Servo(pca9685, 14, invertAngle = true)
+            servo15 = Servo(pca9685, 15, invertAngle = true)
 
-            leftLeg = Leg(servo07, servo06, servo05, servo04, servo03)
-            rightLeg = Leg(servo08, servo09, servo10, servo11, servo12)
+            leftLeg = Leg(servo07, servo06, servo05, servo00, servo01)
+            rightLeg = Leg(servo08, servo09, servo10, servo15, servo14)
         } catch (ex: IOException) {
             Log.w(TAG, "Error in onCreate", ex)
         }
@@ -83,35 +86,26 @@ class MainActivity : Activity() {
         findViewById(R.id.right_step).setOnClickListener { rightStep() }
 
         setupSeekBar(R.id.hip_y_angle, Leg.defaultHipYAngle, fun(angle) {
-//            servo07.moveToAngle(angle)
-//            servo08.moveToAngle(angle)
             leftLeg.moveHipYAngle(angle)
             rightLeg.moveHipYAngle(angle)
         })
         setupSeekBar(R.id.hip_x_angle, Leg.defaultHipXAngle, fun(angle) {
-//            servo06.moveToAngle(angle)
-//            servo09.moveToAngle(angle)
             leftLeg.moveHipXAngle(angle)
             rightLeg.moveHipXAngle(angle)
         })
         setupSeekBar(R.id.hip_z_angle, Leg.defaultHipZAngle, fun(angle) {
-//            servo05.moveToAngle(angle)
-//            servo10.moveToAngle(angle)
             leftLeg.moveHipZAngle(angle)
             rightLeg.moveHipZAngle(angle)
         })
         setupSeekBar(R.id.knee_angle, Leg.defaultKneeAngle, fun(angle) {
-//            servo04.moveToAngle(angle)
-//            servo11.moveToAngle(angle)
             leftLeg.moveKneeAngle(angle)
             rightLeg.moveKneeAngle(angle)
         })
         setupSeekBar(R.id.ankle_angle, Leg.defaultAnkleAngle, fun(angle) {
-            //servo03.moveToAngle(angle)
-            //servo12.moveToAngle(angle)
             leftLeg.moveAnkleAngle(angle)
             rightLeg.moveAnkleAngle(angle)
         })
+
     }
 
     private fun setupSeekBar(
@@ -119,7 +113,6 @@ class MainActivity : Activity() {
             defaultAngle: Double,
             action: (angle: Double) -> Unit) {
         val seekBar = findViewById(seekBarResId) as SeekBar
-
         seekBar.max = 180
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -177,39 +170,7 @@ class MainActivity : Activity() {
     }
 
     fun leftStep() {
-        Thread({
-            leftLeg.adjustHipYAngle(-10.0)
-            rightLeg.adjustHipYAngle(-10.0)
-            updateLabels()
-            Thread.sleep(250)
 
-            rightLeg.up()
-            rightLeg.up()
-            rightLeg.up()
-            rightLeg.up()
-            rightLeg.up()
-            updateLabels()
-            Thread.sleep(250)
-
-            leftLeg.adjustHipXAngle(10.0)
-            rightLeg.adjustHipXAngle(10.0)
-            updateLabels()
-            Thread.sleep(250)
-
-//            leftLeg.down()
-//            leftLeg.down()
-//            updateLabels()
-//            Thread.sleep(250)
-
-            leftLeg.adjustHipYAngle(10.0)
-            rightLeg.adjustHipYAngle(10.0)
-            updateLabels()
-            Thread.sleep(250)
-
-//            leftLeg.adjustHipXAngle(10.0)
-//            rightLeg.adjustHipXAngle(10.0)
-//            updateLabels()
-        }).run()
     }
 
     fun rightStep() {
@@ -222,9 +183,9 @@ class MainActivity : Activity() {
 
             val defaultHipYAngle = 90.0
             val defaultHipXAngle = 90.0
-            val defaultHipZAngle = 35.0
-            val defaultKneeAngle = 70.0
-            val defaultAnkleAngle = 45.0
+            val defaultHipZAngle = 105.0
+            val defaultKneeAngle = 150.0
+            val defaultAnkleAngle = 135.0
         }
 
         var hipYAngle = defaultHipYAngle

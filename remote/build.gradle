@@ -9,7 +9,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.madebyatomicrobot.walker.robot"
+        applicationId "com.madebyatomicrobot.walker.remote"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -30,7 +30,8 @@ android {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    provided 'com.google.android.things:androidthings:0.2-devpreview'
+    compile "com.android.support:design:${rootProject.ext.supportVersion}"
+    compile 'com.android.support.constraint:constraint-layout:1.0.0'
 
     compile "com.google.firebase:firebase-database:${rootProject.ext.playServicesVersion}"
 

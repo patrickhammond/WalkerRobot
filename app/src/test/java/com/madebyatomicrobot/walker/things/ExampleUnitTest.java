@@ -1,4 +1,4 @@
-package com.madebyatomicrobot.things;
+package com.madebyatomicrobot.walker.things;
 
 import org.junit.Test;
 
