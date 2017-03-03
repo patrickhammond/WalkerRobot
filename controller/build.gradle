@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.madebyatomicrobot.walker.remote"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    kapt "com.android.databinding:compiler:$android_gradle_version"
+
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile "com.android.support:design:${rootProject.ext.supportVersion}"
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+
+    compile "com.google.firebase:firebase-database:${rootProject.ext.playServicesVersion}"
+
+    compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJavaVersion}"
+
+    testCompile "junit:junit:${rootProject.ext.junitVersion}"
+}
+
+kapt {
+    generateStubs = true
+}
+
+apply plugin: 'com.google.gms.google-services'
