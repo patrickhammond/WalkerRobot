@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.madebyatomicrobot.walker.remote.MainActivity">
+
+    <data class=".CommandBinding">
+
+        <variable
+            name="command"
+            type="com.madebyatomicrobot.walker.remote.Command"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/command_stop"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{() -> command.stop()}"
+            android:src="@drawable/pause"
+            android:tint="@color/activated_tint"
+            app:activated="@{command.stopped}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/command_forward"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="0dp"
+            android:onClick="@{() -> command.forward()}"
+            android:src="@drawable/arrow_up_bold"
+            android:tint="@color/activated_tint"
+            app:activated="@{command.forward}"
+            app:layout_constraintBottom_toTopOf="@+id/command_stop"
+            app:layout_constraintLeft_toLeftOf="@+id/command_stop"/>
+
+        <ImageButton
+            android:id="@+id/command_reverse"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{() -> command.reverse()}"
+            android:src="@drawable/arrow_down_bold"
+            android:tint="@color/activated_tint"
+            app:activated="@{command.reverse}"
+            app:layout_constraintLeft_toLeftOf="@+id/command_stop"
+            app:layout_constraintTop_toBottomOf="@+id/command_stop"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
