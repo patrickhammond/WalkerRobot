@@ -12,17 +12,14 @@ class Command : BaseObservable() {
 
     private var currentCommand = STOPPED
 
-    val isStopped: Boolean
-        @Bindable
-        get() = currentCommand == STOPPED
+    val stopped: Boolean
+        @Bindable get() = currentCommand == STOPPED
 
-    val isForward: Boolean
-        @Bindable
-        get() = currentCommand == FORWARD
+    val forward: Boolean
+        @Bindable get() = currentCommand == FORWARD
 
-    val isReverse: Boolean
-        @Bindable
-        get() = currentCommand == REVERSE
+    val reverse: Boolean
+        @Bindable get() = currentCommand == REVERSE
 
     fun stop() {
         currentCommand = STOPPED
