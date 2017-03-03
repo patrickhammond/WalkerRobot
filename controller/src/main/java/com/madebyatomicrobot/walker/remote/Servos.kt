@@ -2,6 +2,23 @@ package com.madebyatomicrobot.walker.remote
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KMutableProperty
+import kotlin.reflect.KProperty
+
+class AngleDelegate(val bindingResource: Int, val slave: KMutableProperty<Int>, var angle: Int = 90) : ReadWriteProperty<Servos, Int> {
+    override fun getValue(thisRef: Servos, property: KProperty<*>): Int {
+        return angle
+    }
+
+    override fun setValue(thisRef: Servos, property: KProperty<*>, value: Int) {
+        angle = value
+        thisRef.notifyPropertyChanged(bindingResource)
+        if (thisRef.oppositeServosSlaved && (angle != slave.getter.call())) {
+            slave.setter.call(value)
+        }
+    }
+}
 
 class Servos : BaseObservable() {
     var readOnly = true
@@ -18,178 +35,36 @@ class Servos : BaseObservable() {
             notifyPropertyChanged(BR.oppositeServosSlaved)
         }
 
-    var angle00 = 90
+    var angle00: Int by AngleDelegate(BR.angle00, this::angle15)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle00)
-
-            if (oppositeServosSlaved && angle00 != angle15) {
-                angle15 = value
-            }
-        }
-
-    var angle01 = 90
+    var angle01: Int by AngleDelegate(BR.angle01, this::angle14)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle01)
-
-            if (oppositeServosSlaved && angle01 != angle14) {
-                angle14 = value
-            }
-        }
-
-    var angle02 = 90
+    var angle02: Int by AngleDelegate(BR.angle02, this::angle13)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle02)
-
-            if (oppositeServosSlaved && angle02 != angle13) {
-                angle13 = value
-            }
-        }
-    var angle03 = 90
+    var angle03: Int by AngleDelegate(BR.angle03, this::angle12)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle03)
-
-            if (oppositeServosSlaved && angle03 != angle12) {
-                angle12 = value
-            }
-        }
-
-    var angle04 = 90
+    var angle04: Int by AngleDelegate(BR.angle04, this::angle11)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle04)
-
-            if (oppositeServosSlaved && angle04 != angle11) {
-                angle11 = value
-            }
-        }
-
-    var angle05 = 90
+    var angle05: Int by AngleDelegate(BR.angle05, this::angle10)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle05)
-
-            if (oppositeServosSlaved && angle05 != angle10) {
-                angle10 = value
-            }
-        }
-
-    var angle06 = 90
+    var angle06: Int by AngleDelegate(BR.angle06, this::angle09)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle06)
-
-            if (oppositeServosSlaved && angle06 != angle09) {
-                angle09 = value
-            }
-        }
-
-    var angle07 = 90
+    var angle07: Int by AngleDelegate(BR.angle07, this::angle08)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle07)
-
-            if (oppositeServosSlaved && angle07 != angle08) {
-                angle08 = value
-            }
-        }
-
-    var angle08 = 90
+    var angle08: Int by AngleDelegate(BR.angle08, this::angle07)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle08)
-
-            if (oppositeServosSlaved && angle08 != angle07) {
-                angle07 = value
-            }
-        }
-
-    var angle09 = 90
+    var angle09: Int by AngleDelegate(BR.angle09, this::angle06)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle09)
-
-            if (oppositeServosSlaved && angle09 != angle06) {
-                angle06 = value
-            }
-        }
-
-    var angle10 = 90
+    var angle10: Int by AngleDelegate(BR.angle10, this::angle05)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle10)
-
-            if (oppositeServosSlaved && angle10 != angle05) {
-                angle05 = value
-            }
-        }
-
-    var angle11 = 90
+    var angle11: Int by AngleDelegate(BR.angle11, this::angle04)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle11)
-
-            if (oppositeServosSlaved && angle11 != angle04) {
-                angle04 = value
-            }
-        }
-
-    var angle12 = 90
+    var angle12: Int by AngleDelegate(BR.angle12, this::angle03)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle12)
-
-            if (oppositeServosSlaved && angle12 != angle03) {
-                angle03 = value
-            }
-        }
-
-    var angle13 = 90
+    var angle13: Int by AngleDelegate(BR.angle13, this::angle02)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle13)
-
-            if (oppositeServosSlaved && angle13 != angle02) {
-                angle02 = value
-            }
-        }
-
-    var angle14 = 90
+    var angle14: Int by AngleDelegate(BR.angle14, this::angle01)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle14)
-
-            if (oppositeServosSlaved && angle14 != angle01) {
-                angle01 = value
-            }
-        }
-
-    var angle15 = 90
+    var angle15: Int by AngleDelegate(BR.angle15, this::angle00)
         @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.angle15)
-
-            if (oppositeServosSlaved && angle15 != angle00) {
-                angle00 = value
-            }
-        }
 }
