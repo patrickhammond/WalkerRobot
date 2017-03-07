@@ -27,7 +27,9 @@ android {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    provided 'com.google.android.things:androidthings:0.2-devpreview'
+    provided "com.google.android.things:androidthings:$androidThingsVersion"
+    compile project(':driver-pca9685')
+    compile project(':driver-ads1015')
 
     compile "com.google.firebase:firebase-database:${rootProject.ext.playServicesVersion}"
 

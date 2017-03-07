@@ -8,9 +8,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import com.google.android.things.pio.I2cDevice
 import com.google.android.things.pio.PeripheralManagerService
-import com.madebyatomicrobot.walker.robot.PCA9685
-import com.madebyatomicrobot.walker.robot.Servo
-import com.madebyatomicrobot.walker.R
+import com.madebyatomicrobot.things.drivers.PCA9685
 import io.reactivex.disposables.CompositeDisposable
 import java.io.IOException
 

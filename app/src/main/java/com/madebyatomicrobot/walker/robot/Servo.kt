@@ -1,6 +1,6 @@
 package com.madebyatomicrobot.walker.robot
 
-import com.madebyatomicrobot.walker.robot.PCA9685
+import com.madebyatomicrobot.things.drivers.PCA9685
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 

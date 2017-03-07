@@ -10,6 +10,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/controller" />
+            <option value="$PROJECT_DIR$/driver-ads1015" />
+            <option value="$PROJECT_DIR$/driver-pca9685" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

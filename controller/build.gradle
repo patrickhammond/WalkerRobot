@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 repositories {
     mavenCentral()
@@ -44,10 +45,4 @@ dependencies {
     testCompile "junit:junit:${rootProject.ext.junitVersion}"
 }
 
-kapt {
-    generateStubs = true
-}
-
 apply plugin: 'com.google.gms.google-services'
-buildscript {
-}

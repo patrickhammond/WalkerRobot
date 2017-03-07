@@ -1,4 +1,4 @@
-package com.madebyatomicrobot.walker.robot
+package com.madebyatomicrobot.things.drivers
 
 import com.google.android.things.pio.I2cDevice
 
