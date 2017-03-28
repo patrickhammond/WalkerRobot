@@ -7,6 +7,11 @@
         <item name="colorAccent">@color/color_accent</item>
 
         <item name="colorButtonNormal">@color/color_primary</item>
+        <item name="android:buttonStyle">@style/ButtonColor</item>
+    </style>
+
+    <style name="ButtonColor" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

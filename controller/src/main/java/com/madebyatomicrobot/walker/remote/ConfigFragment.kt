@@ -7,25 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.database.FirebaseDatabase
-import com.madebyatomicrobot.walker.remote.model.Command
+import com.madebyatomicrobot.walker.remote.model.Config
 
-class CommandFragment : Fragment() {
+class ConfigFragment : Fragment() {
     companion object {
-        fun newInstance(): CommandFragment {
-            return CommandFragment()
+        fun newInstance(): ConfigFragment {
+            return ConfigFragment()
         }
     }
 
-    lateinit var command: Command
+    lateinit var config: Config
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        command = Command(FirebaseDatabase.getInstance().reference)
+        config = Config(FirebaseDatabase.getInstance().reference)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = DataBindingUtil.inflate<CommandBinding>(inflater!!, R.layout.fragment_command, container, false)
-        binding.command = command
+        val binding = DataBindingUtil.inflate<ConfigBinding>(inflater!!, R.layout.fragment_config, container, false)
+        binding.config = config
         return binding.root
     }
 }

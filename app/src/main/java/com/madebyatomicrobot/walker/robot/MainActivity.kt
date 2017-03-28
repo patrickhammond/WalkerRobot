@@ -4,7 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.`@+id/leftLabel`
 import com.google.android.things.pio.I2cDevice
 import com.google.android.things.pio.PeripheralManagerService
 import com.madebyatomicrobot.things.drivers.PCA9685
@@ -16,11 +16,11 @@ class MainActivity : Activity() {
         private val TAG = MainActivity::class.java.simpleName
     }
 
-    lateinit var hipYAngleLabel: TextView
-    lateinit var hipXAngleLabel: TextView
-    lateinit var hipZAngleLabel: TextView
-    lateinit var kneeAngleLabel: TextView
-    lateinit var ankleAngleLabel: TextView
+    lateinit var hipYAngleLabel: `@+id/leftLabel`
+    lateinit var hipXAngleLabel: `@+id/leftLabel`
+    lateinit var hipZAngleLabel: `@+id/leftLabel`
+    lateinit var kneeAngleLabel: `@+id/leftLabel`
+    lateinit var ankleAngleLabel: `@+id/leftLabel`
 
     lateinit var i2c: I2cDevice
 
@@ -44,11 +44,11 @@ class MainActivity : Activity() {
 
         setContentView(R.layout.activity_main)
 
-        hipYAngleLabel = findViewById(R.id.hip_y_angle_label) as TextView
-        hipXAngleLabel = findViewById(R.id.hip_x_angle_label) as TextView
-        hipZAngleLabel = findViewById(R.id.hip_z_angle_label) as TextView
-        kneeAngleLabel = findViewById(R.id.knee_angle_label) as TextView
-        ankleAngleLabel = findViewById(R.id.ankle_angle_label) as TextView
+        hipYAngleLabel = findViewById(R.id.hip_y_angle_label) as `@+id/leftLabel`
+        hipXAngleLabel = findViewById(R.id.hip_x_angle_label) as `@+id/leftLabel`
+        hipZAngleLabel = findViewById(R.id.hip_z_angle_label) as `@+id/leftLabel`
+        kneeAngleLabel = findViewById(R.id.knee_angle_label) as `@+id/leftLabel`
+        ankleAngleLabel = findViewById(R.id.ankle_angle_label) as `@+id/leftLabel`
 
         val manager = PeripheralManagerService()
         try {

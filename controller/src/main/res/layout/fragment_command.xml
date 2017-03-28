@@ -8,7 +8,7 @@
 
         <variable
             name="command"
-            type="com.madebyatomicrobot.walker.remote.Command"/>
+            type="com.madebyatomicrobot.walker.remote.model.Command"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

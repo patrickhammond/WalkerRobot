@@ -36,7 +36,7 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile "com.android.support:design:${rootProject.ext.supportVersion}"
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
     compile "com.google.firebase:firebase-database:${rootProject.ext.playServicesVersion}"
 

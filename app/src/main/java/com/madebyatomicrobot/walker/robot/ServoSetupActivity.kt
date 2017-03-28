@@ -5,7 +5,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.`@+id/leftLabel`
 import com.google.android.things.pio.I2cDevice
 import com.google.android.things.pio.PeripheralManagerService
 import com.madebyatomicrobot.things.drivers.PCA9685
@@ -67,23 +67,30 @@ class ServoSetupActivity : Activity() {
             pca9685.resetI2C()
             pca9685.setPWMFreq(50.0)  // 50 Hz
 
-            servo00 = Servo(pca9685, 0, defaultAngle = 45.0)
-            servo01 = Servo(pca9685, 1, defaultAngle = 45.0)
+
+            val defaultFeetAngle = 90.0
+            val defaultAnkleAngle = 90.0
+            val defaultKneeAngle = 90.0
+            val defaultHipTwistAngle = 90.0
+            val defaultHipTiltAngle = 90.0
+
+            servo00 = Servo(pca9685, 0, defaultAngle = defaultFeetAngle)
+            servo01 = Servo(pca9685, 1, defaultAngle = defaultAnkleAngle)
             servo02 = Servo(pca9685, 2)  // ignore
             servo03 = Servo(pca9685, 3)  // ignore
             servo04 = Servo(pca9685, 4)  // ignore
-            servo05 = Servo(pca9685, 5, defaultAngle = 90.0, adjustmentAngle = -9.0)
-            servo06 = Servo(pca9685, 6, physicalMin = 70.0, physicalMax = 110.0)
-            servo07 = Servo(pca9685, 7, adjustmentAngle = -6.0, physicalMin = 70.0, physicalMax = 110.0)
+            servo05 = Servo(pca9685, 5, defaultAngle = defaultHipTiltAngle)
+            servo06 = Servo(pca9685, 6, defaultAngle = defaultHipTwistAngle)
+            servo07 = Servo(pca9685, 7, defaultAngle = defaultKneeAngle)
 
-            servo08 = Servo(pca9685, 8, adjustmentAngle = -6.0, physicalMin = 70.0, physicalMax = 110.0)
-            servo09 = Servo(pca9685, 9, physicalMin = 70.0, physicalMax = 110.0)
-            servo10 = Servo(pca9685, 10, defaultAngle = 90.0, invertAngle = true)
+            servo08 = Servo(pca9685, 8, defaultAngle = defaultKneeAngle, invertAngle = true)
+            servo09 = Servo(pca9685, 9, defaultAngle = defaultHipTwistAngle)
+            servo10 = Servo(pca9685, 10, defaultAngle = defaultHipTiltAngle)
             servo11 = Servo(pca9685, 11)  // ignore
             servo12 = Servo(pca9685, 12)  // ignore
             servo13 = Servo(pca9685, 13)  // ignore
-            servo14 = Servo(pca9685, 14, defaultAngle = 45.0, invertAngle = true)
-            servo15 = Servo(pca9685, 15, defaultAngle = 45.0, invertAngle = true)
+            servo14 = Servo(pca9685, 14, defaultAngle = defaultAnkleAngle, invertAngle = true)
+            servo15 = Servo(pca9685, 15, defaultAngle = defaultFeetAngle, invertAngle = true)
 
             rightAnkle = servo01
             rightKnee = servo00
@@ -139,7 +146,7 @@ class ServoSetupActivity : Activity() {
             servo: Servo,
             enabled: Boolean) {
         val seekBar = findViewById(seekBarResId) as SeekBar
-        val label = findViewById(seekBarLabelResId) as TextView
+        val label = findViewById(seekBarLabelResId) as `@+id/leftLabel`
 
         seekBar.isEnabled = enabled
         seekBar.max = 180
@@ -233,32 +240,37 @@ class ServoSetupActivity : Activity() {
         val leftHipTopAnimator = ValueAnimator.ofFloat(leftHipTopAngle, leftHipTopAngle - 20, leftHipTopAngle).setDuration(1500)
         leftHipTopAnimator.addUpdateListener({ (if (inverse) leftHipTop else rightHipTop).moveToAngle(it.animatedValue as Float) })
 
-        val rightHipTopAnimator = ValueAnimator.ofFloat(rightHipTopAngle, rightHipTopAngle - 20, rightHipTopAngle).setDuration(1500)
-        rightHipTopAnimator.addUpdateListener({ (if (inverse) rightHipTop else leftHipTop).moveToAngle(it.animatedValue as Float) })
-
         val leftHipMiddleAnimator = ValueAnimator.ofFloat(leftHipMiddleAngle, leftHipMiddleAngle - 20, leftHipMiddleAngle).setDuration(1500)
         leftHipMiddleAnimator.addUpdateListener { (if (inverse) leftHipMiddle else rightHipMiddle).moveToAngle(it.animatedValue as Float) }
-
-        val rightHipMiddleAnimator = ValueAnimator.ofFloat(rightHipMiddleAngle, rightHipMiddleAngle - 20, rightHipMiddleAngle).setDuration(1500)
-        rightHipMiddleAnimator.addUpdateListener { (if (inverse) rightHipMiddle else leftHipMiddle).moveToAngle(it.animatedValue as Float) }
 
         val leftHipBottomAnimator = ValueAnimator.ofFloat(leftHipBottomAngle, leftHipBottomAngle + 25, leftHipBottomAngle).setDuration(1500)
         leftHipBottomAnimator.addUpdateListener { (if (inverse) leftHipBottom else rightHipBottom).moveToAngle(it.animatedValue as Float) }
 
-        val rightHipBottomAnimator = ValueAnimator.ofFloat(rightHipBottomAngle, rightHipBottomAngle - 25, rightHipBottomAngle).setDuration(3000)
-        rightHipBottomAnimator.addUpdateListener { (if (inverse) rightHipBottom else leftHipBottom).moveToAngle(it.animatedValue as Float) }
-
         val leftKneeAnimator = ValueAnimator.ofFloat(leftKneeAngle, leftKneeAngle - 25, leftKneeAngle).setDuration(1500)
         leftKneeAnimator.addUpdateListener { (if (inverse) leftKnee else rightKnee).moveToAngle(it.animatedValue as Float) }
-
-        val rightKneeAnimator = ValueAnimator.ofFloat(rightKneeAngle, rightKneeAngle + 20, rightKneeAngle).setDuration(3000)
-        rightKneeAnimator.addUpdateListener { (if (inverse) rightKnee else leftKnee).moveToAngle(it.animatedValue as Float) }
 
         val leftAnkleAnimator = ValueAnimator.ofFloat(leftAnkleAngle, leftAnkleAngle - 30, leftAnkleAngle).setDuration(1500)
         leftAnkleAnimator.addUpdateListener { (if (inverse) leftAnkle else rightAnkle).moveToAngle(it.animatedValue as Float) }
 
+
+
+
+        val rightHipTopAnimator = ValueAnimator.ofFloat(rightHipTopAngle, rightHipTopAngle - 20, rightHipTopAngle).setDuration(1500)
+        rightHipTopAnimator.addUpdateListener({ (if (inverse) rightHipTop else leftHipTop).moveToAngle(it.animatedValue as Float) })
+
+        val rightHipMiddleAnimator = ValueAnimator.ofFloat(rightHipMiddleAngle, rightHipMiddleAngle - 20, rightHipMiddleAngle).setDuration(1500)
+        rightHipMiddleAnimator.addUpdateListener { (if (inverse) rightHipMiddle else leftHipMiddle).moveToAngle(it.animatedValue as Float) }
+
+        val rightHipBottomAnimator = ValueAnimator.ofFloat(rightHipBottomAngle, rightHipBottomAngle - 25, rightHipBottomAngle).setDuration(3000)
+        rightHipBottomAnimator.addUpdateListener { (if (inverse) rightHipBottom else leftHipBottom).moveToAngle(it.animatedValue as Float) }
+
+        val rightKneeAnimator = ValueAnimator.ofFloat(rightKneeAngle, rightKneeAngle + 20, rightKneeAngle).setDuration(3000)
+        rightKneeAnimator.addUpdateListener { (if (inverse) rightKnee else leftKnee).moveToAngle(it.animatedValue as Float) }
+
         val rightAnkleAnimator = ValueAnimator.ofFloat(rightAnkleAngle, rightAnkleAngle + 50, rightAnkleAngle).setDuration(3000)
         rightAnkleAnimator.addUpdateListener { (if (inverse) rightAnkle else leftAnkle).moveToAngle(it.animatedValue as Float) }
+
+
 
         leftHipTopAnimator.start()
         rightHipTopAnimator.start()

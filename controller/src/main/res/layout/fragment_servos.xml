@@ -8,7 +8,7 @@
 
         <variable
             name="servos"
-            type="com.madebyatomicrobot.walker.remote.Servos"/>
+            type="com.madebyatomicrobot.walker.remote.model.Servos"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

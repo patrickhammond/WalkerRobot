@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             when (position) {
                 0 -> return CommandFragment.newInstance()
                 1 -> return ServosFragment.newInstance()
-                2 -> return CommandFragment.newInstance()
+                2 -> return ConfigFragment.newInstance()
                 else -> throw IllegalStateException()
             }
         }
