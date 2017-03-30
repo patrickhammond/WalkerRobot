@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.madebyatomicrobot.walker.remote.data.Servos
+import kotlin.reflect.KMutableProperty
 
 class ServosViewModel(database: DatabaseReference) : BaseObservable() {
     private val currentServosRef = database.child("servos")
@@ -52,175 +53,74 @@ class ServosViewModel(database: DatabaseReference) : BaseObservable() {
     }
 
     fun setServo00(progress: Int) {
-        servos.servo00 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo15 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo00, servos::servo15)
     }
 
     fun setServo01(progress: Int) {
-        servos.servo01 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo14 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo01, servos::servo14)
     }
 
     fun setServo02(progress: Int) {
-        servos.servo02 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo13 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo02, servos::servo13)
     }
 
     fun setServo03(progress: Int) {
-        servos.servo03 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo12 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo03, servos::servo12)
     }
 
     fun setServo04(progress: Int) {
-        servos.servo04 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo11 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo04, servos::servo11)
     }
 
     fun setServo05(progress: Int) {
-        servos.servo05 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo10 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo05, servos::servo10)
     }
 
     fun setServo06(progress: Int) {
-        servos.servo06 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo09 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo06, servos::servo09)
     }
 
     fun setServo07(progress: Int) {
-        servos.servo07 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo08 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo07, servos::servo08)
     }
 
     fun setServo08(progress: Int) {
-        servos.servo08 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo07 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo08, servos::servo07)
     }
 
     fun setServo09(progress: Int) {
-        servos.servo09 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo06 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo09, servos::servo06)
     }
 
     fun setServo10(progress: Int) {
-        servos.servo10 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo05 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo10, servos::servo05)
     }
 
     fun setServo11(progress: Int) {
-        servos.servo11 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo04 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo11, servos::servo04)
     }
 
     fun setServo12(progress: Int) {
-        servos.servo12 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo03 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo12, servos::servo03)
     }
 
     fun setServo13(progress: Int) {
-        servos.servo13 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo02 = progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo13, servos::servo02)
     }
 
     fun setServo14(progress: Int) {
-        servos.servo14 = progress
-        if (servos.controlServos) {
-            if (oppositeServosSlaved) {
-                servos.servo01= progress
-            }
-
-            currentServosRef.setValue(servos)
-        }
+        updateServoFields(progress, servos::servo14, servos::servo01)
     }
 
     fun setServo15(progress: Int) {
-        servos.servo15 = progress
+        updateServoFields(progress, servos::servo15, servos::servo00)
+    }
+
+    private fun updateServoFields(angle: Int, servo: KMutableProperty<Int>, slave: KMutableProperty<Int>) {
+        servo.setter.call(angle)
         if (servos.controlServos) {
             if (oppositeServosSlaved) {
-                servos.servo00 = progress
+                slave.setter.call(angle)
             }
 
             currentServosRef.setValue(servos)

@@ -43,18 +43,20 @@ class CommandViewModel(database: DatabaseReference) : BaseObservable() {
 
     fun stop() {
         command.current = STOPPED
-        currentCommandRef.setValue(command)
-        notifyChange()
+        commandChanged()
     }
 
     fun forward() {
         command.current = FORWARD
-        currentCommandRef.setValue(command)
-        notifyChange()
+        commandChanged()
     }
 
     fun reverse() {
         command.current = REVERSE
+        commandChanged()
+    }
+
+    private fun commandChanged() {
         currentCommandRef.setValue(command)
         notifyChange()
     }
