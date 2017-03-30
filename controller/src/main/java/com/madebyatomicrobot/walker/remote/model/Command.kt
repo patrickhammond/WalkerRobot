@@ -6,7 +6,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.madebyatomicrobot.walker.remote.BR
 
 class Command(database: DatabaseReference) : BaseObservable() {
     companion object {
@@ -46,24 +45,18 @@ class Command(database: DatabaseReference) : BaseObservable() {
     fun stop() {
         currentCommandRef.setValue(STOPPED)
         currentCommand = STOPPED
-        notifyCommandPropertyChanged()
+        notifyChange()
     }
 
     fun forward() {
         currentCommandRef.setValue(FORWARD)
         currentCommand = FORWARD
-        notifyCommandPropertyChanged()
+        notifyChange()
     }
 
     fun reverse() {
         currentCommandRef.setValue(REVERSE)
         currentCommand = REVERSE
-        notifyCommandPropertyChanged()
-    }
-
-    private fun notifyCommandPropertyChanged() {
-        notifyPropertyChanged(BR.stopped)
-        notifyPropertyChanged(BR.forward)
-        notifyPropertyChanged(BR.reverse)
+        notifyChange()
     }
 }

@@ -5,7 +5,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SeekBar
-import android.widget.`@+id/leftLabel`
+import android.widget.TextView
 import com.google.android.things.pio.I2cDevice
 import com.google.android.things.pio.PeripheralManagerService
 import com.madebyatomicrobot.things.drivers.PCA9685
@@ -146,7 +146,7 @@ class ServoSetupActivity : Activity() {
             servo: Servo,
             enabled: Boolean) {
         val seekBar = findViewById(seekBarResId) as SeekBar
-        val label = findViewById(seekBarLabelResId) as `@+id/leftLabel`
+        val label = findViewById(seekBarLabelResId) as TextView
 
         seekBar.isEnabled = enabled
         seekBar.max = 180

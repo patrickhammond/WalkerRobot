@@ -8,7 +8,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
 class Config(database: DatabaseReference) : BaseObservable() {
-    private val currentConfigRef = database.child("config")
 
     data class ServoConfig(
             var action: String = "",
@@ -28,6 +27,8 @@ class Config(database: DatabaseReference) : BaseObservable() {
     var config: WalkerConfig = WalkerConfig()
         @Bindable get() = field
 
+    private val currentConfigRef = database.child("config")
+
     init {
         currentConfigRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
@@ -35,7 +36,7 @@ class Config(database: DatabaseReference) : BaseObservable() {
                 notifyChange()
             }
 
-            override fun onCancelled(p0: DatabaseError?) {}
+            override fun onCancelled(error: DatabaseError?) {}
         })
     }
 

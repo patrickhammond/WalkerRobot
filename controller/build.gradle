@@ -29,12 +29,12 @@ android {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     kapt "com.android.databinding:compiler:$android_gradle_version"
 
-    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
     compile "com.android.support:design:${rootProject.ext.supportVersion}"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 

@@ -2,53 +2,251 @@ package com.madebyatomicrobot.walker.remote.model
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import com.madebyatomicrobot.walker.remote.BR
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 
-class Servos : BaseObservable() {
-    var readOnly = true
-        @Bindable get
+class Servos(database: DatabaseReference) : BaseObservable() {
+    companion object {
+        private val DEFAULT_SERVO_ANGLE = 90
+    }
+
+    class ServoPositions {
+        var controlServos = false
+        var servo00: Int = DEFAULT_SERVO_ANGLE
+        var servo01: Int = DEFAULT_SERVO_ANGLE
+        var servo02: Int = DEFAULT_SERVO_ANGLE
+        var servo03: Int = DEFAULT_SERVO_ANGLE
+        var servo04: Int = DEFAULT_SERVO_ANGLE
+        var servo05: Int = DEFAULT_SERVO_ANGLE
+        var servo06: Int = DEFAULT_SERVO_ANGLE
+        var servo07: Int = DEFAULT_SERVO_ANGLE
+        var servo08: Int = DEFAULT_SERVO_ANGLE
+        var servo09: Int = DEFAULT_SERVO_ANGLE
+        var servo10: Int = DEFAULT_SERVO_ANGLE
+        var servo11: Int = DEFAULT_SERVO_ANGLE
+        var servo12: Int = DEFAULT_SERVO_ANGLE
+        var servo13: Int = DEFAULT_SERVO_ANGLE
+        var servo14: Int = DEFAULT_SERVO_ANGLE
+        var servo15: Int = DEFAULT_SERVO_ANGLE
+    }
+
+    var servos: ServoPositions = ServoPositions()
+        @Bindable get() = field
         set(value) {
             field = value
-            notifyPropertyChanged(BR.readOnly)
+            notifyChange()
         }
 
     var oppositeServosSlaved = true
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.oppositeServosSlaved)
+            notifyChange()
         }
 
-    var angle00: Int by AngleDelegate(BR.angle00, this::angle15)
-        @Bindable get
-    var angle01: Int by AngleDelegate(BR.angle01, this::angle14)
-        @Bindable get
-    var angle02: Int by AngleDelegate(BR.angle02, this::angle13)
-        @Bindable get
-    var angle03: Int by AngleDelegate(BR.angle03, this::angle12)
-        @Bindable get
-    var angle04: Int by AngleDelegate(BR.angle04, this::angle11)
-        @Bindable get
-    var angle05: Int by AngleDelegate(BR.angle05, this::angle10)
-        @Bindable get
-    var angle06: Int by AngleDelegate(BR.angle06, this::angle09)
-        @Bindable get
-    var angle07: Int by AngleDelegate(BR.angle07, this::angle08)
-        @Bindable get
-    var angle08: Int by AngleDelegate(BR.angle08, this::angle07)
-        @Bindable get
-    var angle09: Int by AngleDelegate(BR.angle09, this::angle06)
-        @Bindable get
-    var angle10: Int by AngleDelegate(BR.angle10, this::angle05)
-        @Bindable get
-    var angle11: Int by AngleDelegate(BR.angle11, this::angle04)
-        @Bindable get
-    var angle12: Int by AngleDelegate(BR.angle12, this::angle03)
-        @Bindable get
-    var angle13: Int by AngleDelegate(BR.angle13, this::angle02)
-        @Bindable get
-    var angle14: Int by AngleDelegate(BR.angle14, this::angle01)
-        @Bindable get
-    var angle15: Int by AngleDelegate(BR.angle15, this::angle00)
-        @Bindable get
+    private val currentServosRef = database.child("servos")
+
+    init {
+        currentServosRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                dataSnapshot?.let {
+                    servos = dataSnapshot.getValue(ServoPositions::class.java)
+                    notifyChange()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError?) {}
+        })
+    }
+
+    fun servoLabel(servo: String, value: Int) : String {
+        return "$servo ($value)"
+    }
+
+    fun getControlServos() : Boolean {
+        return servos.controlServos
+    }
+
+    fun setControlServos(controlServos: Boolean) {
+        servos.controlServos = controlServos
+        currentServosRef.setValue(servos)
+    }
+
+    fun setServo00(progress: Int) {
+        servos.servo00 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo15 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo01(progress: Int) {
+        servos.servo01 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo14 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo02(progress: Int) {
+        servos.servo02 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo13 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo03(progress: Int) {
+        servos.servo03 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo12 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo04(progress: Int) {
+        servos.servo04 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo11 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo05(progress: Int) {
+        servos.servo05 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo10 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo06(progress: Int) {
+        servos.servo06 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo09 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo07(progress: Int) {
+        servos.servo07 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo08 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo08(progress: Int) {
+        servos.servo08 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo07 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo09(progress: Int) {
+        servos.servo09 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo06 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo10(progress: Int) {
+        servos.servo10 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo05 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo11(progress: Int) {
+        servos.servo11 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo04 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo12(progress: Int) {
+        servos.servo12 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo03 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo13(progress: Int) {
+        servos.servo13 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo02 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo14(progress: Int) {
+        servos.servo14 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo01= progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
+
+    fun setServo15(progress: Int) {
+        servos.servo15 = progress
+        if (servos.controlServos) {
+            if (oppositeServosSlaved) {
+                servos.servo00 = progress
+            }
+
+            currentServosRef.setValue(servos)
+        }
+    }
 }

@@ -32,7 +32,7 @@ dependencies {
     compile project(':driver-pca9685')
     compile project(':driver-ads1015')
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     provided "com.google.android.things:androidthings:$androidThingsVersion"
 
     kapt "com.android.databinding:compiler:$android_gradle_version"
