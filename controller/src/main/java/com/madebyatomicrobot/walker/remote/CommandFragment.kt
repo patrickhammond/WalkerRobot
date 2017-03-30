@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.database.FirebaseDatabase
-import com.madebyatomicrobot.walker.remote.model.Command
+import com.madebyatomicrobot.walker.remote.model.CommandViewModel
 
 class CommandFragment : Fragment() {
     companion object {
@@ -16,16 +16,16 @@ class CommandFragment : Fragment() {
         }
     }
 
-    lateinit var command: Command
+    lateinit var commandViewModel: CommandViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        command = Command(FirebaseDatabase.getInstance().reference)
+        commandViewModel = CommandViewModel(FirebaseDatabase.getInstance().reference)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<CommandBinding>(inflater!!, R.layout.fragment_command, container, false)
-        binding.command = command
+        binding.command = commandViewModel
         return binding.root
     }
 }

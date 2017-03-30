@@ -6,39 +6,24 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.madebyatomicrobot.walker.remote.data.Config
 
-class Config(database: DatabaseReference) : BaseObservable() {
-
-    data class ServoConfig(
-            var action: String = "",
-            var duration: String = "")
-
-    data class LegConfig(
-            val hipY: ServoConfig = ServoConfig(),
-            val hipX: ServoConfig = ServoConfig(),
-            val hipZ: ServoConfig = ServoConfig(),
-            val knee: ServoConfig = ServoConfig(),
-            val ankle: ServoConfig = ServoConfig())
-
-    data class WalkerConfig(
-            val left: LegConfig = LegConfig(),
-            val right: LegConfig = LegConfig())
-
-    var config: WalkerConfig = WalkerConfig()
-        @Bindable get() = field
-
+class ConfigViewModel(database: DatabaseReference) : BaseObservable() {
     private val currentConfigRef = database.child("config")
 
     init {
         currentConfigRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                config = dataSnapshot!!.getValue(WalkerConfig::class.java)
+                config = dataSnapshot!!.getValue(Config::class.java)
                 notifyChange()
             }
 
             override fun onCancelled(error: DatabaseError?) {}
         })
     }
+
+    var config: Config = Config()
+        @Bindable get() = field
 
     fun save() {
         currentConfigRef.setValue(config)

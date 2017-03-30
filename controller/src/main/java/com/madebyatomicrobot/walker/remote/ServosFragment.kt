@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.database.FirebaseDatabase
-import com.madebyatomicrobot.walker.remote.model.Servos
+import com.madebyatomicrobot.walker.remote.model.ServosViewModel
 
 class ServosFragment : Fragment() {
     companion object {
@@ -16,16 +16,16 @@ class ServosFragment : Fragment() {
         }
     }
 
-    lateinit var servos: Servos
+    lateinit var servosViewModel: ServosViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        servos = Servos(FirebaseDatabase.getInstance().reference)
+        servosViewModel = ServosViewModel(FirebaseDatabase.getInstance().reference)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<ServosBinding>(inflater!!, R.layout.fragment_servos, container, false)
-        binding.servos = servos
+        binding.servos = servosViewModel
         return binding.root
     }
 }

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.database.FirebaseDatabase
-import com.madebyatomicrobot.walker.remote.model.Config
+import com.madebyatomicrobot.walker.remote.model.ConfigViewModel
 
 class ConfigFragment : Fragment() {
     companion object {
@@ -16,16 +16,16 @@ class ConfigFragment : Fragment() {
         }
     }
 
-    lateinit var config: Config
+    lateinit var configViewModel: ConfigViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        config = Config(FirebaseDatabase.getInstance().reference)
+        configViewModel = ConfigViewModel(FirebaseDatabase.getInstance().reference)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<ConfigBinding>(inflater!!, R.layout.fragment_config, container, false)
-        binding.config = config
+        binding.config = configViewModel
         return binding.root
     }
 }
