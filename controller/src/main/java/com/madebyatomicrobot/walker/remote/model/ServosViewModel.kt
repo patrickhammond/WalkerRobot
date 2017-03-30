@@ -52,28 +52,33 @@ class ServosViewModel(database: DatabaseReference) : BaseObservable() {
         currentServosRef.setValue(servos)
     }
 
-    fun setServo00(progress: Int) = updateServoFields(progress, servos::servo00, servos::servo15)
-    fun setServo01(progress: Int) = updateServoFields(progress, servos::servo01, servos::servo14)
-    fun setServo02(progress: Int) = updateServoFields(progress, servos::servo02, servos::servo13)
-    fun setServo03(progress: Int) = updateServoFields(progress, servos::servo03, servos::servo12)
-    fun setServo04(progress: Int) = updateServoFields(progress, servos::servo04, servos::servo11)
-    fun setServo05(progress: Int) = updateServoFields(progress, servos::servo05, servos::servo10)
-    fun setServo06(progress: Int) = updateServoFields(progress, servos::servo06, servos::servo09)
-    fun setServo07(progress: Int) = updateServoFields(progress, servos::servo07, servos::servo08)
-    fun setServo08(progress: Int) = updateServoFields(progress, servos::servo08, servos::servo07)
-    fun setServo09(progress: Int) = updateServoFields(progress, servos::servo09, servos::servo06)
-    fun setServo10(progress: Int) = updateServoFields(progress, servos::servo10, servos::servo05)
-    fun setServo11(progress: Int) = updateServoFields(progress, servos::servo11, servos::servo04)
-    fun setServo12(progress: Int) = updateServoFields(progress, servos::servo12, servos::servo03)
-    fun setServo13(progress: Int) = updateServoFields(progress, servos::servo13, servos::servo02)
-    fun setServo14(progress: Int) = updateServoFields(progress, servos::servo14, servos::servo01)
-    fun setServo15(progress: Int) = updateServoFields(progress, servos::servo15, servos::servo00)
+    fun setServo(servo: Int, progress: Int) {
+        servoFunctions[servo].invoke(progress)
+    }
 
-    private fun updateServoFields(angle: Int, servo: KMutableProperty<Int>, slave: KMutableProperty<Int>) {
+    private val servoFunctions: Array<(Int) -> Unit> = arrayOf(
+            { progress -> updateServoFields(progress, servos::servo00, servos::servo15) },
+            { progress -> updateServoFields(progress, servos::servo01, servos::servo14) },
+            { progress -> updateServoFields(progress, servos::servo02, servos::servo13) },
+            { progress -> updateServoFields(progress, servos::servo03, servos::servo12) },
+            { progress -> updateServoFields(progress, servos::servo04, servos::servo11) },
+            { progress -> updateServoFields(progress, servos::servo05, servos::servo10) },
+            { progress -> updateServoFields(progress, servos::servo06, servos::servo09) },
+            { progress -> updateServoFields(progress, servos::servo07, servos::servo08) },
+            { progress -> updateServoFields(progress, servos::servo08, servos::servo07) },
+            { progress -> updateServoFields(progress, servos::servo09, servos::servo06) },
+            { progress -> updateServoFields(progress, servos::servo10, servos::servo05) },
+            { progress -> updateServoFields(progress, servos::servo11, servos::servo04) },
+            { progress -> updateServoFields(progress, servos::servo12, servos::servo03) },
+            { progress -> updateServoFields(progress, servos::servo13, servos::servo02) },
+            { progress -> updateServoFields(progress, servos::servo14, servos::servo01) },
+            { progress -> updateServoFields(progress, servos::servo15, servos::servo00) })
+
+    private fun updateServoFields(angle: Int, servo: KMutableProperty<Int>, slaveServo: KMutableProperty<Int>) {
         servo.setter.call(angle)
         if (servos.controlServos) {
             if (oppositeServosSlaved) {
-                slave.setter.call(angle)
+                slaveServo.setter.call(angle)
             }
 
             currentServosRef.setValue(servos)
