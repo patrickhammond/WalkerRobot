@@ -23,9 +23,11 @@ data class Servos(
     companion object {
         private val DEFAULT_SERVO_ANGLE = 90
         private val DEFAULT_ADJUSTMENT_ANGLE = 90
+        private val DEFAULT_ENABLED = true
     }
 
     data class Servo(
             var position: Int = DEFAULT_SERVO_ANGLE,
-            var adjustment: Int = DEFAULT_ADJUSTMENT_ANGLE)
+            var adjustment: Int = DEFAULT_ADJUSTMENT_ANGLE,
+            var enabled: Boolean = DEFAULT_ENABLED)
 }
