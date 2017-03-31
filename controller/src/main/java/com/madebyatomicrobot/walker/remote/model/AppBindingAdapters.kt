@@ -1,8 +1,7 @@
-package com.madebyatomicrobot.walker.remote
+package com.madebyatomicrobot.walker.remote.model
 
 import android.databinding.BindingAdapter
 import android.view.View
-
 
 object AppBindingAdapters {
     @JvmStatic @BindingAdapter("activated")
@@ -17,6 +16,11 @@ object AppBindingAdapters {
                     true -> View.OnTouchListener { _, _ -> true }
                     false -> null
                 })
+    }
+
+    @JvmStatic @BindingAdapter("enabled")
+    fun setEnabled(view: View, enabled: Boolean) {
+        view.isEnabled = enabled
     }
 }
 

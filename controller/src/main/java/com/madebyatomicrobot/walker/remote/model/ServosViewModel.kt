@@ -2,45 +2,43 @@ package com.madebyatomicrobot.walker.remote.model
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.madebyatomicrobot.walker.remote.data.Servos
+import android.util.Log
+import com.madebyatomicrobot.walker.connector.data.RemoteConnector
+import com.madebyatomicrobot.walker.connector.data.Servos
+import io.reactivex.disposables.CompositeDisposable
 import kotlin.reflect.KMutableProperty
 
-class ServosViewModel(database: DatabaseReference) : BaseObservable() {
-    private val currentServosRef = database.child("servos")
-
-    init {
-        currentServosRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                dataSnapshot?.let {
-                    servos = dataSnapshot.getValue(Servos::class.java)
-                    notifyChange()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError?) {}
-        })
+class ServosViewModel(val connector: RemoteConnector) : BaseObservable() {
+    companion object {
+        val TAG: String = ServosViewModel::class.java.simpleName
     }
 
-    var servos: Servos = Servos()
-        @Bindable get() = field
-        set(value) {
-            field = value
-            notifyChange()
-        }
-
-    var oppositeServosSlaved = true
+    var servos: Servos by ViewModelProperty(Servos())
         @Bindable get
-        set(value) {
-            field = value
-            notifyChange()
-        }
+
+    var oppositeServosSlaved: Boolean by ViewModelProperty(true)
+        @Bindable get
+
+
+    private val disposables: CompositeDisposable = CompositeDisposable()
+
+    fun onResume() {
+        disposables.add(
+                connector.getServos().subscribe(
+                        { _servos -> servos = _servos },
+                        { error -> Log.e(TAG, "Servos error", error) }))
+    }
+
+    fun onPause() {
+        disposables.clear()
+    }
 
     fun servoLabel(servo: String, value: Int): String {
-        return "$servo ($value)"
+        return "$servo ($value${kotlin.text.Typography.degree})"
+    }
+
+    @Bindable fun isReadOnly(): Boolean {
+        return !getControlServos() && !getWatchServos()
     }
 
     fun getControlServos(): Boolean {
@@ -49,7 +47,22 @@ class ServosViewModel(database: DatabaseReference) : BaseObservable() {
 
     fun setControlServos(controlServos: Boolean) {
         servos.controlServos = controlServos
-        currentServosRef.setValue(servos)
+        servos.watchServos = false
+        notifyChange()
+
+        connector.setServos(servos)
+    }
+
+    fun getWatchServos(): Boolean {
+        return servos.watchServos
+    }
+
+    fun setWatchServos(watchServos: Boolean) {
+        servos.controlServos = false
+        servos.watchServos = watchServos
+        notifyChange()
+
+        connector.setServos(servos)
     }
 
     fun setServo(servo: Int, progress: Int) {
@@ -57,22 +70,22 @@ class ServosViewModel(database: DatabaseReference) : BaseObservable() {
     }
 
     private val servoFunctions: Array<(Int) -> Unit> = arrayOf(
-            { progress -> updateServoFields(progress, servos::servo00, servos::servo15) },
-            { progress -> updateServoFields(progress, servos::servo01, servos::servo14) },
-            { progress -> updateServoFields(progress, servos::servo02, servos::servo13) },
-            { progress -> updateServoFields(progress, servos::servo03, servos::servo12) },
-            { progress -> updateServoFields(progress, servos::servo04, servos::servo11) },
-            { progress -> updateServoFields(progress, servos::servo05, servos::servo10) },
-            { progress -> updateServoFields(progress, servos::servo06, servos::servo09) },
-            { progress -> updateServoFields(progress, servos::servo07, servos::servo08) },
-            { progress -> updateServoFields(progress, servos::servo08, servos::servo07) },
-            { progress -> updateServoFields(progress, servos::servo09, servos::servo06) },
-            { progress -> updateServoFields(progress, servos::servo10, servos::servo05) },
-            { progress -> updateServoFields(progress, servos::servo11, servos::servo04) },
-            { progress -> updateServoFields(progress, servos::servo12, servos::servo03) },
-            { progress -> updateServoFields(progress, servos::servo13, servos::servo02) },
-            { progress -> updateServoFields(progress, servos::servo14, servos::servo01) },
-            { progress -> updateServoFields(progress, servos::servo15, servos::servo00) })
+            { progress -> updateServoFields(progress, servos.servo00::position, servos.servo15::position) },
+            { progress -> updateServoFields(progress, servos.servo01::position, servos.servo14::position) },
+            { progress -> updateServoFields(progress, servos.servo02::position, servos.servo13::position) },
+            { progress -> updateServoFields(progress, servos.servo03::position, servos.servo12::position) },
+            { progress -> updateServoFields(progress, servos.servo04::position, servos.servo11::position) },
+            { progress -> updateServoFields(progress, servos.servo05::position, servos.servo10::position) },
+            { progress -> updateServoFields(progress, servos.servo06::position, servos.servo09::position) },
+            { progress -> updateServoFields(progress, servos.servo07::position, servos.servo08::position) },
+            { progress -> updateServoFields(progress, servos.servo08::position, servos.servo07::position) },
+            { progress -> updateServoFields(progress, servos.servo09::position, servos.servo06::position) },
+            { progress -> updateServoFields(progress, servos.servo10::position, servos.servo05::position) },
+            { progress -> updateServoFields(progress, servos.servo11::position, servos.servo04::position) },
+            { progress -> updateServoFields(progress, servos.servo12::position, servos.servo03::position) },
+            { progress -> updateServoFields(progress, servos.servo13::position, servos.servo02::position) },
+            { progress -> updateServoFields(progress, servos.servo14::position, servos.servo01::position) },
+            { progress -> updateServoFields(progress, servos.servo15::position, servos.servo00::position) })
 
     private fun updateServoFields(angle: Int, servo: KMutableProperty<Int>, slaveServo: KMutableProperty<Int>) {
         servo.setter.call(angle)
@@ -81,7 +94,9 @@ class ServosViewModel(database: DatabaseReference) : BaseObservable() {
                 slaveServo.setter.call(angle)
             }
 
-            currentServosRef.setValue(servos)
+            if (servos.controlServos) {
+                connector.setServos(servos)
+            }
         }
     }
 }

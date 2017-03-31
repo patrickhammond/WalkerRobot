@@ -1,1 +1,1 @@
-include ':app', ':controller', ':driver-pca9685', ':driver-ads1015'
+include ':app', ':controller', ':connector', ':driver-pca9685', ':driver-ads1015'

@@ -2,35 +2,25 @@ package com.madebyatomicrobot.walker.remote.model
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.madebyatomicrobot.walker.remote.data.Command
-import com.madebyatomicrobot.walker.remote.data.Command.Companion.FORWARD
-import com.madebyatomicrobot.walker.remote.data.Command.Companion.REVERSE
-import com.madebyatomicrobot.walker.remote.data.Command.Companion.STOPPED
+import android.util.Log
+import com.madebyatomicrobot.walker.connector.data.RemoteConnector
+import com.madebyatomicrobot.walker.connector.data.Command
+import com.madebyatomicrobot.walker.connector.data.Command.Companion.FORWARD
+import com.madebyatomicrobot.walker.connector.data.Command.Companion.RESET
+import com.madebyatomicrobot.walker.connector.data.Command.Companion.REVERSE
+import com.madebyatomicrobot.walker.connector.data.Command.Companion.STOPPED
+import io.reactivex.disposables.CompositeDisposable
 
-class CommandViewModel(database: DatabaseReference) : BaseObservable() {
-    private val currentCommandRef = database.child("command")
-
-    init {
-        currentCommandRef.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                command = dataSnapshot!!.getValue(Command::class.java)
-                notifyChange()
-            }
-
-            override fun onCancelled(error: DatabaseError?) { }
-        })
+class CommandViewModel(val connector: RemoteConnector) : BaseObservable() {
+    companion object {
+        val TAG: String = CommandViewModel::class.java.simpleName
     }
 
-    var command: Command = Command()
-        @Bindable get() = field
-        set(value) {
-            field = value
-            notifyChange()
-        }
+    var command: Command by ViewModelProperty(Command())
+        @Bindable get
+
+    val reset: Boolean
+        @Bindable get() = command.current == RESET
 
     val stopped: Boolean
         @Bindable get() = command.current == STOPPED
@@ -40,6 +30,24 @@ class CommandViewModel(database: DatabaseReference) : BaseObservable() {
 
     val reverse: Boolean
         @Bindable get() = command.current == REVERSE
+
+    private val disposables: CompositeDisposable = CompositeDisposable()
+
+    fun onResume() {
+        disposables.add(
+                connector.getCommand().subscribe(
+                        { _command -> command = _command },
+                        { error -> Log.e(TAG, "Command error", error) }))
+    }
+
+    fun onPause() {
+        disposables.clear()
+    }
+
+    fun reset() {
+        command.current = RESET
+        commandChanged()
+    }
 
     fun stop() {
         command.current = STOPPED
@@ -57,7 +65,7 @@ class CommandViewModel(database: DatabaseReference) : BaseObservable() {
     }
 
     private fun commandChanged() {
-        currentCommandRef.setValue(command)
+        connector.setCommand(command)
         notifyChange()
     }
 }

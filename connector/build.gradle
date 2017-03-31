@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    compile "com.google.firebase:firebase-database:${rootProject.ext.playServicesVersion}"
+
+    compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJavaVersion}"
+
+    testCompile "junit:junit:${rootProject.ext.junitVersion}"
+}

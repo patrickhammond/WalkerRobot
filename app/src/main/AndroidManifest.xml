@@ -2,9 +2,10 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:theme="@android:style/Theme.Material"
+        android:name="android.support.multidex.MultiDexApplication"
         android:icon="@android:drawable/sym_def_app_icon"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Material">
 
         <uses-library android:name="com.google.android.things"/>
 
@@ -18,13 +19,14 @@
 
         <activity android:name=".ServoSetupActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
             <!-- Launch activity automatically on boot -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.IOT_LAUNCHER"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

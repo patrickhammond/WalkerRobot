@@ -16,6 +16,8 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -29,16 +31,21 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:multidex:1.0.1'
+
     compile project(':driver-pca9685')
     compile project(':driver-ads1015')
+    compile project(':connector')
+    compile "com.google.firebase:firebase-database:${rootProject.ext.playServicesVersion}" // FIXME - This is awkward...
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     provided "com.google.android.things:androidthings:$androidThingsVersion"
 
     kapt "com.android.databinding:compiler:$android_gradle_version"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'  // FIXME - Remove this
 
-    compile "com.google.firebase:firebase-database:${rootProject.ext.playServicesVersion}"
+    compile 'com.google.dagger:dagger:2.10'
+    kapt 'com.google.dagger:dagger-compiler:2.10'
 
     compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJavaVersion}"
 

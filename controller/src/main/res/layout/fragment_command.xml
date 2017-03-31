@@ -23,6 +23,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:contentDescription="Stop"
             android:onClick="@{() -> command.stop()}"
             android:src="@drawable/pause"
             android:tint="@color/activated_tint"
@@ -33,11 +34,29 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageButton
+            android:id="@+id/command_reset"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="Reset"
+            android:onClick="@{() -> command.reset()}"
+            android:src="@drawable/adjust"
+            android:tint="@color/activated_tint"
+            app:activated="@{command.reset}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/command_stop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499"/>
+
+        <ImageButton
             android:id="@+id/command_forward"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="0dp"
+            android:contentDescription="Forward"
             android:onClick="@{() -> command.forward()}"
             android:src="@drawable/arrow_up_bold"
             android:tint="@color/activated_tint"
@@ -51,6 +70,7 @@
             android:layout_height="96dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
+            android:contentDescription="Reverse"
             android:onClick="@{() -> command.reverse()}"
             android:src="@drawable/arrow_down_bold"
             android:tint="@color/activated_tint"

@@ -21,11 +21,11 @@
 
             <TextView
                 android:id="@+id/leftLabel"
-                style="?android:textAppearanceMedium"
+                style="@style/TextAppearance.AppCompat.Body2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Left"
@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/rightLabel"
-                style="?android:textAppearanceMedium"
+                style="@style/TextAppearance.AppCompat.Body2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -51,7 +51,7 @@
 
             <TextView
                 android:id="@+id/hipYLabel"
-                style="?android:textAppearanceMedium"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/hipXLabel"
-                style="?android:textAppearanceMedium"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/hipZLabel"
-                style="?android:textAppearanceMedium"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -87,7 +87,7 @@
 
             <TextView
                 android:id="@+id/kneeLabel"
-                style="?android:textAppearanceMedium"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -99,7 +99,7 @@
 
             <TextView
                 android:id="@+id/ankleLabel"
-                style="?android:textAppearanceMedium"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipY.action}"
@@ -146,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipY.action}"

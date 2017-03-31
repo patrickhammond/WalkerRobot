@@ -19,434 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <SeekBar
-                android:id="@+id/seekBar0"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(0, progress)}"
-                android:progress="@{servos.servos.servo00}"
-                app:layout_constraintLeft_toRightOf="@+id/textView0"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView0"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(1, progress)}"
-                android:progress="@={servos.servos.servo01}"
-                app:layout_constraintLeft_toRightOf="@+id/textView1"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView1"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(2, progress)}"
-                android:progress="@={servos.servos.servo02}"
-                app:layout_constraintLeft_toRightOf="@+id/textView2"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView2"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(3, progress)}"
-                android:progress="@={servos.servos.servo03}"
-                app:layout_constraintLeft_toRightOf="@+id/textView3"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView3"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(4, progress)}"
-                android:progress="@={servos.servos.servo04}"
-                app:layout_constraintLeft_toRightOf="@+id/textView4"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView4"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(5, progress)}"
-                android:progress="@={servos.servos.servo05}"
-                app:layout_constraintLeft_toRightOf="@+id/textView5"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView5"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(6, progress)}"
-                android:progress="@={servos.servos.servo06}"
-                app:layout_constraintLeft_toRightOf="@+id/textView6"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView6"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(7, progress)}"
-                android:progress="@={servos.servos.servo07}"
-                app:layout_constraintLeft_toRightOf="@+id/textView7"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView7"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(8, progress)}"
-                android:progress="@={servos.servos.servo08}"
-                app:layout_constraintLeft_toRightOf="@+id/textView8"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView8"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(9, progress)}"
-                android:progress="@={servos.servos.servo09}"
-                app:layout_constraintLeft_toRightOf="@+id/textView9"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView9"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(10, progress)}"
-                android:progress="@={servos.servos.servo10}"
-                app:layout_constraintLeft_toRightOf="@+id/textView10"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView10"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar11"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(11, progress)}"
-                android:progress="@={servos.servos.servo11}"
-                app:layout_constraintLeft_toRightOf="@+id/textView11"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView11"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar12"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(12, progress)}"
-                android:progress="@={servos.servos.servo12}"
-                app:layout_constraintLeft_toRightOf="@+id/textView12"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView12"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar13"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(13, progress)}"
-                android:progress="@={servos.servos.servo13}"
-                app:layout_constraintLeft_toRightOf="@+id/textView13"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView13"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar14"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(14, progress)}"
-                android:progress="@={servos.servos.servo14}"
-                app:layout_constraintLeft_toRightOf="@+id/textView14"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView14"
-                app:untouchable="@{!servos.controlServos}"/>
-
-            <SeekBar
-                android:id="@+id/seekBar15"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
-                android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(15, progress)}"
-                android:progress="@={servos.servos.servo15}"
-                app:layout_constraintLeft_toRightOf="@+id/textView15"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView15"
-                app:untouchable="@{!servos.controlServos}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:id="@+id/textView0"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
-                android:text='@{servos.servoLabel("00", servos.servos.servo00)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/oppositeServosSlaved"/>
-
-            <TextView
-                android:id="@+id/textView1"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("01", servos.servos.servo01)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView0"/>
-
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("02", servos.servos.servo02)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView1"/>
-
-            <TextView
-                android:id="@+id/textView3"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("03", servos.servos.servo03)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"/>
-
-            <TextView
-                android:id="@+id/textView4"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("04", servos.servos.servo04)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"/>
-
-            <TextView
-                android:id="@+id/textView5"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("05", servos.servos.servo05)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"/>
-
-            <TextView
-                android:id="@+id/textView6"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("06", servos.servos.servo06)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"/>
-
-            <TextView
-                android:id="@+id/textView7"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("07", servos.servos.servo07)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"/>
-
-            <TextView
-                android:id="@+id/textView8"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("08", servos.servos.servo08)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7"/>
-
-            <TextView
-                android:id="@+id/textView9"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("09", servos.servos.servo09)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8"/>
-
-            <TextView
-                android:id="@+id/textView10"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("10", servos.servos.servo10)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9"/>
-
-            <TextView
-                android:id="@+id/textView11"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("11", servos.servos.servo11)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView10"/>
-
-            <TextView
-                android:id="@+id/textView12"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("12", servos.servos.servo12)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11"/>
-
-            <TextView
-                android:id="@+id/textView13"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("13", servos.servos.servo13)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12"/>
-
-            <TextView
-                android:id="@+id/textView14"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("14", servos.servos.servo14)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13"/>
-
-            <TextView
-                android:id="@+id/textView15"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("15", servos.servos.servo15)}'
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView14"/>
 
             <CheckBox
                 android:id="@+id/oppositeServosSlaved"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="0dp"
                 android:layout_marginTop="8dp"
                 android:checked="@={servos.oppositeServosSlaved}"
                 android:enabled="@{servos.controlServos}"
-                android:text="Opposite servos are slaved (ex: 00 and 15)"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="Opposite servos are slaved"
+                app:layout_constraintLeft_toLeftOf="@+id/checkBox2"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox2"/>
 
             <CheckBox
@@ -456,9 +39,484 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:checked="@={servos.controlServos}"
+                android:enabled="@{!servos.watchServos}"
                 android:text="Control Servos"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
+
+            <CheckBox
+                android:id="@+id/watchServos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="0dp"
+                android:checked="@={servos.watchServos}"
+                android:enabled="@{!servos.controlServos}"
+                android:text="Watch Servos"
+                app:layout_constraintLeft_toRightOf="@+id/checkBox2"
+                app:layout_constraintTop_toTopOf="@+id/checkBox2"/>
+
+            <TextView
+                android:id="@+id/textView16"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="Servo"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="@+id/textView0"
+                app:layout_constraintTop_toBottomOf="@+id/oppositeServosSlaved"/>
+
+            <TextView
+                android:id="@+id/textView17"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center_horizontal"
+                android:text="Position"
+                app:layout_constraintLeft_toRightOf="@+id/textView16"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView16"/>
+
+            <SeekBar
+                android:id="@+id/seekBar0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="8dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(0, progress)}"
+                android:progress="@{servos.servos.servo00.position}"
+                app:layout_constraintLeft_toLeftOf="@+id/textView17"
+                app:layout_constraintRight_toRightOf="@+id/textView17"
+                app:layout_constraintTop_toBottomOf="@+id/textView17"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(1, progress)}"
+                android:progress="@={servos.servos.servo01.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView1"
+                app:layout_constraintRight_toRightOf="@+id/seekBar0"
+                app:layout_constraintTop_toTopOf="@+id/textView1"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(2, progress)}"
+                android:progress="@={servos.servos.servo02.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView2"
+                app:layout_constraintRight_toRightOf="@+id/seekBar1"
+                app:layout_constraintTop_toTopOf="@+id/textView2"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(3, progress)}"
+                android:progress="@={servos.servos.servo03.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView3"
+                app:layout_constraintRight_toRightOf="@+id/seekBar2"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(4, progress)}"
+                android:progress="@={servos.servos.servo04.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView4"
+                app:layout_constraintRight_toRightOf="@+id/seekBar3"
+                app:layout_constraintTop_toTopOf="@+id/textView4"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(5, progress)}"
+                android:progress="@={servos.servos.servo05.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView5"
+                app:layout_constraintRight_toRightOf="@+id/seekBar4"
+                app:layout_constraintTop_toTopOf="@+id/textView5"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(6, progress)}"
+                android:progress="@={servos.servos.servo06.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView6"
+                app:layout_constraintRight_toRightOf="@+id/seekBar5"
+                app:layout_constraintTop_toTopOf="@+id/textView6"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(7, progress)}"
+                android:progress="@={servos.servos.servo07.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView7"
+                app:layout_constraintRight_toRightOf="@+id/seekBar6"
+                app:layout_constraintTop_toTopOf="@+id/textView7"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(8, progress)}"
+                android:progress="@={servos.servos.servo08.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView8"
+                app:layout_constraintRight_toRightOf="@+id/seekBar7"
+                app:layout_constraintTop_toTopOf="@+id/textView8"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(9, progress)}"
+                android:progress="@={servos.servos.servo09.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView9"
+                app:layout_constraintRight_toRightOf="@+id/seekBar8"
+                app:layout_constraintTop_toTopOf="@+id/textView9"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(10, progress)}"
+                android:progress="@={servos.servos.servo10.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView10"
+                app:layout_constraintRight_toRightOf="@+id/seekBar9"
+                app:layout_constraintTop_toTopOf="@+id/textView10"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(11, progress)}"
+                android:progress="@={servos.servos.servo11.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView11"
+                app:layout_constraintRight_toRightOf="@+id/seekBar10"
+                app:layout_constraintTop_toTopOf="@+id/textView11"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(12, progress)}"
+                android:progress="@={servos.servos.servo12.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView12"
+                app:layout_constraintRight_toRightOf="@+id/seekBar11"
+                app:layout_constraintTop_toTopOf="@+id/textView12"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(13, progress)}"
+                android:progress="@={servos.servos.servo13.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView13"
+                app:layout_constraintRight_toRightOf="@+id/seekBar12"
+                app:layout_constraintTop_toTopOf="@+id/textView13"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(14, progress)}"
+                android:progress="@={servos.servos.servo14.position}"
+                app:layout_constraintLeft_toRightOf="@+id/textView14"
+                app:layout_constraintRight_toRightOf="@+id/seekBar13"
+                app:layout_constraintTop_toTopOf="@+id/textView14"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <SeekBar
+                android:id="@+id/seekBar15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:max="180"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(15, progress)}"
+                android:progress="@={servos.servos.servo15.position}"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toRightOf="@+id/textView15"
+                app:layout_constraintRight_toRightOf="@+id/seekBar14"
+                app:layout_constraintTop_toTopOf="@+id/textView15"
+                app:untouchable="@{!servos.controlServos}"
+                app:enabled="@{!servos.readOnly}"/>
+
+            <TextView
+                android:id="@+id/textView0"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("00", servos.servos.servo00.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView16"/>
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("01", servos.servos.servo01.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView0"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("02", servos.servos.servo02.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("03", servos.servos.servo03.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("04", servos.servos.servo04.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("05", servos.servos.servo05.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("06", servos.servos.servo06.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"/>
+
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("07", servos.servos.servo07.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"/>
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("08", servos.servos.servo08.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7"/>
+
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("09", servos.servos.servo09.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"/>
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("10", servos.servos.servo10.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9"/>
+
+            <TextView
+                android:id="@+id/textView11"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("11", servos.servos.servo11.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10"/>
+
+            <TextView
+                android:id="@+id/textView12"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("12", servos.servos.servo12.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11"/>
+
+            <TextView
+                android:id="@+id/textView13"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("13", servos.servos.servo13.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12"/>
+
+            <TextView
+                android:id="@+id/textView14"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("14", servos.servos.servo14.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13"/>
+
+            <TextView
+                android:id="@+id/textView15"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text='@{servos.servoLabel("15", servos.servos.servo15.position)}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView14"/>
 
         </android.support.constraint.ConstraintLayout>
 
