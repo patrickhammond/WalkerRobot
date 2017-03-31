@@ -31,7 +31,8 @@
                 android:text="Left"
                 app:layout_constraintLeft_toRightOf="@+id/hipYLabel"
                 app:layout_constraintRight_toLeftOf="@+id/rightLabel"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginRight="0dp"/>
 
             <TextView
                 android:id="@+id/rightLabel"
@@ -40,11 +41,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Right"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toRightOf="@+id/leftLabel"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -120,7 +120,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipY.action}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftLabel"
                 app:layout_constraintRight_toLeftOf="@+id/leftHipYDuration"/>
@@ -147,7 +146,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipY.action}"
-                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightLabel"
                 app:layout_constraintRight_toLeftOf="@+id/rightHipYDuration"/>
@@ -174,7 +172,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipX.action}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipYAction"
                 app:layout_constraintRight_toLeftOf="@+id/leftHipXDuration"/>
@@ -201,7 +198,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipX.action}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipYAction"
                 app:layout_constraintRight_toLeftOf="@+id/rightHipXDuration"/>
@@ -228,7 +224,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipZ.action}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipXAction"
                 app:layout_constraintRight_toLeftOf="@+id/leftHipZDuration"/>
@@ -255,7 +250,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipZ.action}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipXAction"
                 app:layout_constraintRight_toLeftOf="@+id/rightHipZDuration"/>
@@ -282,7 +276,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.knee.action}"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipZAction"
                 app:layout_constraintRight_toLeftOf="@+id/leftKneeDuration"/>
@@ -309,7 +302,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.knee.action}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipZAction"
                 app:layout_constraintRight_toLeftOf="@+id/rightKneeDuration"/>
@@ -336,7 +328,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.ankle.action}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftKneeAction"
                 app:layout_constraintRight_toLeftOf="@+id/leftAnkleDuration"/>
@@ -363,7 +354,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.ankle.action}"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightKneeAction"
                 app:layout_constraintRight_toLeftOf="@+id/rightAnkleDuration"/>
@@ -385,8 +375,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 android:onClick="@{() -> config.save()}"
                 android:text="Save Config"
