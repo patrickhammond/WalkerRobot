@@ -115,300 +115,270 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipY.action}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
-                app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftLabel"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftLabel"
+                app:layout_constraintRight_toLeftOf="@+id/leftHipYDuration"/>
 
             <EditText
                 android:id="@+id/leftHipYDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipY.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftHipYAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftLabel"/>
 
             <EditText
                 android:id="@+id/rightHipYAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipY.action}"
                 app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
-                app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightLabel"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightLabel"
+                app:layout_constraintRight_toLeftOf="@+id/rightHipYDuration"/>
 
             <EditText
                 android:id="@+id/rightHipYDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipY.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightHipYAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightLabel"/>
 
             <EditText
                 android:id="@+id/leftHipXAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipX.action}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
-                app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftHipYDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftHipYAction"
+                app:layout_constraintRight_toLeftOf="@+id/leftHipXDuration"/>
 
             <EditText
                 android:id="@+id/leftHipXDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipX.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftHipXAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftHipYDuration"/>
 
             <EditText
                 android:id="@+id/rightHipXAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipX.action}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
-                app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightHipYDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightHipYAction"
+                app:layout_constraintRight_toLeftOf="@+id/rightHipXDuration"/>
 
             <EditText
                 android:id="@+id/rightHipXDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipX.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightHipXAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightHipYDuration"/>
 
             <EditText
                 android:id="@+id/leftHipZAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipZ.action}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
-                app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftHipXDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftHipXAction"
+                app:layout_constraintRight_toLeftOf="@+id/leftHipZDuration"/>
 
             <EditText
                 android:id="@+id/leftHipZDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.hipZ.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftHipZAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftHipXDuration"/>
 
             <EditText
                 android:id="@+id/rightHipZAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipZ.action}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
-                app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightHipXDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightHipXAction"
+                app:layout_constraintRight_toLeftOf="@+id/rightHipZDuration"/>
 
             <EditText
                 android:id="@+id/rightHipZDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.hipZ.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightHipZAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightHipXDuration"/>
 
             <EditText
                 android:id="@+id/leftKneeAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.knee.action}"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
-                app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftHipZDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftHipZAction"
+                app:layout_constraintRight_toLeftOf="@+id/leftKneeDuration"/>
 
             <EditText
                 android:id="@+id/leftKneeDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.knee.duration}"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftKneeAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftHipZDuration"/>
 
             <EditText
                 android:id="@+id/rightKneeAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.knee.action}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
-                app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightHipZDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightHipZAction"
+                app:layout_constraintRight_toLeftOf="@+id/rightKneeDuration"/>
 
             <EditText
                 android:id="@+id/rightKneeDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.knee.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightKneeAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightHipZDuration"/>
 
             <EditText
                 android:id="@+id/leftAnkleAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.ankle.action}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
-                app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftKneeDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftKneeAction"
+                app:layout_constraintRight_toLeftOf="@+id/leftAnkleDuration"/>
 
             <EditText
                 android:id="@+id/leftAnkleDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.left.ankle.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
-                app:layout_constraintTop_toBottomOf="@+id/leftAnkleAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/leftKneeDuration"/>
 
             <EditText
                 android:id="@+id/rightAnkleAction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.ankle.action}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
-                app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightKneeDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightKneeAction"
+                app:layout_constraintRight_toLeftOf="@+id/rightAnkleDuration"/>
 
             <EditText
                 android:id="@+id/rightAnkleDuration"
-                android:layout_width="0dp"
+                android:layout_width="64dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="@={config.config.right.ankle.duration}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
-                app:layout_constraintTop_toBottomOf="@+id/rightAnkleAction"/>
+                app:layout_constraintTop_toBottomOf="@+id/rightKneeDuration"/>
 
             <Button
                 android:id="@+id/saveConfig"
@@ -417,7 +387,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:onClick="@{() -> config.save()}"
                 android:text="Save Config"
                 app:layout_constraintBottom_toBottomOf="parent"
