@@ -31,7 +31,7 @@ class ServosFragment : Fragment() {
         viewModel = ServosViewModel(activity, connector)
 
         val binding = DataBindingUtil.inflate<ServosBinding>(inflater!!, R.layout.fragment_servos, container, false)
-        binding.servos = viewModel
+        binding.viewModel = viewModel
         return binding.root
     }
 

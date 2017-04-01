@@ -7,7 +7,7 @@
     <data class=".ActionsBinding">
 
         <variable
-            name="actions"
+            name="viewModel"
             type="com.madebyatomicrobot.walker.remote.model.ActionsViewModel"/>
     </data>
 
@@ -119,7 +119,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.hipY.action}"
+                android:text="@={viewModel.actions.walk.left.hipY.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftLabel"
                 app:layout_constraintRight_toLeftOf="@+id/leftHipYDuration"/>
@@ -132,7 +132,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.hipY.duration}"
+                android:text="@={viewModel.actions.walk.left.hipY.duration}"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftLabel"/>
 
@@ -145,7 +145,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.hipY.action}"
+                android:text="@={viewModel.actions.walk.right.hipY.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightLabel"
                 app:layout_constraintRight_toLeftOf="@+id/rightHipYDuration"/>
@@ -158,7 +158,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.hipY.duration}"
+                android:text="@={viewModel.actions.walk.right.hipY.duration}"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightLabel"/>
 
@@ -171,7 +171,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.hipX.action}"
+                android:text="@={viewModel.actions.walk.left.hipX.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipYAction"
                 app:layout_constraintRight_toLeftOf="@+id/leftHipXDuration"/>
@@ -184,7 +184,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.hipX.duration}"
+                android:text="@={viewModel.actions.walk.left.hipX.duration}"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipYDuration"/>
 
@@ -197,7 +197,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.hipX.action}"
+                android:text="@={viewModel.actions.walk.right.hipX.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipYAction"
                 app:layout_constraintRight_toLeftOf="@+id/rightHipXDuration"/>
@@ -210,7 +210,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.hipX.duration}"
+                android:text="@={viewModel.actions.walk.right.hipX.duration}"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipYDuration"/>
 
@@ -223,7 +223,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.hipZ.action}"
+                android:text="@={viewModel.actions.walk.left.hipZ.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipXAction"
                 app:layout_constraintRight_toLeftOf="@+id/leftHipZDuration"/>
@@ -236,7 +236,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.hipZ.duration}"
+                android:text="@={viewModel.actions.walk.left.hipZ.duration}"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipXDuration"/>
 
@@ -249,7 +249,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.hipZ.action}"
+                android:text="@={viewModel.actions.walk.right.hipZ.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipXAction"
                 app:layout_constraintRight_toLeftOf="@+id/rightHipZDuration"/>
@@ -262,7 +262,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.hipZ.duration}"
+                android:text="@={viewModel.actions.walk.right.hipZ.duration}"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipXDuration"/>
 
@@ -275,7 +275,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.knee.action}"
+                android:text="@={viewModel.actions.walk.left.knee.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipZAction"
                 app:layout_constraintRight_toLeftOf="@+id/leftKneeDuration"/>
@@ -288,7 +288,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.knee.duration}"
+                android:text="@={viewModel.actions.walk.left.knee.duration}"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftHipZDuration"/>
 
@@ -301,7 +301,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.knee.action}"
+                android:text="@={viewModel.actions.walk.right.knee.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipZAction"
                 app:layout_constraintRight_toLeftOf="@+id/rightKneeDuration"/>
@@ -314,7 +314,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.knee.duration}"
+                android:text="@={viewModel.actions.walk.right.knee.duration}"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightHipZDuration"/>
 
@@ -327,7 +327,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.ankle.action}"
+                android:text="@={viewModel.actions.walk.left.ankle.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftKneeAction"
                 app:layout_constraintRight_toLeftOf="@+id/leftAnkleDuration"/>
@@ -340,7 +340,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.left.ankle.duration}"
+                android:text="@={viewModel.actions.walk.left.ankle.duration}"
                 app:layout_constraintRight_toRightOf="@+id/leftLabel"
                 app:layout_constraintTop_toBottomOf="@+id/leftKneeDuration"/>
 
@@ -353,7 +353,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.ankle.action}"
+                android:text="@={viewModel.actions.walk.right.ankle.action}"
                 app:layout_constraintLeft_toLeftOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightKneeAction"
                 app:layout_constraintRight_toLeftOf="@+id/rightAnkleDuration"/>
@@ -366,7 +366,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="@={actions.actions.walk.right.ankle.duration}"
+                android:text="@={viewModel.actions.walk.right.ankle.duration}"
                 app:layout_constraintRight_toRightOf="@+id/rightLabel"
                 app:layout_constraintTop_toBottomOf="@+id/rightKneeDuration"/>
 
@@ -378,7 +378,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
-                android:onClick="@{() -> actions.save()}"
+                android:onClick="@{() -> viewModel.save()}"
                 android:text="Save Config"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

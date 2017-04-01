@@ -44,7 +44,7 @@ class ServoEditorFragment : BottomSheetDialogFragment() {
         viewModel = ServoEditorViewModel(servoId, connector)
 
         val binding = DataBindingUtil.inflate<ServoEditorBinding>(inflater!!, R.layout.fragment_servo_editor, container, false)
-        binding.servoEditor = viewModel
+        binding.viewModel = viewModel
         return binding.root
     }
 

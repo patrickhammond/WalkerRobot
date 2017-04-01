@@ -7,7 +7,7 @@
     <data class=".ServosBinding">
 
         <variable
-            name="servos"
+            name="viewModel"
             type="com.madebyatomicrobot.walker.remote.model.ServosViewModel"/>
     </data>
 
@@ -25,8 +25,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:checked="@={servos.oppositeServosSlaved}"
-                android:enabled="@{servos.controlServos}"
+                android:checked="@={viewModel.oppositeServosSlaved}"
+                android:enabled="@{viewModel.controlServos}"
                 android:text="Servos Slaved"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginRight="16dp"
@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:checked="@={servos.controlServos}"
-                android:enabled="@{!servos.watchServos}"
+                android:checked="@={viewModel.controlServos}"
+                android:enabled="@{!viewModel.watchServos}"
                 android:text="Control"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/watchServos"/>
@@ -49,8 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:checked="@={servos.watchServos}"
-                android:enabled="@{!servos.controlServos}"
+                android:checked="@={viewModel.watchServos}"
+                android:enabled="@{!viewModel.controlServos}"
                 android:text="Watch"
                 app:layout_constraintTop_toTopOf="@+id/checkBox2"
                 android:layout_marginLeft="16dp"
@@ -93,13 +93,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="8dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(0, progress)}"
-                android:progress="@{servos.servosStatus.servo00.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(0, progress)}"
+                android:progress="@{viewModel.servosStatus.servo00.position}"
                 app:layout_constraintLeft_toLeftOf="@+id/textView17"
                 app:layout_constraintRight_toRightOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/textView17"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo00Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo00Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar1"
@@ -109,13 +109,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(1, progress)}"
-                android:progress="@={servos.servosStatus.servo01.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(1, progress)}"
+                android:progress="@={viewModel.servosStatus.servo01.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView1"
                 app:layout_constraintRight_toRightOf="@+id/seekBar0"
                 app:layout_constraintTop_toTopOf="@+id/textView1"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo01Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo01Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar2"
@@ -125,13 +125,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(2, progress)}"
-                android:progress="@={servos.servosStatus.servo02.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(2, progress)}"
+                android:progress="@={viewModel.servosStatus.servo02.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView2"
                 app:layout_constraintRight_toRightOf="@+id/seekBar1"
                 app:layout_constraintTop_toTopOf="@+id/textView2"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo02Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo02Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar3"
@@ -141,13 +141,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(3, progress)}"
-                android:progress="@={servos.servosStatus.servo03.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(3, progress)}"
+                android:progress="@={viewModel.servosStatus.servo03.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView3"
                 app:layout_constraintRight_toRightOf="@+id/seekBar2"
                 app:layout_constraintTop_toTopOf="@+id/textView3"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo03Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo03Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar4"
@@ -157,13 +157,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(4, progress)}"
-                android:progress="@={servos.servosStatus.servo04.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(4, progress)}"
+                android:progress="@={viewModel.servosStatus.servo04.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView4"
                 app:layout_constraintRight_toRightOf="@+id/seekBar3"
                 app:layout_constraintTop_toTopOf="@+id/textView4"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo04Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo04Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar5"
@@ -173,13 +173,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(5, progress)}"
-                android:progress="@={servos.servosStatus.servo05.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(5, progress)}"
+                android:progress="@={viewModel.servosStatus.servo05.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView5"
                 app:layout_constraintRight_toRightOf="@+id/seekBar4"
                 app:layout_constraintTop_toTopOf="@+id/textView5"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo05Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo05Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar6"
@@ -189,13 +189,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(6, progress)}"
-                android:progress="@={servos.servosStatus.servo06.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(6, progress)}"
+                android:progress="@={viewModel.servosStatus.servo06.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView6"
                 app:layout_constraintRight_toRightOf="@+id/seekBar5"
                 app:layout_constraintTop_toTopOf="@+id/textView6"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo06Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo06Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar7"
@@ -205,13 +205,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(7, progress)}"
-                android:progress="@={servos.servosStatus.servo07.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(7, progress)}"
+                android:progress="@={viewModel.servosStatus.servo07.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView7"
                 app:layout_constraintRight_toRightOf="@+id/seekBar6"
                 app:layout_constraintTop_toTopOf="@+id/textView7"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo07Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo07Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar8"
@@ -221,13 +221,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(8, progress)}"
-                android:progress="@={servos.servosStatus.servo08.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(8, progress)}"
+                android:progress="@={viewModel.servosStatus.servo08.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView8"
                 app:layout_constraintRight_toRightOf="@+id/seekBar7"
                 app:layout_constraintTop_toTopOf="@+id/textView8"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo08Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo08Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar9"
@@ -237,13 +237,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(9, progress)}"
-                android:progress="@={servos.servosStatus.servo09.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(9, progress)}"
+                android:progress="@={viewModel.servosStatus.servo09.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView9"
                 app:layout_constraintRight_toRightOf="@+id/seekBar8"
                 app:layout_constraintTop_toTopOf="@+id/textView9"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo09Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo09Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar10"
@@ -253,13 +253,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(10, progress)}"
-                android:progress="@={servos.servosStatus.servo10.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(10, progress)}"
+                android:progress="@={viewModel.servosStatus.servo10.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView10"
                 app:layout_constraintRight_toRightOf="@+id/seekBar9"
                 app:layout_constraintTop_toTopOf="@+id/textView10"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo10Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo10Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar11"
@@ -269,13 +269,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(11, progress)}"
-                android:progress="@={servos.servosStatus.servo11.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(11, progress)}"
+                android:progress="@={viewModel.servosStatus.servo11.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView11"
                 app:layout_constraintRight_toRightOf="@+id/seekBar10"
                 app:layout_constraintTop_toTopOf="@+id/textView11"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo11Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo11Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar12"
@@ -285,13 +285,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(12, progress)}"
-                android:progress="@={servos.servosStatus.servo12.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(12, progress)}"
+                android:progress="@={viewModel.servosStatus.servo12.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView12"
                 app:layout_constraintRight_toRightOf="@+id/seekBar11"
                 app:layout_constraintTop_toTopOf="@+id/textView12"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo12Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo12Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar13"
@@ -301,13 +301,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(13, progress)}"
-                android:progress="@={servos.servosStatus.servo13.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(13, progress)}"
+                android:progress="@={viewModel.servosStatus.servo13.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView13"
                 app:layout_constraintRight_toRightOf="@+id/seekBar12"
                 app:layout_constraintTop_toTopOf="@+id/textView13"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo13Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo13Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar14"
@@ -317,13 +317,13 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(14, progress)}"
-                android:progress="@={servos.servosStatus.servo14.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(14, progress)}"
+                android:progress="@={viewModel.servosStatus.servo14.position}"
                 app:layout_constraintLeft_toRightOf="@+id/textView14"
                 app:layout_constraintRight_toRightOf="@+id/seekBar13"
                 app:layout_constraintTop_toTopOf="@+id/textView14"
-                app:untouchable="@{!servos.controlServos}"
-                app:enabled="@{servos.servo14Enabled}"/>
+                app:untouchable="@{!viewModel.controlServos}"
+                app:enabled="@{viewModel.servo14Enabled}"/>
 
             <SeekBar
                 android:id="@+id/seekBar15"
@@ -333,15 +333,15 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:max="180"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servos.setServo(15, progress)}"
-                android:progress="@={servos.servosStatus.servo15.position}"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setServo(15, progress)}"
+                android:progress="@={viewModel.servosStatus.servo15.position}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toRightOf="@+id/textView15"
                 app:layout_constraintRight_toRightOf="@+id/seekBar14"
                 app:layout_constraintTop_toTopOf="@+id/textView15"
-                app:untouchable="@{!servos.controlServos}"
+                app:untouchable="@{!viewModel.controlServos}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:enabled="@{servos.servo15Enabled}"/>
+                app:enabled="@{viewModel.servo15Enabled}"/>
 
             <TextView
                 android:id="@+id/textView0"
@@ -350,10 +350,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("00", servos.servosStatus.servo00.position)}'
+                android:text='@{viewModel.servoLabel("00", viewModel.servosStatus.servo00.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16"
-                android:onClick='@{() -> servos.editServo("servo00")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo00")}'/>
 
             <TextView
                 android:id="@+id/textView1"
@@ -362,10 +362,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("01", servos.servosStatus.servo01.position)}'
+                android:text='@{viewModel.servoLabel("01", viewModel.servosStatus.servo01.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView0"
-                android:onClick='@{() -> servos.editServo("servo01")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo01")}'/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -374,10 +374,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("02", servos.servosStatus.servo02.position)}'
+                android:text='@{viewModel.servoLabel("02", viewModel.servosStatus.servo02.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView1"
-                android:onClick='@{() -> servos.editServo("servo02")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo02")}'/>
 
             <TextView
                 android:id="@+id/textView3"
@@ -386,10 +386,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("03", servos.servosStatus.servo03.position)}'
+                android:text='@{viewModel.servoLabel("03", viewModel.servosStatus.servo03.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
-                android:onClick='@{() -> servos.editServo("servo03")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo03")}'/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -398,10 +398,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("04", servos.servosStatus.servo04.position)}'
+                android:text='@{viewModel.servoLabel("04", viewModel.servosStatus.servo04.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
-                android:onClick='@{() -> servos.editServo("servo04")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo04")}'/>
 
             <TextView
                 android:id="@+id/textView5"
@@ -410,10 +410,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("05", servos.servosStatus.servo05.position)}'
+                android:text='@{viewModel.servoLabel("05", viewModel.servosStatus.servo05.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
-                android:onClick='@{() -> servos.editServo("servo05")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo05")}'/>
 
             <TextView
                 android:id="@+id/textView6"
@@ -422,10 +422,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("06", servos.servosStatus.servo06.position)}'
+                android:text='@{viewModel.servoLabel("06", viewModel.servosStatus.servo06.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
-                android:onClick='@{() -> servos.editServo("servo06")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo06")}'/>
 
             <TextView
                 android:id="@+id/textView7"
@@ -434,10 +434,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("07", servos.servosStatus.servo07.position)}'
+                android:text='@{viewModel.servoLabel("07", viewModel.servosStatus.servo07.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
-                android:onClick='@{() -> servos.editServo("servo07")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo07")}'/>
 
             <TextView
                 android:id="@+id/textView8"
@@ -446,10 +446,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("08", servos.servosStatus.servo08.position)}'
+                android:text='@{viewModel.servoLabel("08", viewModel.servosStatus.servo08.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
-                android:onClick='@{() -> servos.editServo("servo08")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo08")}'/>
 
             <TextView
                 android:id="@+id/textView9"
@@ -458,10 +458,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("09", servos.servosStatus.servo09.position)}'
+                android:text='@{viewModel.servoLabel("09", viewModel.servosStatus.servo09.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8"
-                android:onClick='@{() -> servos.editServo("servo09")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo09")}'/>
 
             <TextView
                 android:id="@+id/textView10"
@@ -470,10 +470,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("10", servos.servosStatus.servo10.position)}'
+                android:text='@{viewModel.servoLabel("10", viewModel.servosStatus.servo10.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
-                android:onClick='@{() -> servos.editServo("servo10")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo10")}'/>
 
             <TextView
                 android:id="@+id/textView11"
@@ -482,10 +482,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("11", servos.servosStatus.servo11.position)}'
+                android:text='@{viewModel.servoLabel("11", viewModel.servosStatus.servo11.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
-                android:onClick='@{() -> servos.editServo("servo11")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo11")}'/>
 
             <TextView
                 android:id="@+id/textView12"
@@ -494,10 +494,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("12", servos.servosStatus.servo12.position)}'
+                android:text='@{viewModel.servoLabel("12", viewModel.servosStatus.servo12.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
-                android:onClick='@{() -> servos.editServo("servo12")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo12")}'/>
 
             <TextView
                 android:id="@+id/textView13"
@@ -506,10 +506,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("13", servos.servosStatus.servo13.position)}'
+                android:text='@{viewModel.servoLabel("13", viewModel.servosStatus.servo13.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12"
-                android:onClick='@{() -> servos.editServo("servo13")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo13")}'/>
 
             <TextView
                 android:id="@+id/textView14"
@@ -518,10 +518,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("14", servos.servosStatus.servo14.position)}'
+                android:text='@{viewModel.servoLabel("14", viewModel.servosStatus.servo14.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13"
-                android:onClick='@{() -> servos.editServo("servo14")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo14")}'/>
 
             <TextView
                 android:id="@+id/textView15"
@@ -530,10 +530,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{servos.servoLabel("15", servos.servosStatus.servo15.position)}'
+                android:text='@{viewModel.servoLabel("15", viewModel.servosStatus.servo15.position)}'
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14"
-                android:onClick='@{() -> servos.editServo("servo15")}'/>
+                android:onClick='@{() -> viewModel.editServo("servo15")}'/>
 
         </android.support.constraint.ConstraintLayout>
 

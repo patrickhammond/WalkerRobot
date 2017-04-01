@@ -31,7 +31,7 @@ class CommandsFragment : Fragment() {
         viewModel = CommandsViewModel(connector)
 
         val binding = DataBindingUtil.inflate<CommandBinding>(inflater!!, R.layout.fragment_commands, container, false)
-        binding.command = viewModel
+        binding.viewModel = viewModel
         return binding.root
     }
 

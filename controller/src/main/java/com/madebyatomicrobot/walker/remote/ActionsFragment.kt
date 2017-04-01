@@ -31,7 +31,7 @@ class ActionsFragment : Fragment() {
         viewModel = ActionsViewModel(connector)
 
         val binding = DataBindingUtil.inflate<ActionsBinding>(inflater!!, R.layout.fragment_actions, container, false)
-        binding.actions = viewModel
+        binding.viewModel = viewModel
         return binding.root
     }
 

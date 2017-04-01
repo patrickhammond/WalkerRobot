@@ -7,7 +7,7 @@
     <data class=".ServoEditorBinding">
 
         <variable
-            name="servoEditor"
+            name="viewModel"
             type="com.madebyatomicrobot.walker.remote.model.ServoEditorViewModel"/>
     </data>
 
@@ -24,7 +24,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text='@{ servoEditor.servoId }'/>
+            android:text='@{ viewModel.servoId }'/>
 
         <CheckBox
             android:id="@+id/servo_enabled"
@@ -33,7 +33,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:checked="@={servoEditor.enabled}"
+            android:checked="@={viewModel.enabled}"
             android:text="Enabled"/>
 
         <CheckBox
@@ -43,7 +43,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:checked="@={servoEditor.inverted}"
+            android:checked="@={viewModel.inverted}"
             android:text="Inverted"/>
 
         <LinearLayout
@@ -59,7 +59,7 @@
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
-                android:text="@{servoEditor.adjustmentLabel}"/>
+                android:text="@{viewModel.adjustmentLabel}"/>
 
             <SeekBar
                 android:id="@+id/servo_adjustment"
@@ -67,8 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:max="40"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servoEditor.setAdjustment(progress-20)}"
-                android:progress="@{servoEditor.adjustment + 20}"/>
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setAdjustment(progress-20)}"
+                android:progress="@{viewModel.adjustment + 20}"/>
 
         </LinearLayout>
 
