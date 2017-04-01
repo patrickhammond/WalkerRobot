@@ -134,22 +134,29 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
         }
     }
 
-    fun editServo00(v: View) = editServo("00")
-    fun editServo01(v: View) = editServo("01")
-    fun editServo02(v: View) = editServo("02")
-    fun editServo03(v: View) = editServo("03")
-    fun editServo04(v: View) = editServo("04")
-    fun editServo05(v: View) = editServo("05")
-    fun editServo06(v: View) = editServo("06")
-    fun editServo07(v: View) = editServo("07")
-    fun editServo08(v: View) = editServo("08")
-    fun editServo09(v: View) = editServo("09")
-    fun editServo10(v: View) = editServo("10")
-    fun editServo11(v: View) = editServo("11")
-    fun editServo12(v: View) = editServo("12")
-    fun editServo13(v: View) = editServo("13")
-    fun editServo14(v: View) = editServo("14")
-    fun editServo15(v: View) = editServo("15")
+    fun enableAllServos(v: View) = setAllServosEnabled(true)
+    fun disableAllServos(v: View) = setAllServosEnabled(false)
+
+    private fun setAllServosEnabled(enabled: Boolean) {
+
+    }
+
+    fun editServo00(v: View) = editServo("servo00")
+    fun editServo01(v: View) = editServo("servo01")
+    fun editServo02(v: View) = editServo("servo02")
+    fun editServo03(v: View) = editServo("servo03")
+    fun editServo04(v: View) = editServo("servo04")
+    fun editServo05(v: View) = editServo("servo05")
+    fun editServo06(v: View) = editServo("servo06")
+    fun editServo07(v: View) = editServo("servo07")
+    fun editServo08(v: View) = editServo("servo08")
+    fun editServo09(v: View) = editServo("servo09")
+    fun editServo10(v: View) = editServo("servo10")
+    fun editServo11(v: View) = editServo("servo11")
+    fun editServo12(v: View) = editServo("servo12")
+    fun editServo13(v: View) = editServo("servo13")
+    fun editServo14(v: View) = editServo("servo14")
+    fun editServo15(v: View) = editServo("servo15")
 
     private fun editServo(servoId: String) {
         val fragment = ServoEditorFragment.newInstance(servoId)
