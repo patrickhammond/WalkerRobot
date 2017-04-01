@@ -24,7 +24,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text='@{ "Servo " + viewModel.servoId }'/>
+            android:text="@{viewModel.servoLabel}"/>
 
         <CheckBox
             android:id="@+id/servo_enabled"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:max="40"
-                android:onProgressChanged="@{(seekbar,progress,fromUser) -> viewModel.setAdjustment(progress-20)}"
+                android:onProgressChanged="@{viewModel::adjustmentChanged}"
                 android:progress="@{viewModel.adjustment + 20}"/>
 
         </LinearLayout>
