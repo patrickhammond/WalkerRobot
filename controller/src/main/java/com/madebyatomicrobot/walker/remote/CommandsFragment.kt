@@ -8,19 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.madebyatomicrobot.walker.connector.data.RemoteConnector
-import com.madebyatomicrobot.walker.remote.model.CommandViewModel
+import com.madebyatomicrobot.walker.remote.model.CommandsViewModel
 import javax.inject.Inject
 
-class CommandFragment : Fragment() {
+class CommandsFragment : Fragment() {
     companion object {
-        fun newInstance(): CommandFragment {
-            return CommandFragment()
+        fun newInstance(): CommandsFragment {
+            return CommandsFragment()
         }
     }
 
     @Inject lateinit var connector: RemoteConnector
 
-    lateinit var viewModel: CommandViewModel
+    lateinit var viewModel: CommandsViewModel
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -28,9 +28,9 @@ class CommandFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = CommandViewModel(connector)
+        viewModel = CommandsViewModel(connector)
 
-        val binding = DataBindingUtil.inflate<CommandBinding>(inflater!!, R.layout.fragment_command, container, false)
+        val binding = DataBindingUtil.inflate<CommandBinding>(inflater!!, R.layout.fragment_commands, container, false)
         binding.command = viewModel
         return binding.root
     }

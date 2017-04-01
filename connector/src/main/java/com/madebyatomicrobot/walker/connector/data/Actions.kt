@@ -1,8 +1,11 @@
 package com.madebyatomicrobot.walker.connector.data
 
-data class Config(
-        val left: LegConfig = LegConfig(),
-        val right: LegConfig = LegConfig()) {
+data class Actions(
+        val walk: Action = Action()) {
+
+    data class Action(
+            val left: LegConfig = LegConfig(),
+            val right: LegConfig = LegConfig())
 
     data class LegConfig(
             val hipY: ServoConfig = ServoConfig(),

@@ -1,0 +1,189 @@
+{
+  "actions" : {
+    "walk" : {
+      "left" : {
+        "ankle" : {
+          "action" : "0,-30,0",
+          "duration" : "1500"
+        },
+        "hipX" : {
+          "action" : "0,-20,0",
+          "duration" : "1500"
+        },
+        "hipY" : {
+          "action" : "0,-20,0",
+          "duration" : "1500"
+        },
+        "hipZ" : {
+          "action" : "0,+25,0",
+          "duration" : "1500"
+        },
+        "knee" : {
+          "action" : "0,-25,0",
+          "duration" : "1500"
+        }
+      },
+      "right" : {
+        "ankle" : {
+          "action" : "0,+50,0",
+          "duration" : "3000"
+        },
+        "hipX" : {
+          "action" : "0,-20,0",
+          "duration" : "1500"
+        },
+        "hipY" : {
+          "action" : "0,-20,0",
+          "duration" : "1500"
+        },
+        "hipZ" : {
+          "action" : "0,-25,0",
+          "duration" : "3000"
+        },
+        "knee" : {
+          "action" : "0,+20,0",
+          "duration" : "3000"
+        }
+      }
+    }
+  },
+  "command" : {
+    "current" : "reset"
+  },
+  "servos_config" : {
+    "global" : {
+      "controlServos" : true,
+      "watchServos" : false
+    },
+    "servo00" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo01" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo02" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo03" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo04" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo05" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo06" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo07" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo08" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo09" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo10" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo11" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo12" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo13" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo14" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    },
+    "servo15" : {
+      "adjustment" : 0,
+      "enabled" : true,
+      "inverted" : false
+    }
+  },
+  "servos_status" : {
+    "servo00" : {
+      "position" : 90
+    },
+    "servo01" : {
+      "position" : 90
+    },
+    "servo02" : {
+      "position" : 90
+    },
+    "servo03" : {
+      "position" : 90
+    },
+    "servo04" : {
+      "position" : 90
+    },
+    "servo05" : {
+      "position" : 90
+    },
+    "servo06" : {
+      "position" : 90
+    },
+    "servo07" : {
+      "position" : 90
+    },
+    "servo08" : {
+      "position" : 90
+    },
+    "servo09" : {
+      "position" : 90
+    },
+    "servo10" : {
+      "position" : 90
+    },
+    "servo11" : {
+      "position" : 90
+    },
+    "servo12" : {
+      "position" : 90
+    },
+    "servo13" : {
+      "position" : 90
+    },
+    "servo14" : {
+      "position" : 90
+    },
+    "servo15" : {
+      "position" : 90
+    }
+  }
+}

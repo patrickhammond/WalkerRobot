@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity() {
 
         override fun getItem(position: Int): Fragment {
             when (position) {
-                0 -> return CommandFragment.newInstance()
+                0 -> return CommandsFragment.newInstance()
                 1 -> return ServosFragment.newInstance()
-                2 -> return ConfigFragment.newInstance()
+                2 -> return ActionsFragment.newInstance()
                 else -> throw IllegalStateException()
             }
         }

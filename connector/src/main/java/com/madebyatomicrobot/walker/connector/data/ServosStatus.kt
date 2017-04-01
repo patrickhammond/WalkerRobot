@@ -1,8 +1,6 @@
 package com.madebyatomicrobot.walker.connector.data
 
-data class Servos(
-        var controlServos: Boolean = false,
-        var watchServos: Boolean = false,
+data class ServosStatus(
         var servo00: Servo = Servo(),
         var servo01: Servo = Servo(),
         var servo02: Servo = Servo(),
@@ -22,12 +20,8 @@ data class Servos(
 
     companion object {
         private val DEFAULT_SERVO_ANGLE = 90
-        private val DEFAULT_ADJUSTMENT_ANGLE = 90
-        private val DEFAULT_ENABLED = true
     }
 
     data class Servo(
-            var position: Int = DEFAULT_SERVO_ANGLE,
-            var adjustment: Int = DEFAULT_ADJUSTMENT_ANGLE,
-            var enabled: Boolean = DEFAULT_ENABLED)
+            var position: Int = DEFAULT_SERVO_ANGLE)
 }

@@ -4,7 +4,7 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.util.Log
 import com.madebyatomicrobot.walker.connector.data.RemoteConnector
-import com.madebyatomicrobot.walker.connector.data.Servos
+import com.madebyatomicrobot.walker.connector.data.ServosConfig
 import io.reactivex.disposables.CompositeDisposable
 
 class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) : BaseObservable() {
@@ -12,16 +12,16 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
         val TAG: String = ServoEditorViewModel::class.java.simpleName
     }
 
-    var servo: Servos.Servo by ViewModelProperty(Servos.Servo())
+    var servoConfig: ServosConfig.Servo by ViewModelProperty(ServosConfig.Servo())
         @Bindable get
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     fun onResume() {
         disposables.add(
-                connector.getServo(servoId).subscribe(
-                        { _servo -> servo = _servo },
-                        { error -> Log.e(TAG, "Servo error", error) }))
+                connector.getServoConfig(servoId).subscribe(
+                        { _config -> servoConfig = _config },
+                        { error -> Log.e(TAG, "Servo config error", error) }))
     }
 
     fun onPause() {
@@ -29,22 +29,22 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
     }
 
     fun isEnabled(): Boolean {
-        return servo.enabled
+        return servoConfig.enabled
     }
 
     fun setEnabled(enabled: Boolean) {
-        servo.enabled = enabled
-        connector.setServo(servoId, servo)
+        servoConfig.enabled = enabled
+        connector.setServoConfig(servoId, servoConfig)
         notifyChange()
     }
 
     fun getAdjustment(): Int {
-        return servo.adjustment
+        return servoConfig.adjustment
     }
 
     fun setAdjustment(adjustment: Int) {
-        servo.adjustment = adjustment
-        connector.setServo(servoId, servo)
+        servoConfig.adjustment = adjustment
+        connector.setServoConfig(servoId, servoConfig)
         notifyChange()
     }
 

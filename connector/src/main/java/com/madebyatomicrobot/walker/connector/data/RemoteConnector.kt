@@ -4,9 +4,10 @@ import com.google.firebase.database.*
 import io.reactivex.Observable
 
 class RemoteConnector(val database: FirebaseDatabase) {
+    private val actionsRef = database.reference.child("actions")
+    private val servosStatusRef = database.reference.child("servos_status")
+    private val servosConfigRef = database.reference.child("servos_config")
     private val commandRef = database.reference.child("command")
-    private val servosRef = database.reference.child("servos")
-    private val configRef = database.reference.child("config")
 
     fun getCommand(): Observable<Command> {
         return getValueEventListener(commandRef)
@@ -16,28 +17,36 @@ class RemoteConnector(val database: FirebaseDatabase) {
         commandRef.setValue(command)
     }
 
-    fun getServos(): Observable<Servos> {
-        return getValueEventListener(servosRef)
+    fun getServosStatus(): Observable<ServosStatus> {
+        return getValueEventListener(servosStatusRef)
     }
 
-    fun setServos(servos: Servos) {
-        servosRef.setValue(servos)
+    fun setServosStatus(servosStatus: ServosStatus) {
+        servosStatusRef.setValue(servosStatus)
     }
 
-    fun getServo(servoId : String): Observable<Servos.Servo> {
-        return getValueEventListener(servosRef.child(servoId))
+    fun getServosConfig(): Observable<ServosConfig> {
+        return getValueEventListener(servosConfigRef)
     }
 
-    fun setServo(servoId: String, servo: Servos.Servo) {
-        servosRef.child(servoId).setValue(servo)
+    fun setServosConfig(servosStatus: ServosConfig) {
+        servosConfigRef.setValue(servosStatus)
     }
 
-    fun getConfig(): Observable<Config> {
-        return getValueEventListener(configRef)
+    fun getServoConfig(servoId : String): Observable<ServosConfig.Servo> {
+        return getValueEventListener(servosConfigRef.child(servoId))
     }
 
-    fun setConfig(config: Config) {
-        configRef.setValue(config)
+    fun setServoConfig(servoId: String, servoConfig: ServosConfig.Servo) {
+        servosConfigRef.child(servoId).setValue(servoConfig)
+    }
+
+    fun getActions(): Observable<Actions> {
+        return getValueEventListener(actionsRef)
+    }
+
+    fun setActions(actions: Actions) {
+        actionsRef.setValue(actions)
     }
 
     private inline fun <reified T> getValueEventListener(reference: DatabaseReference) : Observable<T> {
@@ -46,7 +55,14 @@ class RemoteConnector(val database: FirebaseDatabase) {
                 reference.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot?) {
                         if (!subscriber.isDisposed) {
-                            subscriber.onNext(dataSnapshot!!.getValue(T::class.java))
+                            try {
+                                val value = dataSnapshot?.getValue(T::class.java)
+                                if (value != null) {
+                                    subscriber.onNext(value)
+                                }
+                            } catch (ex: DatabaseException) {
+                                subscriber.onError(ex)
+                            }
                         }
                     }
 

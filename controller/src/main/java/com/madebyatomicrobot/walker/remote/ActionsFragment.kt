@@ -8,19 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.madebyatomicrobot.walker.connector.data.RemoteConnector
-import com.madebyatomicrobot.walker.remote.model.ConfigViewModel
+import com.madebyatomicrobot.walker.remote.model.ActionsViewModel
 import javax.inject.Inject
 
-class ConfigFragment : Fragment() {
+class ActionsFragment : Fragment() {
     companion object {
-        fun newInstance(): ConfigFragment {
-            return ConfigFragment()
+        fun newInstance(): ActionsFragment {
+            return ActionsFragment()
         }
     }
 
     @Inject lateinit var connector: RemoteConnector
 
-    lateinit var viewModel: ConfigViewModel
+    lateinit var viewModel: ActionsViewModel
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -28,10 +28,10 @@ class ConfigFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = ConfigViewModel(connector)
+        viewModel = ActionsViewModel(connector)
 
-        val binding = DataBindingUtil.inflate<ConfigBinding>(inflater!!, R.layout.fragment_config, container, false)
-        binding.config = viewModel
+        val binding = DataBindingUtil.inflate<ActionsBinding>(inflater!!, R.layout.fragment_actions, container, false)
+        binding.actions = viewModel
         return binding.root
     }
 

@@ -3,25 +3,25 @@ package com.madebyatomicrobot.walker.remote.model;
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.util.Log
+import com.madebyatomicrobot.walker.connector.data.Actions
 import com.madebyatomicrobot.walker.connector.data.RemoteConnector
-import com.madebyatomicrobot.walker.connector.data.Config
 import io.reactivex.disposables.CompositeDisposable
 
-class ConfigViewModel(val connector: RemoteConnector) : BaseObservable() {
+class ActionsViewModel(val connector: RemoteConnector) : BaseObservable() {
     companion object {
-        val TAG: String = ConfigViewModel::class.java.simpleName
+        val TAG: String = ActionsViewModel::class.java.simpleName
     }
 
-    var config: Config by ViewModelProperty(Config())
+    var actions: Actions by ViewModelProperty(Actions())
         @Bindable get
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     fun onResume() {
         disposables.add(
-                connector.getConfig().subscribe(
-                        { _config -> config = _config },
-                        { error -> Log.e(TAG, "Config error", error) }))
+                connector.getActions().subscribe(
+                        { _actions -> actions = _actions },
+                        { error -> Log.e(TAG, "Actions error", error) }))
     }
 
     fun onPause() {
@@ -29,6 +29,6 @@ class ConfigViewModel(val connector: RemoteConnector) : BaseObservable() {
     }
 
     fun save() {
-        connector.setConfig(config)
+        connector.setActions(actions)
     }
 }
