@@ -5,12 +5,12 @@ import android.databinding.Bindable
 import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.view.View
+import android.widget.SeekBar
 import com.madebyatomicrobot.walker.connector.data.RemoteConnector
 import com.madebyatomicrobot.walker.connector.data.ServosConfig
 import com.madebyatomicrobot.walker.connector.data.ServosStatus
 import com.madebyatomicrobot.walker.remote.ServoEditorFragment
 import io.reactivex.disposables.CompositeDisposable
-import kotlin.reflect.KMutableProperty
 
 class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConnector) : BaseObservable() {
     companion object {
@@ -25,7 +25,6 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
 
     var oppositeServosSlaved: Boolean by ViewModelProperty(true)
         @Bindable get
-
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
@@ -45,11 +44,7 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
         disposables.clear()
     }
 
-    @Bindable fun isReadOnly(): Boolean = !isControlServos() && !isWatchServos()
-
-    fun isControlServos(): Boolean {
-        return servosConfig.global.controlServos
-    }
+    fun isControlServos(): Boolean = servosConfig.global.controlServos
 
     fun setControlServos(controlServos: Boolean) {
         servosConfig.global.controlServos = controlServos
@@ -57,9 +52,7 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
         saveServoConfig()
     }
 
-    fun isWatchServos(): Boolean {
-        return servosConfig.global.watchServos
-    }
+    fun isWatchServos(): Boolean = servosConfig.global.watchServos
 
     fun setWatchServos(watchServos: Boolean) {
         servosConfig.global.controlServos = false
@@ -109,34 +102,30 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
     @Bindable fun isServo15Enabled(): Boolean = isServoEnabled(servosConfig.servo15)
 
     private fun isServoEnabled(servo: ServosConfig.Servo): Boolean = !isReadOnly() && servo.enabled
+    private fun isReadOnly(): Boolean = !isControlServos() && !isWatchServos()
 
-    fun setServo(servo: Int, progress: Int) {
-        servoFunctions[servo].invoke(progress)
-    }
+    fun servo00Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo00, servosStatus.servo15)
+    fun servo01Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo01, servosStatus.servo14)
+    fun servo02Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo02, servosStatus.servo13)
+    fun servo03Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo03, servosStatus.servo12)
+    fun servo04Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo04, servosStatus.servo11)
+    fun servo05Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo05, servosStatus.servo10)
+    fun servo06Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo06, servosStatus.servo09)
+    fun servo07Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo07, servosStatus.servo08)
+    fun servo08Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo08, servosStatus.servo07)
+    fun servo09Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo09, servosStatus.servo06)
+    fun servo10Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo10, servosStatus.servo05)
+    fun servo11Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo11, servosStatus.servo04)
+    fun servo12Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo12, servosStatus.servo03)
+    fun servo13Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo13, servosStatus.servo02)
+    fun servo14Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo14, servosStatus.servo01)
+    fun servo15Changed(view: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo15, servosStatus.servo00)
 
-    private val servoFunctions: Array<(Int) -> Unit> = arrayOf(
-            { progress -> updateServoFields(progress, servosStatus.servo00::position, servosStatus.servo15::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo01::position, servosStatus.servo14::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo02::position, servosStatus.servo13::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo03::position, servosStatus.servo12::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo04::position, servosStatus.servo11::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo05::position, servosStatus.servo10::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo06::position, servosStatus.servo09::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo07::position, servosStatus.servo08::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo08::position, servosStatus.servo07::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo09::position, servosStatus.servo06::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo10::position, servosStatus.servo05::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo11::position, servosStatus.servo04::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo12::position, servosStatus.servo03::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo13::position, servosStatus.servo02::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo14::position, servosStatus.servo01::position) },
-            { progress -> updateServoFields(progress, servosStatus.servo15::position, servosStatus.servo00::position) })
-
-    private fun updateServoFields(angle: Int, servo: KMutableProperty<Int>, slaveServo: KMutableProperty<Int>) {
-        servo.setter.call(angle)
+    private fun updateServo(angle: Int, servo: ServosStatus.Servo, slaveServo: ServosStatus.Servo) {
+        servo.position = angle
         if (servosConfig.global.controlServos) {
             if (oppositeServosSlaved) {
-                slaveServo.setter.call(angle)
+                slaveServo.position = angle
             }
 
             if (servosConfig.global.controlServos) {
