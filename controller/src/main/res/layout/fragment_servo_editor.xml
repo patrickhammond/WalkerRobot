@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.madebyatomicrobot.walker.remote.MainActivity">
+
+    <data class=".ServoEditorBinding">
+
+        <variable
+            name="servoEditor"
+            type="com.madebyatomicrobot.walker.remote.model.ServoEditorViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/servo_name"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:text='@{ servoEditor.servoId }'/>
+
+        <CheckBox
+            android:id="@+id/servo_enabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:checked="@={servoEditor.enabled}"
+            android:text="Enabled"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:text="@{servoEditor.adjustmentLabel}"/>
+
+            <SeekBar
+                android:id="@+id/servo_adjustment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:max="40"
+                android:onProgressChanged="@{(seekbar,progress,fromUser) -> servoEditor.setAdjustment(progress-20)}"
+                android:progress="@{servoEditor.adjustment + 20}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

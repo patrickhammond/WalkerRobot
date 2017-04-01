@@ -28,7 +28,7 @@ class ServosFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = ServosViewModel(connector)
+        viewModel = ServosViewModel(activity, connector)
 
         val binding = DataBindingUtil.inflate<ServosBinding>(inflater!!, R.layout.fragment_servos, container, false)
         binding.servos = viewModel

@@ -24,6 +24,14 @@ class RemoteConnector(val database: FirebaseDatabase) {
         servosRef.setValue(servos)
     }
 
+    fun getServo(servoId : String): Observable<Servos.Servo> {
+        return getValueEventListener(servosRef.child(servoId))
+    }
+
+    fun setServo(servoId: String, servo: Servos.Servo) {
+        servosRef.child(servoId).setValue(servo)
+    }
+
     fun getConfig(): Observable<Config> {
         return getValueEventListener(configRef)
     }

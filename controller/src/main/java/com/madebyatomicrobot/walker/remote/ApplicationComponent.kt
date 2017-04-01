@@ -17,4 +17,5 @@ interface ApplicationComponent {
     fun inject(fragment: CommandFragment)
     fun inject(fragment: ServosFragment)
     fun inject(fragment: ConfigFragment)
+    fun inject(fragment: ServoEditorFragment)
 }
