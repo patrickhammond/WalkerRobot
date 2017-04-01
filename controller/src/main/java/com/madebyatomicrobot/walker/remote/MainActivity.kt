@@ -2,6 +2,7 @@ package com.madebyatomicrobot.walker.remote
 
 import android.os.Bundle
 import android.support.annotation.DrawableRes
+import android.support.design.widget.Snackbar
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -11,7 +12,7 @@ import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CommandsFragment.CommandsHost {
     private lateinit var tabPagerAdapter: SectionsPagerAdapter
     private lateinit var viewPager: ViewPager
 
@@ -34,10 +35,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun showHumansMessage() {
+        val view = findViewById(R.id.main_content)
+        Snackbar.make(view, "Death to humans! ... Just kidding!", Snackbar.LENGTH_LONG).show()
+    }
+
     private inner class SectionsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
-        override fun getCount(): Int {
-            return 3
-        }
+        override fun getCount(): Int = 3
 
         override fun getPageTitle(position: Int): CharSequence {
             when (position) {

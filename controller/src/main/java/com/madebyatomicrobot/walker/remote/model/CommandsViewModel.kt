@@ -3,6 +3,7 @@ package com.madebyatomicrobot.walker.remote.model
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.util.Log
+import android.view.View
 import com.madebyatomicrobot.walker.connector.data.Command
 import com.madebyatomicrobot.walker.connector.data.Command.Companion.FORWARD
 import com.madebyatomicrobot.walker.connector.data.Command.Companion.RESET
@@ -11,9 +12,13 @@ import com.madebyatomicrobot.walker.connector.data.Command.Companion.STOPPED
 import com.madebyatomicrobot.walker.connector.data.RemoteConnector
 import io.reactivex.disposables.CompositeDisposable
 
-class CommandsViewModel(val connector: RemoteConnector) : BaseObservable() {
+class CommandsViewModel(val view: CommandsView, val connector: RemoteConnector) : BaseObservable() {
     companion object {
         val TAG: String = CommandsViewModel::class.java.simpleName
+    }
+
+    interface CommandsView {
+        fun showHumansMessage()
     }
 
     var command: Command = Command()
@@ -40,22 +45,22 @@ class CommandsViewModel(val connector: RemoteConnector) : BaseObservable() {
     @Bindable fun isForward(): Boolean = command.current == FORWARD
     @Bindable fun isReverse(): Boolean = command.current == REVERSE
 
-    fun reset() {
+    fun reset(v: View) {
         command.current = RESET
         commandChanged()
     }
 
-    fun stop() {
+    fun stop(v: View) {
         command.current = STOPPED
         commandChanged()
     }
 
-    fun forward() {
+    fun forward(v: View) {
         command.current = FORWARD
         commandChanged()
     }
 
-    fun reverse() {
+    fun reverse(v: View) {
         command.current = REVERSE
         commandChanged()
     }
@@ -63,5 +68,9 @@ class CommandsViewModel(val connector: RemoteConnector) : BaseObservable() {
     private fun commandChanged() {
         connector.setCommand(command)
         notifyChange()
+    }
+
+    fun humans(v: View) {
+        view.showHumansMessage()
     }
 }

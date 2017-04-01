@@ -49,7 +49,7 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
 
     fun getAdjustment(): Int = servoConfig.adjustment
 
-    fun adjustmentChanged(view: SeekBar, adjustment: Int, fromUser: Boolean) = setAdjustment(adjustment)
+    fun adjustmentChanged(v: SeekBar, adjustment: Int, fromUser: Boolean) = setAdjustment(adjustment)
 
     fun setAdjustment(adjustment: Int) {
         servoConfig.adjustment = adjustment

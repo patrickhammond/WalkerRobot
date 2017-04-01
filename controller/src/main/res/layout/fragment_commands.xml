@@ -24,7 +24,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:contentDescription="Stop"
-            android:onClick="@{() -> viewModel.stop()}"
+            android:onClick="@{viewModel::stop}"
             android:src="@drawable/pause"
             android:tint="@color/activated_tint"
             app:activated="@{viewModel.stopped}"
@@ -41,14 +41,28 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:contentDescription="Reset"
-            android:onClick="@{() -> viewModel.reset()}"
+            android:onClick="@{viewModel::reset}"
             android:src="@drawable/adjust"
             android:tint="@color/activated_tint"
             app:activated="@{viewModel.reset}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/command_stop"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/command_humans"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="Death to Humans"
+            android:onClick="@{viewModel::humans}"
+            android:src="@drawable/skull"
+            android:tint="@color/activated_tint"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499"/>
+            app:layout_constraintLeft_toRightOf="@+id/command_stop"
+            android:layout_marginLeft="8dp"/>
 
         <ImageButton
             android:id="@+id/command_forward"
@@ -57,7 +71,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="0dp"
             android:contentDescription="Forward"
-            android:onClick="@{() -> viewModel.forward()}"
+            android:onClick="@{viewModel::forward}"
             android:src="@drawable/arrow_up_bold"
             android:tint="@color/activated_tint"
             app:activated="@{viewModel.forward}"
@@ -71,7 +85,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
             android:contentDescription="Reverse"
-            android:onClick="@{() -> viewModel.reverse()}"
+            android:onClick="@{viewModel::reverse}"
             android:src="@drawable/arrow_down_bold"
             android:tint="@color/activated_tint"
             app:activated="@{viewModel.reverse}"
