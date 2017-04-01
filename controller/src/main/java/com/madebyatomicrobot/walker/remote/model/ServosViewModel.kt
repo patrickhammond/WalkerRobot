@@ -138,7 +138,23 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
     fun disableAllServos(v: View) = setAllServosEnabled(false)
 
     private fun setAllServosEnabled(enabled: Boolean) {
-
+        servosConfig.servo00.enabled = enabled
+        servosConfig.servo01.enabled = enabled
+        servosConfig.servo02.enabled = enabled
+        servosConfig.servo03.enabled = enabled
+        servosConfig.servo04.enabled = enabled
+        servosConfig.servo05.enabled = enabled
+        servosConfig.servo06.enabled = enabled
+        servosConfig.servo07.enabled = enabled
+        servosConfig.servo08.enabled = enabled
+        servosConfig.servo09.enabled = enabled
+        servosConfig.servo10.enabled = enabled
+        servosConfig.servo11.enabled = enabled
+        servosConfig.servo12.enabled = enabled
+        servosConfig.servo13.enabled = enabled
+        servosConfig.servo14.enabled = enabled
+        servosConfig.servo15.enabled = enabled
+        saveServoConfig()
     }
 
     fun editServo00(v: View) = editServo("servo00")
