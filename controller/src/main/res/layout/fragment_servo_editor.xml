@@ -24,7 +24,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text='@{ viewModel.servoId }'/>
+            android:text='@{ "Servo " + viewModel.servoId }'/>
 
         <CheckBox
             android:id="@+id/servo_enabled"

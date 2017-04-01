@@ -350,10 +350,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("00", viewModel.servosStatus.servo00.position)}'
+                android:text="@{viewModel.servo00Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16"
-                android:onClick='@{() -> viewModel.editServo("servo00")}'/>
+                android:onClick="@{viewModel::editServo00}"/>
 
             <TextView
                 android:id="@+id/textView1"
@@ -362,10 +362,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("01", viewModel.servosStatus.servo01.position)}'
+                android:text="@{viewModel.servo01Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView0"
-                android:onClick='@{() -> viewModel.editServo("servo01")}'/>
+                android:onClick="@{viewModel::editServo01}"/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -374,10 +374,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("02", viewModel.servosStatus.servo02.position)}'
+                android:text="@{viewModel.servo02Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView1"
-                android:onClick='@{() -> viewModel.editServo("servo02")}'/>
+                android:onClick="@{viewModel::editServo02}"/>
 
             <TextView
                 android:id="@+id/textView3"
@@ -386,10 +386,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("03", viewModel.servosStatus.servo03.position)}'
+                android:text="@{viewModel.servo03Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
-                android:onClick='@{() -> viewModel.editServo("servo03")}'/>
+                android:onClick="@{viewModel::editServo03}"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -398,10 +398,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("04", viewModel.servosStatus.servo04.position)}'
+                android:text="@{viewModel.servo04Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
-                android:onClick='@{() -> viewModel.editServo("servo04")}'/>
+                android:onClick="@{viewModel::editServo04}"/>
 
             <TextView
                 android:id="@+id/textView5"
@@ -410,10 +410,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("05", viewModel.servosStatus.servo05.position)}'
+                android:text="@{viewModel.servo05Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
-                android:onClick='@{() -> viewModel.editServo("servo05")}'/>
+                android:onClick="@{viewModel::editServo05}"/>
 
             <TextView
                 android:id="@+id/textView6"
@@ -422,10 +422,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("06", viewModel.servosStatus.servo06.position)}'
+                android:text="@{viewModel.servo06Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
-                android:onClick='@{() -> viewModel.editServo("servo06")}'/>
+                android:onClick="@{viewModel::editServo06}"/>
 
             <TextView
                 android:id="@+id/textView7"
@@ -434,10 +434,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("07", viewModel.servosStatus.servo07.position)}'
+                android:text="@{viewModel.servo07Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
-                android:onClick='@{() -> viewModel.editServo("servo07")}'/>
+                android:onClick="@{viewModel::editServo07}"/>
 
             <TextView
                 android:id="@+id/textView8"
@@ -446,10 +446,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("08", viewModel.servosStatus.servo08.position)}'
+                android:text="@{viewModel.servo08Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
-                android:onClick='@{() -> viewModel.editServo("servo08")}'/>
+                android:onClick="@{viewModel::editServo08}"/>
 
             <TextView
                 android:id="@+id/textView9"
@@ -458,10 +458,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("09", viewModel.servosStatus.servo09.position)}'
+                android:text="@{viewModel.servo09Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8"
-                android:onClick='@{() -> viewModel.editServo("servo09")}'/>
+                android:onClick="@{viewModel::editServo09}"/>
 
             <TextView
                 android:id="@+id/textView10"
@@ -470,10 +470,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("10", viewModel.servosStatus.servo10.position)}'
+                android:text="@{viewModel.servo10Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
-                android:onClick='@{() -> viewModel.editServo("servo10")}'/>
+                android:onClick="@{viewModel::editServo10}"/>
 
             <TextView
                 android:id="@+id/textView11"
@@ -482,10 +482,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("11", viewModel.servosStatus.servo11.position)}'
+                android:text="@{viewModel.servo11Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
-                android:onClick='@{() -> viewModel.editServo("servo11")}'/>
+                android:onClick="@{viewModel::editServo11}"/>
 
             <TextView
                 android:id="@+id/textView12"
@@ -494,10 +494,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("12", viewModel.servosStatus.servo12.position)}'
+                android:text="@{viewModel.servo12Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
-                android:onClick='@{() -> viewModel.editServo("servo12")}'/>
+                android:onClick="@{viewModel::editServo12}"/>
 
             <TextView
                 android:id="@+id/textView13"
@@ -506,10 +506,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("13", viewModel.servosStatus.servo13.position)}'
+                android:text="@{viewModel.servo13Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12"
-                android:onClick='@{() -> viewModel.editServo("servo13")}'/>
+                android:onClick="@{viewModel::editServo13}"/>
 
             <TextView
                 android:id="@+id/textView14"
@@ -518,10 +518,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("14", viewModel.servosStatus.servo14.position)}'
+                android:text="@{viewModel.servo14Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13"
-                android:onClick='@{() -> viewModel.editServo("servo14")}'/>
+                android:onClick="@{viewModel::editServo14}"/>
 
             <TextView
                 android:id="@+id/textView15"
@@ -530,10 +530,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text='@{viewModel.servoLabel("15", viewModel.servosStatus.servo15.position)}'
+                android:text="@{viewModel.servo15Label}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14"
-                android:onClick='@{() -> viewModel.editServo("servo15")}'/>
+                android:onClick="@{viewModel::editServo15}"/>
 
         </android.support.constraint.ConstraintLayout>
 
