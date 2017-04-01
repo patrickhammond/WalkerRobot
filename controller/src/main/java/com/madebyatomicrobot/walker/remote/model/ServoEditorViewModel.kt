@@ -28,27 +28,31 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
         disposables.clear()
     }
 
-    fun isEnabled(): Boolean {
-        return servoConfig.enabled
-    }
+    fun isEnabled(): Boolean = servoConfig.enabled
 
     fun setEnabled(enabled: Boolean) {
         servoConfig.enabled = enabled
-        connector.setServoConfig(servoId, servoConfig)
-        notifyChange()
+        saveServoConfig()
     }
 
-    fun getAdjustment(): Int {
-        return servoConfig.adjustment
+    fun isInverted(): Boolean = servoConfig.inverted
+
+    fun setInverted(inverted: Boolean) {
+        servoConfig.inverted = inverted
+        saveServoConfig()
     }
+
+    fun getAdjustmentLabel(): String = "Adjustment (${getAdjustment()}${kotlin.text.Typography.degree})"
+
+    fun getAdjustment(): Int = servoConfig.adjustment
 
     fun setAdjustment(adjustment: Int) {
         servoConfig.adjustment = adjustment
-        connector.setServoConfig(servoId, servoConfig)
-        notifyChange()
+        saveServoConfig()
     }
 
-    fun getAdjustmentLabel(): String {
-        return "Adjustment (${getAdjustment()}${kotlin.text.Typography.degree})"
+    private fun saveServoConfig() {
+        connector.setServoConfig(servoId, servoConfig)
+        notifyChange()
     }
 }

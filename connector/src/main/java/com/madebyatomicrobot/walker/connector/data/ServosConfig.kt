@@ -33,5 +33,5 @@ data class ServosConfig(
     data class Servo(
             var adjustment: Int = DEFAULT_ADJUSTMENT_ANGLE,
             var enabled: Boolean = DEFAULT_ENABLED,
-            val inverted: Boolean = DEFAULT_INVERTED)
+            var inverted: Boolean = DEFAULT_INVERTED)
 }
