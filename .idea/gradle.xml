@@ -8,11 +8,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/connector" />
             <option value="$PROJECT_DIR$/controller" />
             <option value="$PROJECT_DIR$/driver-ads1015" />
             <option value="$PROJECT_DIR$/driver-pca9685" />
+            <option value="$PROJECT_DIR$/robot" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
