@@ -23,6 +23,21 @@ data class PhysicalServos(
         val servo15: Servo = Servo(pca9685, 15)) {
 
     fun updateServoConfig(servoConfig: ServosConfig) {
-
+        servo00.updateServoConfig(servoConfig.servo00)
+        servo01.updateServoConfig(servoConfig.servo01)
+        servo02.updateServoConfig(servoConfig.servo02)
+        servo03.updateServoConfig(servoConfig.servo03)
+        servo04.updateServoConfig(servoConfig.servo04)
+        servo05.updateServoConfig(servoConfig.servo05)
+        servo06.updateServoConfig(servoConfig.servo06)
+        servo07.updateServoConfig(servoConfig.servo07)
+        servo08.updateServoConfig(servoConfig.servo08)
+        servo09.updateServoConfig(servoConfig.servo09)
+        servo10.updateServoConfig(servoConfig.servo10)
+        servo11.updateServoConfig(servoConfig.servo11)
+        servo12.updateServoConfig(servoConfig.servo12)
+        servo13.updateServoConfig(servoConfig.servo13)
+        servo14.updateServoConfig(servoConfig.servo14)
+        servo15.updateServoConfig(servoConfig.servo15)
     }
 }

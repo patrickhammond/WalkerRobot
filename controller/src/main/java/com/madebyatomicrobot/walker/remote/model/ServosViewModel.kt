@@ -37,7 +37,7 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
         disposables.add(
                 connector.getServosStatus().subscribe(
                         { servosStatus = it },
-                        { Log.e(TAG, "Servos status error", it) }))
+                        { error -> Log.e(TAG, "Servos status error", error) }))
     }
 
     fun onPause() {
@@ -122,10 +122,10 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
     fun servo15Changed(v: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo15, servosStatus.servo00)
 
     private fun updateServo(angle: Int, servo: ServosStatus.Servo, slaveServo: ServosStatus.Servo) {
-        servo.position = angle
+        servo.position = angle.toDouble()
         if (servosConfig.global.controlServos) {
             if (oppositeServosSlaved) {
-                slaveServo.position = angle
+                slaveServo.position = angle.toDouble()
             }
 
             if (servosConfig.global.controlServos) {

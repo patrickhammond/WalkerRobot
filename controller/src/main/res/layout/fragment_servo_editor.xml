@@ -68,7 +68,7 @@
                 android:layout_marginLeft="8dp"
                 android:max="40"
                 android:onProgressChanged="@{viewModel::adjustmentChanged}"
-                android:progress="@{viewModel.adjustment + 20}"/>
+                android:progress="@{ (int) Math.round(viewModel.adjustment) + 20}"/>
 
         </LinearLayout>
 

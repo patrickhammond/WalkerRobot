@@ -7,6 +7,7 @@ import com.google.android.things.pio.I2cDevice
 import com.google.android.things.pio.PeripheralManagerService
 import com.madebyatomicrobot.things.drivers.PCA9685
 import com.madebyatomicrobot.walker.connector.data.RemoteConnector
+import com.madebyatomicrobot.walker.connector.data.ServosConfig
 import com.madebyatomicrobot.walker.remote.RobotApplication
 import io.reactivex.disposables.CompositeDisposable
 import java.io.IOException
@@ -47,7 +48,7 @@ class MainActivity : Activity() {
 
             disposables.add(
                     connector.getServosConfig().subscribe(
-                            { servos.updateServoConfig(it) },
+                            this::handleServoConfig,
                             { Log.e(TAG, "Servos config error", it) }))
 
         } catch (ex: IOException) {
@@ -65,5 +66,10 @@ class MainActivity : Activity() {
         }
 
         super.onDestroy()
+    }
+
+    private fun handleServoConfig(servosConfig: ServosConfig) {
+        // FIXME - setup/teardown the publishing of the servo angle
+        servos.updateServoConfig(servosConfig)
     }
 }

@@ -1,6 +1,7 @@
 package com.madebyatomicrobot.walker.robot
 
 import com.madebyatomicrobot.things.drivers.PCA9685
+import com.madebyatomicrobot.walker.connector.data.ServosConfig
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
@@ -14,8 +15,9 @@ class Servo(
         val physicalMin: Double = 20.0,
         val physicalMax: Double = 160.0,
         val defaultAngle: Double = 90.0,
-        val invertAngle: Boolean = false,
-        val adjustmentAngle: Double = 0.0) {  // Due to horn placement
+        var enabled: Boolean = true,
+        var inverted: Boolean = false,
+        var adjustment: Double = 0.0) {  // Due to horn placement
 
     private val angleObservable = BehaviorSubject.create<Double>()
 
@@ -23,31 +25,33 @@ class Servo(
         moveToAngle(defaultAngle)
     }
 
-    fun getAngle() : Double {
-        return angleObservable.value
+    fun updateServoConfig(servoConfig: ServosConfig.Servo) {
+        val enabledChanged = enabled != servoConfig.enabled
+
+        enabled = servoConfig.enabled
+        inverted = servoConfig.inverted
+        adjustment = servoConfig.adjustment
+
+        if (enabledChanged) {
+            // FIXME - Turn the servo on or off
+        }
     }
 
-    fun getObservableAngle() : Observable<Double> {
-        return angleObservable
-    }
+    fun getAngle() : Double = angleObservable.value
 
-    fun moveToDefaultAngle() {
-        moveToAngle(defaultAngle)
-    }
+    fun getObservableAngle() : Observable<Double> = angleObservable
 
-    fun moveToAngle(angle: Int) {
-        moveToAngle(angle.toDouble())
-    }
+    fun moveToDefaultAngle() = moveToAngle(defaultAngle)
 
-    fun moveToAngle(angle: Float) {
-        moveToAngle(angle.toDouble())
-    }
+    fun moveToAngle(angle: Int) = moveToAngle(angle.toDouble())
+
+    fun moveToAngle(angle: Float) = moveToAngle(angle.toDouble())
 
     fun moveToAngle(angle: Double) {
         angleObservable.onNext(angle)
 
         val range = (softwareMaxAngle - softwareMinAngle)
-        var realAngle = angle + adjustmentAngle
+        var realAngle = angle + adjustment
 
         if (realAngle < physicalMin) {
             realAngle = physicalMin
@@ -57,7 +61,7 @@ class Servo(
             realAngle = physicalMax
         }
 
-        if (invertAngle) {
+        if (inverted) {
             realAngle = Math.abs(realAngle - range)
         }
 

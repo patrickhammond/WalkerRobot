@@ -83,14 +83,14 @@ class ServoSetupActivity : Activity() {
             servo06 = Servo(pca9685, 6, defaultAngle = defaultHipTwistAngle)
             servo07 = Servo(pca9685, 7, defaultAngle = defaultKneeAngle)
 
-            servo08 = Servo(pca9685, 8, defaultAngle = defaultKneeAngle, invertAngle = true)
+            servo08 = Servo(pca9685, 8, defaultAngle = defaultKneeAngle, inverted = true)
             servo09 = Servo(pca9685, 9, defaultAngle = defaultHipTwistAngle)
             servo10 = Servo(pca9685, 10, defaultAngle = defaultHipTiltAngle)
             servo11 = Servo(pca9685, 11)  // ignore
             servo12 = Servo(pca9685, 12)  // ignore
             servo13 = Servo(pca9685, 13)  // ignore
-            servo14 = Servo(pca9685, 14, defaultAngle = defaultAnkleAngle, invertAngle = true)
-            servo15 = Servo(pca9685, 15, defaultAngle = defaultFeetAngle, invertAngle = true)
+            servo14 = Servo(pca9685, 14, defaultAngle = defaultAnkleAngle, inverted = true)
+            servo15 = Servo(pca9685, 15, defaultAngle = defaultFeetAngle, inverted = true)
 
             rightAnkle = servo01
             rightKnee = servo00
