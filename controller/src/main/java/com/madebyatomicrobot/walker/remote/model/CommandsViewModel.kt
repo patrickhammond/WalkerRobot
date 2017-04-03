@@ -32,8 +32,8 @@ class CommandsViewModel(val view: CommandsView, val connector: RemoteConnector) 
     fun onResume() {
         disposables.add(
                 connector.getCommand().subscribe(
-                        { _command -> command = _command; },
-                        { error -> Log.e(TAG, "Command error", error) }))
+                        { command = it; },
+                        { Log.e(TAG, "Command error", it) }))
     }
 
     fun onPause() {

@@ -20,8 +20,8 @@ class ActionsViewModel(val connector: RemoteConnector) : BaseObservable() {
     fun onResume() {
         disposables.add(
                 connector.getActions().subscribe(
-                        { _actions -> actions = _actions },
-                        { error -> Log.e(TAG, "Actions error", error) }))
+                        { actions = it },
+                        { Log.e(TAG, "Actions error", it) }))
     }
 
     fun onPause() {

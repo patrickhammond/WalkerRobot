@@ -21,8 +21,8 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
     fun onResume() {
         disposables.add(
                 connector.getServoConfig(servoId).subscribe(
-                        { _config -> servoConfig = _config },
-                        { error -> Log.e(TAG, "Servo config error", error) }))
+                        { servoConfig = it },
+                        { Log.e(TAG, "Servo config error", it) }))
     }
 
     fun onPause() {

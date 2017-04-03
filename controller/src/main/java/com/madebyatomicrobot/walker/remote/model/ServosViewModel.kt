@@ -31,13 +31,13 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
     fun onResume() {
         disposables.add(
                 connector.getServosConfig().subscribe(
-                        { config -> servosConfig = config },
-                        { error -> Log.e(TAG, "Servos config error", error) }))
+                        { servosConfig = it },
+                        { Log.e(TAG, "Servos config error", it) }))
 
         disposables.add(
                 connector.getServosStatus().subscribe(
-                        { status -> servosStatus = status },
-                        { error -> Log.e(TAG, "Servos status error", error) }))
+                        { servosStatus = it },
+                        { Log.e(TAG, "Servos status error", it) }))
     }
 
     fun onPause() {
