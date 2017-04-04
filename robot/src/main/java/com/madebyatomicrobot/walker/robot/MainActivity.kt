@@ -6,6 +6,8 @@ import android.util.Log
 import com.google.android.things.pio.I2cDevice
 import com.google.android.things.pio.PeripheralManagerService
 import com.madebyatomicrobot.things.drivers.PCA9685
+import com.madebyatomicrobot.walker.connector.data.Actions
+import com.madebyatomicrobot.walker.connector.data.Command
 import com.madebyatomicrobot.walker.connector.data.RemoteConnector
 import com.madebyatomicrobot.walker.connector.data.ServosConfig
 import com.madebyatomicrobot.walker.remote.RobotApplication
@@ -51,6 +53,16 @@ class MainActivity : Activity() {
                             this::handleServoConfig,
                             { Log.e(TAG, "Servos config error", it) }))
 
+            disposables.add(
+                    connector.getCommand().subscribe(
+                            this::handleServoCommand,
+                            { Log.e(TAG, "Command error", it) }))
+
+            disposables.add(
+                    connector.getActions().subscribe(
+                            this::handleActions,
+                            { Log.e(TAG, "Actions error", it) }))
+
         } catch (ex: IOException) {
             Log.w(TAG, "Error in onCreate", ex)
         }
@@ -68,8 +80,9 @@ class MainActivity : Activity() {
         super.onDestroy()
     }
 
-    private fun handleServoConfig(servosConfig: ServosConfig) {
-        // FIXME - setup/teardown the publishing of the servo angle
-        servos.updateServoConfig(servosConfig)
-    }
+    private fun handleServoConfig(servosConfig: ServosConfig) = servos.updateServoConfig(servosConfig)
+
+    private fun handleServoCommand(command: Command) = walker.handleCommand(command)
+
+    private fun handleActions(actions: Actions) = walker.handleActions(actions)
 }
