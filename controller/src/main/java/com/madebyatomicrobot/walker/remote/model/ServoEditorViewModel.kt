@@ -36,7 +36,7 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
         notifyChange()
     }
 
-    fun getServoLabel(): String = "Servo $servoId"
+    fun getServoLabel(): String = servoId
 
     var enabled: Boolean
         @Bindable get() {
