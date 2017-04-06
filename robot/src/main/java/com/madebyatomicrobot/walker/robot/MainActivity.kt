@@ -13,6 +13,8 @@ import com.madebyatomicrobot.walker.connector.data.ServosConfig
 import com.madebyatomicrobot.walker.remote.RobotApplication
 import io.reactivex.disposables.CompositeDisposable
 import java.io.IOException
+import java.text.DateFormat
+import java.util.*
 import javax.inject.Inject
 
 
@@ -25,8 +27,9 @@ class MainActivity : Activity() {
 
     private lateinit var i2c: I2cDevice
     private lateinit var pca9685: PCA9685
-    private lateinit var servos: PhysicalServos
-    private lateinit var walker: Walker
+
+    private var servos: PhysicalServos? = null
+    private var robot: Robot? = null
 
     private lateinit var disposables: CompositeDisposable
 
@@ -46,26 +49,27 @@ class MainActivity : Activity() {
             pca9685.setPWMFreq(50.0)  // 50 Hz
 
             servos = PhysicalServos(pca9685)
-            walker = Walker(servos)
-
-            disposables.add(
-                    connector.getServosConfig().subscribe(
-                            this::handleServoConfig,
-                            { Log.e(TAG, "Servos config error", it) }))
-
-            disposables.add(
-                    connector.getCommand().subscribe(
-                            this::handleServoCommand,
-                            { Log.e(TAG, "Command error", it) }))
-
-            disposables.add(
-                    connector.getActions().subscribe(
-                            this::handleActions,
-                            { Log.e(TAG, "Actions error", it) }))
-
+            robot = Robot(servos!!)
         } catch (ex: IOException) {
-            Log.w(TAG, "Error in onCreate", ex)
+            Log.e(TAG, "Error in onCreate", ex)
         }
+
+        updateRobotTimestamp()
+
+        disposables.add(
+                connector.getServosConfig().subscribe(
+                        this::handleServoConfig,
+                        { Log.e(TAG, "Servos config error", it) }))
+
+        disposables.add(
+                connector.getCommand().subscribe(
+                        this::handleServoCommand,
+                        { Log.e(TAG, "Command error", it) }))
+
+        disposables.add(
+                connector.getActions().subscribe(
+                        this::handleActions,
+                        { Log.e(TAG, "Actions error", it) }))
     }
 
     override fun onDestroy() {
@@ -80,9 +84,28 @@ class MainActivity : Activity() {
         super.onDestroy()
     }
 
-    private fun handleServoConfig(servosConfig: ServosConfig) = servos.updateServoConfig(servosConfig)
+    private fun updateRobotTimestamp() {
+        val now = Date()
+        val dateFormat = DateFormat.getDateTimeInstance()
+        val timestamp = dateFormat.format(now)
+        connector.setRobotUpdateTime(timestamp)
+    }
 
-    private fun handleServoCommand(command: Command) = walker.handleCommand(command)
+    private fun handleServoConfig(servosConfig: ServosConfig) {
+        Log.v("DEBUG", "handleServoConfig: $servosConfig")
+        servos?.updateServoConfig(servosConfig)
+        updateRobotTimestamp()
+    }
 
-    private fun handleActions(actions: Actions) = walker.handleActions(actions)
+    private fun handleServoCommand(command: Command) {
+        Log.v("DEBUG", "handleServoCommand: $command")
+        robot?.handleCommand(command)
+        updateRobotTimestamp()
+    }
+
+    private fun handleActions(actions: Actions) {
+        Log.v("DEBUG", "handleActions: $actions")
+        robot?.handleActions(actions)
+        updateRobotTimestamp()
+    }
 }

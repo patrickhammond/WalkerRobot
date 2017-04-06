@@ -75,6 +75,15 @@ class PCA9685(
         val onPw = (on / pulseLength).toInt()
         val offPw = (off / pulseLength).toInt()
 
+        setPwm(channel, onPw, offPw)
+
+        writeByte(LED0_ON_L + 4 * channel, onPw.toByte())
+        writeByte(LED0_ON_H + 4 * channel, (onPw shr 8).toByte())
+        writeByte(LED0_OFF_L + 4 * channel, offPw.toByte())
+        writeByte(LED0_OFF_H + 4 * channel, (offPw shr 8).toByte())
+    }
+
+    fun setPwm(channel: Int, onPw: Int, offPw: Int) {
         writeByte(LED0_ON_L + 4 * channel, onPw.toByte())
         writeByte(LED0_ON_H + 4 * channel, (onPw shr 8).toByte())
         writeByte(LED0_OFF_L + 4 * channel, offPw.toByte())

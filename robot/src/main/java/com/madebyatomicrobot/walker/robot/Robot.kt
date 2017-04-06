@@ -1,10 +1,13 @@
 package com.madebyatomicrobot.walker.robot
 
+import android.animation.Animator
+import android.animation.Animator.AnimatorListener
 import android.animation.ValueAnimator
+import android.util.Log
 import com.madebyatomicrobot.walker.connector.data.Actions
 import com.madebyatomicrobot.walker.connector.data.Command
 
-class Walker(servos: PhysicalServos) {
+class Robot(servos: PhysicalServos) {
     private var actions: Actions? = null
 
     private val rightAnkle: Servo = servos.servo01
@@ -20,22 +23,36 @@ class Walker(servos: PhysicalServos) {
 
     private var animators: Animators? = null
 
+    private var command: Command? = null
+    private var leftStep = false
+
     fun handleActions(actions: Actions) {
         this.actions = actions
     }
 
     fun handleCommand(command: Command) {
         animators?.stop()
+        this.command = command
 
-        when(command.current) {
-            Command.RESET -> reset()
+        handleCommand()
+    }
+
+    private fun handleCommand() {
+        when (command!!.current) {
+            Command.RESET -> reset({ })
             Command.STOPPED -> pause()
-            Command.FORWARD -> stepForward()
-            else -> reset()
+            Command.FORWARD -> reset({ stepForward(leftStep, { switchLegWhileWalking() }) })
+            else -> reset({ })
         }
     }
 
-    private fun reset() {
+    private fun switchLegWhileWalking() {
+        leftStep = !leftStep
+        reset({ handleCommand() })
+    }
+
+    private fun reset(completeCallback: () -> Unit) {
+        Log.v("DEBUG", "action: reset")
         animators = Animators(
                 setupServoForReset(leftHipTop),
                 setupServoForReset(leftHipMiddle),
@@ -46,7 +63,8 @@ class Walker(servos: PhysicalServos) {
                 setupServoForReset(rightHipMiddle),
                 setupServoForReset(rightHipBottom),
                 setupServoForReset(rightKnee),
-                setupServoForReset(rightAnkle))
+                setupServoForReset(rightAnkle),
+                completeCallback)
         animators!!.start()
     }
 
@@ -61,10 +79,12 @@ class Walker(servos: PhysicalServos) {
     }
 
     private fun pause() {
+        Log.v("DEBUG", "action: pause")
         animators?.stop()
     }
 
-    private fun stepForward(inverse: Boolean = false) {
+    private fun stepForward(inverse: Boolean = false, completeCallback: () -> Unit) {
+        Log.v("DEBUG", "action: step")
         animators = Animators(
                 setupServoForWalking(leftHipTop, rightHipTop, inverse, actions!!.walk.left.hipY),
                 setupServoForWalking(leftHipMiddle, rightHipMiddle, inverse, actions!!.walk.left.hipX),
@@ -75,7 +95,8 @@ class Walker(servos: PhysicalServos) {
                 setupServoForWalking(rightHipMiddle, leftHipMiddle, inverse, actions!!.walk.right.hipX),
                 setupServoForWalking(rightHipBottom, leftHipBottom, inverse, actions!!.walk.right.hipZ),
                 setupServoForWalking(rightKnee, leftKnee, inverse, actions!!.walk.right.knee),
-                setupServoForWalking(rightAnkle, leftAnkle, inverse, actions!!.walk.right.ankle))
+                setupServoForWalking(rightAnkle, leftAnkle, inverse, actions!!.walk.right.ankle),
+                completeCallback)
         animators!!.start()
     }
 
@@ -112,7 +133,45 @@ class Walker(servos: PhysicalServos) {
             val rightHipMiddleAnimator: ValueAnimator,
             val rightHipBottomAnimator: ValueAnimator,
             val rightKneeAnimator: ValueAnimator,
-            val rightAnkleAnimator: ValueAnimator) {
+            val rightAnkleAnimator: ValueAnimator,
+            val animationCompleteCallback: () -> Unit) {
+
+        private val listener: AnimatorListener = object : AnimatorListener {
+            private var completedCount = 0
+
+            override fun onAnimationStart(animator: Animator?) {
+                // Don't care
+            }
+
+            override fun onAnimationRepeat(animator: Animator?) {
+                // Don't care
+            }
+
+            override fun onAnimationEnd(animator: Animator?) {
+                completedCount += 1
+
+                if (completedCount == 10) {  // Because we have 10 animators
+                    animationCompleteCallback.invoke()
+                }
+            }
+
+            override fun onAnimationCancel(animator: Animator?) {
+                // Don't care
+            }
+        }
+
+        init {
+            leftHipTopAnimator.addListener(listener)
+            leftHipMiddleAnimator.addListener(listener)
+            leftHipBottomAnimator.addListener(listener)
+            leftKneeAnimator.addListener(listener)
+            leftAnkleAnimator.addListener(listener)
+            rightHipTopAnimator.addListener(listener)
+            rightHipMiddleAnimator.addListener(listener)
+            rightHipBottomAnimator.addListener(listener)
+            rightKneeAnimator.addListener(listener)
+            rightAnkleAnimator.addListener(listener)
+        }
 
         fun start() {
             leftHipTopAnimator.start()

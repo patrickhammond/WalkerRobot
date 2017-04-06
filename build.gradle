@@ -31,7 +31,7 @@ ext {
     versionName = "1.0"
 
     androidThingsVersion = "0.2-devpreview"
-    playServicesVersion = "10.2.1"
+    playServicesVersion = "10.0.1"
     supportVersion = "25.3.1"
     rxJavaVersion = "2.0.5"
 

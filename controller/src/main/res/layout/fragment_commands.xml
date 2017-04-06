@@ -54,15 +54,15 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:contentDescription="Death to Humans"
             android:onClick="@{viewModel::humans}"
             android:src="@drawable/skull"
             android:tint="@color/activated_tint"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/command_stop"
-            android:layout_marginLeft="8dp"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageButton
             android:id="@+id/command_forward"
@@ -91,6 +91,19 @@
             app:activated="@{viewModel.reverse}"
             app:layout_constraintLeft_toLeftOf="@+id/command_stop"
             app:layout_constraintTop_toBottomOf="@+id/command_stop"/>
+
+        <TextView
+            android:id="@+id/robot_update_time"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text='@{"Last robot update: " + viewModel.robotUpdateTime}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

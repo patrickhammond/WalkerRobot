@@ -27,13 +27,25 @@ class CommandsViewModel(val view: CommandsView, val connector: RemoteConnector) 
             notifyChange()
         }
 
+    var robotUpdateTime: String = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyChange()
+        }
+
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     fun onResume() {
         disposables.add(
                 connector.getCommand().subscribe(
-                        { command = it; },
+                        { command = it },
                         { Log.e(TAG, "Command error", it) }))
+
+        disposables.add(
+                connector.getRobotUpdateTime().subscribe(
+                        { robotUpdateTime = it },
+                        { Log.e(TAG, "Robot update time error", it) }))
     }
 
     fun onPause() {
