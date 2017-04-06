@@ -47,12 +47,16 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
 
     fun getAdjustmentLabel(): String = "Adjustment (${getAdjustment()}${kotlin.text.Typography.degree})"
 
+    fun getAdjustmentMax() = 40
+
     fun getAdjustment(): Double = servoConfig.adjustment
 
-    fun adjustmentChanged(v: SeekBar, adjustment: Int, fromUser: Boolean) = setAdjustment(adjustment)
+    @Bindable fun getAdjustmentProgress(): Int = (servoConfig.adjustment * 2).toInt() + 20
 
-    fun setAdjustment(adjustment: Int) {
-        servoConfig.adjustment = adjustment.toDouble()
+    fun adjustmentChanged(v: SeekBar, adjustment: Int, fromUser: Boolean) = setAdjustment((adjustment - 20) / 2.0)
+
+    fun setAdjustment(adjustment: Double) {
+        servoConfig.adjustment = adjustment
         saveServoConfig()
     }
 
