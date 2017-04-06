@@ -6,8 +6,9 @@ import android.animation.ValueAnimator
 import android.util.Log
 import com.madebyatomicrobot.walker.connector.data.Actions
 import com.madebyatomicrobot.walker.connector.data.Command
+import com.madebyatomicrobot.walker.connector.data.ServosStatus
 
-class Robot(servos: PhysicalServos) {
+class Robot(val servos: PhysicalServos) {
     private var actions: Actions? = null
 
     private val rightAnkle: Servo = servos.servo01
@@ -28,6 +29,25 @@ class Robot(servos: PhysicalServos) {
 
     fun handleActions(actions: Actions) {
         this.actions = actions
+    }
+
+    fun handleServoStatus(status: ServosStatus) {
+        servos.servo00.moveToAngle(status.servo00.position)
+        servos.servo01.moveToAngle(status.servo01.position)
+        servos.servo02.moveToAngle(status.servo02.position)
+        servos.servo03.moveToAngle(status.servo03.position)
+        servos.servo04.moveToAngle(status.servo04.position)
+        servos.servo05.moveToAngle(status.servo05.position)
+        servos.servo06.moveToAngle(status.servo06.position)
+        servos.servo07.moveToAngle(status.servo07.position)
+        servos.servo08.moveToAngle(status.servo08.position)
+        servos.servo09.moveToAngle(status.servo09.position)
+        servos.servo10.moveToAngle(status.servo10.position)
+        servos.servo11.moveToAngle(status.servo11.position)
+        servos.servo12.moveToAngle(status.servo12.position)
+        servos.servo13.moveToAngle(status.servo13.position)
+        servos.servo14.moveToAngle(status.servo14.position)
+        servos.servo15.moveToAngle(status.servo15.position)
     }
 
     fun handleCommand(command: Command) {

@@ -345,7 +345,7 @@
             <TextView
                 android:id="@+id/textView0"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -359,7 +359,7 @@
             <TextView
                 android:id="@+id/textView1"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -373,7 +373,7 @@
             <TextView
                 android:id="@+id/textView2"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -387,7 +387,7 @@
             <TextView
                 android:id="@+id/textView3"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -401,7 +401,7 @@
             <TextView
                 android:id="@+id/textView4"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -415,7 +415,7 @@
             <TextView
                 android:id="@+id/textView5"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -429,7 +429,7 @@
             <TextView
                 android:id="@+id/textView6"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -443,7 +443,7 @@
             <TextView
                 android:id="@+id/textView7"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -457,7 +457,7 @@
             <TextView
                 android:id="@+id/textView8"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -471,7 +471,7 @@
             <TextView
                 android:id="@+id/textView9"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -485,7 +485,7 @@
             <TextView
                 android:id="@+id/textView10"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -499,7 +499,7 @@
             <TextView
                 android:id="@+id/textView11"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -513,7 +513,7 @@
             <TextView
                 android:id="@+id/textView12"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -527,7 +527,7 @@
             <TextView
                 android:id="@+id/textView13"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -541,7 +541,7 @@
             <TextView
                 android:id="@+id/textView14"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -555,7 +555,7 @@
             <TextView
                 android:id="@+id/textView15"
                 style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="64dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"

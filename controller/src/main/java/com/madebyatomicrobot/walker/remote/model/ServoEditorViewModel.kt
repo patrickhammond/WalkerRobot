@@ -11,17 +11,19 @@ import io.reactivex.disposables.CompositeDisposable
 class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) : BaseObservable() {
     companion object {
         val TAG: String = ServoEditorViewModel::class.java.simpleName
+
+        private val ADJUSTMENT_RANGE = 40
+        private val HALF_ADJUSTMENT_RANGE = 40 / 2
     }
 
-    var servoConfig: ServosConfig.Servo by ViewModelProperty(ServosConfig.Servo())
-        @Bindable get
+    var servoConfig: ServosConfig.Servo? = null
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     fun onResume() {
         disposables.add(
                 connector.getServoConfig(servoId).subscribe(
-                        { servoConfig = it },
+                        this::handleServoConfig,
                         { Log.e(TAG, "Servo config error", it) }))
     }
 
@@ -29,39 +31,53 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
         disposables.clear()
     }
 
+    private fun handleServoConfig(servoConfig: ServosConfig.Servo) {
+        this.servoConfig = servoConfig
+        notifyChange()
+    }
+
     fun getServoLabel(): String = "Servo $servoId"
 
-    fun isEnabled(): Boolean = servoConfig.enabled
+    var enabled: Boolean
+        @Bindable get() {
+            return servoConfig?.enabled ?: false
+        }
+        set(value) {
+            servoConfig?.enabled = value
+            saveServoConfig()
+        }
 
-    fun setEnabled(enabled: Boolean) {
-        servoConfig.enabled = enabled
-        saveServoConfig()
+    var inverted: Boolean
+        @Bindable get() {
+            return servoConfig?.inverted ?: false
+        }
+        set(value) {
+            servoConfig?.inverted = value
+            saveServoConfig()
+        }
+
+    @Bindable fun getAdjustmentLabel(): String = "Adjustment (${getAdjustment()}${kotlin.text.Typography.degree})"
+
+    fun getAdjustmentMax() = ADJUSTMENT_RANGE
+
+    @Bindable fun getAdjustmentProgress(): Int {
+        return (getAdjustment() * 2).toInt() + HALF_ADJUSTMENT_RANGE
     }
 
-    fun isInverted(): Boolean = servoConfig.inverted
-
-    fun setInverted(inverted: Boolean) {
-        servoConfig.inverted = inverted
-        saveServoConfig()
+    private fun getAdjustment(): Double {
+        return servoConfig?.adjustment ?: 0.0
     }
 
-    fun getAdjustmentLabel(): String = "Adjustment (${getAdjustment()}${kotlin.text.Typography.degree})"
-
-    fun getAdjustmentMax() = 40
-
-    fun getAdjustment(): Double = servoConfig.adjustment
-
-    @Bindable fun getAdjustmentProgress(): Int = (servoConfig.adjustment * 2).toInt() + 20
-
-    fun adjustmentChanged(v: SeekBar, adjustment: Int, fromUser: Boolean) = setAdjustment((adjustment - 20) / 2.0)
-
-    fun setAdjustment(adjustment: Double) {
-        servoConfig.adjustment = adjustment
+    fun adjustmentChanged(v: SeekBar, adjustment: Int, fromUser: Boolean) {
+        val adjustedAdjustment = (adjustment - HALF_ADJUSTMENT_RANGE) / 2.0
+        servoConfig?.adjustment = adjustedAdjustment
         saveServoConfig()
     }
 
     private fun saveServoConfig() {
-        connector.setServoConfig(servoId, servoConfig)
-        notifyChange()
+        servoConfig?.let {
+            connector.setServoConfig(servoId, it)
+            notifyChange()
+        }
     }
 }

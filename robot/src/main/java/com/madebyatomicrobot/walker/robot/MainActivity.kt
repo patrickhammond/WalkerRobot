@@ -6,10 +6,7 @@ import android.util.Log
 import com.google.android.things.pio.I2cDevice
 import com.google.android.things.pio.PeripheralManagerService
 import com.madebyatomicrobot.things.drivers.PCA9685
-import com.madebyatomicrobot.walker.connector.data.Actions
-import com.madebyatomicrobot.walker.connector.data.Command
-import com.madebyatomicrobot.walker.connector.data.RemoteConnector
-import com.madebyatomicrobot.walker.connector.data.ServosConfig
+import com.madebyatomicrobot.walker.connector.data.*
 import com.madebyatomicrobot.walker.remote.RobotApplication
 import io.reactivex.disposables.CompositeDisposable
 import java.io.IOException
@@ -57,6 +54,11 @@ class MainActivity : Activity() {
         updateRobotTimestamp()
 
         disposables.add(
+                connector.getActions().subscribe(
+                        this::handleActions,
+                        { Log.e(TAG, "Actions error", it) }))
+
+        disposables.add(
                 connector.getServosConfig().subscribe(
                         this::handleServoConfig,
                         { Log.e(TAG, "Servos config error", it) }))
@@ -67,9 +69,9 @@ class MainActivity : Activity() {
                         { Log.e(TAG, "Command error", it) }))
 
         disposables.add(
-                connector.getActions().subscribe(
-                        this::handleActions,
-                        { Log.e(TAG, "Actions error", it) }))
+                connector.getServosStatus().subscribe(
+                        this::handleServoStatus,
+                        { Log.e(TAG, "Servo status error", it) }))
     }
 
     override fun onDestroy() {
@@ -91,6 +93,12 @@ class MainActivity : Activity() {
         connector.setRobotUpdateTime(timestamp)
     }
 
+    private fun handleActions(actions: Actions) {
+        Log.v("DEBUG", "handleActions: $actions")
+        robot?.handleActions(actions)
+        updateRobotTimestamp()
+    }
+
     private fun handleServoConfig(servosConfig: ServosConfig) {
         Log.v("DEBUG", "handleServoConfig: $servosConfig")
         servos?.updateServoConfig(servosConfig)
@@ -103,9 +111,9 @@ class MainActivity : Activity() {
         updateRobotTimestamp()
     }
 
-    private fun handleActions(actions: Actions) {
-        Log.v("DEBUG", "handleActions: $actions")
-        robot?.handleActions(actions)
+    private fun handleServoStatus(status: ServosStatus) {
+        Log.v("DEBUG", "handleServoStatus: $status")
+        robot?.handleServoStatus(status)
         updateRobotTimestamp()
     }
 }

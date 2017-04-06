@@ -21,7 +21,7 @@ data class ServosConfig(
 
     companion object {
         private val DEFAULT_ADJUSTMENT_ANGLE = 0.0
-        private val DEFAULT_ENABLED = true
+        private val DEFAULT_ENABLED = false
         private val DEFAULT_INVERTED = false
     }
 

@@ -19,7 +19,7 @@ class Servo(
         private var inverted: Boolean = false,
         private var adjustment: Double = 0.0) {  // Due to horn placement
 
-    private val angleObservable = BehaviorSubject.create<Double>()
+    private val angleObservable = BehaviorSubject.createDefault(defaultAngle)
 
     init {
         moveToAngle(defaultAngle)
