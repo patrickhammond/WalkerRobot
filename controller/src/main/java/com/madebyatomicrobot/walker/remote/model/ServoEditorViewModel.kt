@@ -60,13 +60,9 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
 
     fun getAdjustmentMax() = ADJUSTMENT_RANGE
 
-    @Bindable fun getAdjustmentProgress(): Int {
-        return (getAdjustment() * 2).toInt() + HALF_ADJUSTMENT_RANGE
-    }
+    @Bindable fun getAdjustmentProgress(): Int = (getAdjustment() * 2).toInt() + HALF_ADJUSTMENT_RANGE
 
-    private fun getAdjustment(): Double {
-        return servoConfig?.adjustment ?: 0.0
-    }
+    private fun getAdjustment(): Double = servoConfig?.adjustment ?: 0.0
 
     fun adjustmentChanged(v: SeekBar, adjustment: Int, fromUser: Boolean) {
         val adjustedAdjustment = (adjustment - HALF_ADJUSTMENT_RANGE) / 2.0
