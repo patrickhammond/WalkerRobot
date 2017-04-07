@@ -8,9 +8,9 @@ data class Actions(
             val right: LegConfig = LegConfig())
 
     data class LegConfig(
-            val hipY: ServoConfig = ServoConfig(),
-            val hipX: ServoConfig = ServoConfig(),
-            val hipZ: ServoConfig = ServoConfig(),
+            val hipY: ServoConfig = ServoConfig(),  // TOP
+            val hipX: ServoConfig = ServoConfig(),  // MIDDLE
+            val hipZ: ServoConfig = ServoConfig(),  // BOTTOM
             val knee: ServoConfig = ServoConfig(),
             val ankle: ServoConfig = ServoConfig())
 
