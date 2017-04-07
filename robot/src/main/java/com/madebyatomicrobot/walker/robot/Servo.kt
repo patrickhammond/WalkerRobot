@@ -26,18 +26,14 @@ class Servo(
     }
 
     fun updateServoConfig(servoConfig: ServosConfig.Servo) {
-        val enabledChanged = enabled != servoConfig.enabled
-
         enabled = servoConfig.enabled
         inverted = servoConfig.inverted
         adjustment = servoConfig.adjustment
 
-        if (enabledChanged) {
-            if (enabled) {
-                moveToAngle(defaultAngle)
-            } else {
-                turnOff()
-            }
+        if (enabled) {
+            moveToAngle(defaultAngle)
+        } else {
+            turnOff()
         }
     }
 
