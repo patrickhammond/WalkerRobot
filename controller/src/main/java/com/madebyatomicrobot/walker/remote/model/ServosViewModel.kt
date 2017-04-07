@@ -154,7 +154,28 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
         servosConfig.servo13.enabled = enabled
         servosConfig.servo14.enabled = enabled
         servosConfig.servo15.enabled = enabled
+        notifyChange()
         saveServoConfig()
+    }
+
+    fun resetAllServos(v: View) {
+        servosStatus.servo00.position = servosConfig.servo00.defaultAngle
+        servosStatus.servo01.position = servosConfig.servo01.defaultAngle
+        servosStatus.servo02.position = servosConfig.servo02.defaultAngle
+        servosStatus.servo03.position = servosConfig.servo03.defaultAngle
+        servosStatus.servo04.position = servosConfig.servo04.defaultAngle
+        servosStatus.servo05.position = servosConfig.servo05.defaultAngle
+        servosStatus.servo06.position = servosConfig.servo06.defaultAngle
+        servosStatus.servo07.position = servosConfig.servo07.defaultAngle
+        servosStatus.servo08.position = servosConfig.servo08.defaultAngle
+        servosStatus.servo09.position = servosConfig.servo09.defaultAngle
+        servosStatus.servo10.position = servosConfig.servo10.defaultAngle
+        servosStatus.servo11.position = servosConfig.servo11.defaultAngle
+        servosStatus.servo12.position = servosConfig.servo12.defaultAngle
+        servosStatus.servo13.position = servosConfig.servo13.defaultAngle
+        servosStatus.servo14.position = servosConfig.servo14.defaultAngle
+        servosStatus.servo15.position = servosConfig.servo15.defaultAngle
+        connector.setServosStatus(servosStatus)
     }
 
     fun editServo00(v: View) = editServo("servo00")
