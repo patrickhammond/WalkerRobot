@@ -11,7 +11,7 @@
             type="com.madebyatomicrobot.walker.remote.model.ServoEditorViewModel"/>
     </data>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -19,59 +19,99 @@
         <TextView
             android:id="@+id/servo_name"
             style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@{viewModel.servoLabel}"/>
+            android:text="@{viewModel.servoLabel}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <CheckBox
             android:id="@+id/servo_enabled"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
             android:checked="@={viewModel.enabled}"
-            android:text="Enabled"/>
+            android:text="Enabled"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/servo_name"/>
 
         <CheckBox
             android:id="@+id/servo_inverted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
             android:checked="@={viewModel.inverted}"
-            android:text="Inverted"/>
+            android:text="Inverted"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/servo_enabled"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{viewModel.adjustmentLabel}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/servo_inverted"/>
+
+        <SeekBar
+            android:id="@+id/servo_adjustment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:max="@{viewModel.adjustmentMax}"
+            android:onProgressChanged="@{viewModel::adjustmentChanged}"
+            android:progress="@{viewModel.adjustmentProgress}"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="128dp"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.adjustmentLabel}"/>
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{viewModel.defaultAngleLabel}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/servo_adjustment"/>
 
-            <SeekBar
-                android:id="@+id/servo_adjustment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:max="@{viewModel.adjustmentMax}"
-                android:onProgressChanged="@{viewModel::adjustmentChanged}"
-                android:progress="@{viewModel.adjustmentProgress}"/>
+        <SeekBar
+            android:id="@+id/servo_default_angle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="@{viewModel.defaultAngleMax}"
+            android:onProgressChanged="@{viewModel::defaultAngleChanged}"
+            android:progress="@{viewModel.defaultAngleProgress}"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintVertical_bias="0.0"/>
 
-        </LinearLayout>
-
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

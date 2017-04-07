@@ -20,9 +20,10 @@ data class ServosConfig(
         var servo15: Servo = Servo()) {
 
     companion object {
-        private val DEFAULT_ADJUSTMENT_ANGLE = 0.0
         private val DEFAULT_ENABLED = false
         private val DEFAULT_INVERTED = false
+        private var DEFAULT_ANGLE = 90.0
+        private val DEFAULT_ADJUSTMENT_ANGLE = 0.0
     }
 
     data class GlobalServosStatus(
@@ -31,7 +32,9 @@ data class ServosConfig(
     )
 
     data class Servo(
-            var adjustment: Double = DEFAULT_ADJUSTMENT_ANGLE,
             var enabled: Boolean = DEFAULT_ENABLED,
-            var inverted: Boolean = DEFAULT_INVERTED)
+            var inverted: Boolean = DEFAULT_INVERTED,
+            var defaultAngle: Double = DEFAULT_ANGLE,
+            var adjustment: Double = DEFAULT_ADJUSTMENT_ANGLE)
+
 }

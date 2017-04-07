@@ -12,6 +12,8 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
     companion object {
         val TAG: String = ServoEditorViewModel::class.java.simpleName
 
+        private val DEFAULT_ANGLE_RANGE = 180
+
         private val ADJUSTMENT_RANGE = 40
         private val HALF_ADJUSTMENT_RANGE = 40 / 2
     }
@@ -55,6 +57,19 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
             servoConfig?.inverted = value
             saveServoConfig()
         }
+
+    @Bindable fun getDefaultAngleLabel(): String = "Default Angle (${getDefaultAngle()}${kotlin.text.Typography.degree})"
+
+    fun getDefaultAngleMax() = DEFAULT_ANGLE_RANGE
+
+    @Bindable fun getDefaultAngleProgress(): Int = getDefaultAngle().toInt()
+
+    private fun getDefaultAngle(): Double = servoConfig?.defaultAngle ?: 0.0
+
+    fun defaultAngleChanged(v: SeekBar, defaultAngle: Int, fromUser: Boolean) {
+        servoConfig?.defaultAngle = defaultAngle.toDouble()
+        saveServoConfig()
+    }
 
     @Bindable fun getAdjustmentLabel(): String = "Adjustment (${getAdjustment()}${kotlin.text.Typography.degree})"
 
