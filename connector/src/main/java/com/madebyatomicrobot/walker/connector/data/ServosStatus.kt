@@ -19,9 +19,9 @@ data class ServosStatus(
         var servo15: Servo = Servo()) {
 
     companion object {
-        private val DEFAULT_SERVO_ANGLE = 90.0
+        private val DEFAULT_SERVO_ANGLE = 90.0F
     }
 
     data class Servo(
-            var position: Double = DEFAULT_SERVO_ANGLE)
+            var position: Float = DEFAULT_SERVO_ANGLE)
 }

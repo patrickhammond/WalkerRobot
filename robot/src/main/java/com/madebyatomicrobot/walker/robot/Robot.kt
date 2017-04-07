@@ -32,6 +32,7 @@ class Robot(val servos: PhysicalServos) {
     }
 
     fun handleServoStatus(status: ServosStatus) {
+        Log.v("DEBUG", "handleServoStatus: $status")
         servos.servo00.moveToAngle(status.servo00.position)
         servos.servo01.moveToAngle(status.servo01.position)
         servos.servo02.moveToAngle(status.servo02.position)
@@ -89,8 +90,8 @@ class Robot(val servos: PhysicalServos) {
     }
 
     private fun setupServoForReset(servo: Servo): ValueAnimator {
-        val angle = servo.getAngle().toFloat()
-        val movements: FloatArray = arrayOf(angle, 0.0.toFloat()).toFloatArray()
+        val angle = servo.getAngle()
+        val movements: FloatArray = arrayOf(angle, servo.getDefaultAngle()).toFloatArray()
 
         return buildAnimator(
                 servo,

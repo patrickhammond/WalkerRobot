@@ -64,10 +64,10 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
 
     @Bindable fun getDefaultAngleProgress(): Int = getDefaultAngle().toInt()
 
-    private fun getDefaultAngle(): Double = servoConfig?.defaultAngle ?: 0.0
+    private fun getDefaultAngle(): Float = servoConfig?.defaultAngle ?: 0.0F
 
     fun defaultAngleChanged(v: SeekBar, defaultAngle: Int, fromUser: Boolean) {
-        servoConfig?.defaultAngle = defaultAngle.toDouble()
+        servoConfig?.defaultAngle = defaultAngle.toFloat()
         saveServoConfig()
     }
 
@@ -77,10 +77,10 @@ class ServoEditorViewModel(val servoId: String, val connector: RemoteConnector) 
 
     @Bindable fun getAdjustmentProgress(): Int = (getAdjustment() * 2).toInt() + HALF_ADJUSTMENT_RANGE
 
-    private fun getAdjustment(): Double = servoConfig?.adjustment ?: 0.0
+    private fun getAdjustment(): Float = servoConfig?.adjustment ?: 0.0F
 
     fun adjustmentChanged(v: SeekBar, adjustment: Int, fromUser: Boolean) {
-        val adjustedAdjustment = (adjustment - HALF_ADJUSTMENT_RANGE) / 2.0
+        val adjustedAdjustment = (adjustment - HALF_ADJUSTMENT_RANGE) / 2.0F
         servoConfig?.adjustment = adjustedAdjustment
         saveServoConfig()
     }

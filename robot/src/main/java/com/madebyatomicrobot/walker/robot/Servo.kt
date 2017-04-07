@@ -8,16 +8,16 @@ import io.reactivex.subjects.BehaviorSubject
 class Servo(
         private val pca9685: PCA9685,
         private val channel: Int,
-        private val minPulseDuration: Double = 0.5,
-        private val maxPulseDuration: Double = 2.5,
-        private val softwareMinAngle: Double = 0.0,
-        private val softwareMaxAngle: Double = 180.0,
-        private val physicalMin: Double = 20.0,
-        private val physicalMax: Double = 160.0,
-        private val defaultAngle: Double = 90.0,
+        private val minPulseDuration: Float = 0.5F,
+        private val maxPulseDuration: Float = 2.5F,
+        private val softwareMinAngle: Float = 0.0F,
+        private val softwareMaxAngle: Float = 180.0F,
+        private val physicalMin: Float = 20.0F,
+        private val physicalMax: Float = 160.0F,
         private var enabled: Boolean = true,
         private var inverted: Boolean = false,
-        private var adjustment: Double = 0.0) {  // Due to horn placement
+        private var adjustment: Float = 0.0F,
+        private var defaultAngle: Float = 90.0F) {
 
     private val angleObservable = BehaviorSubject.createDefault(defaultAngle)
 
@@ -29,6 +29,7 @@ class Servo(
         enabled = servoConfig.enabled
         inverted = servoConfig.inverted
         adjustment = servoConfig.adjustment
+        defaultAngle = servoConfig.defaultAngle
 
         if (enabled) {
             moveToAngle(defaultAngle)
@@ -37,15 +38,11 @@ class Servo(
         }
     }
 
-    fun getAngle() : Double = angleObservable.value
+    fun getAngle() : Float = angleObservable.value
 
-    fun getObservableAngle() : Observable<Double> = angleObservable
+    fun getDefaultAngle() = defaultAngle
 
-    fun moveToDefaultAngle() = moveToAngle(defaultAngle)
-
-    fun moveToAngle(angle: Float) = moveToAngle(angle.toDouble())
-
-    fun moveToAngle(angle: Double) {
+    fun moveToAngle(angle: Float) {
         if (!enabled) {
             return
         }
@@ -69,7 +66,7 @@ class Servo(
 
         val percentOfRange = (realAngle - softwareMinAngle) / range  // FIXME need to be smarter about softwareMinAngle when not zero
         val pw = ((minPulseDuration + (maxPulseDuration - minPulseDuration) * percentOfRange) * 1000)
-        pca9685.setPwm(channel, 0.0, pw)
+        pca9685.setPwm(channel, 0.0F, pw)
     }
 
     fun turnOff() {

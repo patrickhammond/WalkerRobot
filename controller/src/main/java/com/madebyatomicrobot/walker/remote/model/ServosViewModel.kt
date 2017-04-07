@@ -122,10 +122,10 @@ class ServosViewModel(val activity: FragmentActivity, val connector: RemoteConne
     fun servo15Changed(v: SeekBar, progress: Int, fromUser: Boolean) = updateServo(progress, servosStatus.servo15, servosStatus.servo00)
 
     private fun updateServo(angle: Int, servo: ServosStatus.Servo, slaveServo: ServosStatus.Servo) {
-        servo.position = angle.toDouble()
+        servo.position = angle.toFloat()
         if (servosConfig.global.controlServos) {
             if (oppositeServosSlaved) {
-                slaveServo.position = angle.toDouble()
+                slaveServo.position = angle.toFloat()
             }
 
             if (servosConfig.global.controlServos) {

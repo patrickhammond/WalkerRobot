@@ -71,7 +71,7 @@ class PCA9685(
         writeByte(MODE1, (oldMode.toInt() or 0xA1).toByte())  // FIXME - MAGIC NUMBER
     }
 
-    fun setPwm(channel: Int, on: Double, off: Double) {
+    fun setPwm(channel: Int, on: Float, off: Float) {
         val onPw = (on / pulseLength).toInt()
         val offPw = (off / pulseLength).toInt()
 
