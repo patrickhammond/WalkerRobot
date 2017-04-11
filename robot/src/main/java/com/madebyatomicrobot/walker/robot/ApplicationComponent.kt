@@ -11,7 +11,7 @@ import dagger.Provides
 interface ApplicationComponent {
     @Module class RobotModule {
         @Provides fun provideRemoteConnector(): RemoteConnector {
-            return RemoteConnector(FirebaseDatabase.getInstance())
+            return RemoteConnector(FirebaseDatabase.getInstance(), "walker1")
         }
     }
 

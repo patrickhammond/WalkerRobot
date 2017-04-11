@@ -10,7 +10,7 @@ import dagger.Provides
 interface ApplicationComponent {
     @Module class ControllerModule {
         @Provides fun provideRemoteConnector(): RemoteConnector {
-            return RemoteConnector(FirebaseDatabase.getInstance())
+            return RemoteConnector(FirebaseDatabase.getInstance(), "walker1")
         }
     }
 

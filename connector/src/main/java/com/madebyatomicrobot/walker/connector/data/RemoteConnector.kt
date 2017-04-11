@@ -3,12 +3,14 @@ package com.madebyatomicrobot.walker.connector.data
 import com.google.firebase.database.*
 import io.reactivex.Observable
 
-class RemoteConnector(val database: FirebaseDatabase) {
-    private val robotUpdatedRef = database.reference.child("robot_updated")
-    private val actionsRef = database.reference.child("actions")
-    private val servosStatusRef = database.reference.child("servos_status")
-    private val servosConfigRef = database.reference.child("servos_config")
-    private val commandRef = database.reference.child("command")
+class RemoteConnector(val database: FirebaseDatabase, val robotId: String) {
+    private val robotUpdatedRef = getRobotDatabaseRef().child("robot_updated")
+    private val actionsRef = getRobotDatabaseRef().child("actions")
+    private val servosStatusRef = getRobotDatabaseRef().child("servos_status")
+    private val servosConfigRef = getRobotDatabaseRef().child("servos_config")
+    private val commandRef = getRobotDatabaseRef().child("command")
+
+    private fun getRobotDatabaseRef() = database.reference.child("robots").child(robotId)
 
     fun getRobotUpdateTime(): Observable<String> {
         return getValueEventListener(robotUpdatedRef)
