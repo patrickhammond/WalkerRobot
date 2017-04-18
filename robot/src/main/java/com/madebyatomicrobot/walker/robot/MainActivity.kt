@@ -39,7 +39,7 @@ class MainActivity : Activity() {
         val manager = PeripheralManagerService()
         try {
             Log.i(TAG, "I2C: " + manager.i2cBusList)
-            i2c = manager.openI2cDevice("I2C1", 0x40)
+            i2c = manager.openI2cDevice("I2C1", 0x40)  // 0x40 is the default PCA9685 address
 
             pca9685 = PCA9685(i2c)
             pca9685.resetI2C()
@@ -53,25 +53,21 @@ class MainActivity : Activity() {
 
         updateRobotTimestamp()
 
-        disposables.add(
-                connector.getActions().subscribe(
-                        this::handleActions,
-                        { Log.e(TAG, "Actions error", it) }))
+        disposables.add(connector.getActions().subscribe(
+                this::handleActions,
+                { Log.e(TAG, "Actions error", it) }))
 
-        disposables.add(
-                connector.getServosConfig().subscribe(
-                        this::handleServoConfig,
-                        { Log.e(TAG, "Servos config error", it) }))
+        disposables.add(connector.getServosConfig().subscribe(
+                this::handleServoConfig,
+                { Log.e(TAG, "Servos config error", it) }))
 
-        disposables.add(
-                connector.getCommand().subscribe(
-                        this::handleServoCommand,
-                        { Log.e(TAG, "Command error", it) }))
+        disposables.add(connector.getCommand().subscribe(
+                this::handleServoCommand,
+                { Log.e(TAG, "Command error", it) }))
 
-        disposables.add(
-                connector.getServosStatus().subscribe(
-                        this::handleServoStatus,
-                        { Log.e(TAG, "Servo status error", it) }))
+        disposables.add(connector.getServosStatus().subscribe(
+                this::handleServoStatus,
+                { Log.e(TAG, "Servo status error", it) }))
     }
 
     override fun onDestroy() {

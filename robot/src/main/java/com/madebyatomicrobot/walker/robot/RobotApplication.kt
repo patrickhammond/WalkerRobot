@@ -25,6 +25,4 @@ class RobotApplication : Application() {
                 .robotModule(ApplicationComponent.RobotModule())
                 .build()
     }
-
-
 }
