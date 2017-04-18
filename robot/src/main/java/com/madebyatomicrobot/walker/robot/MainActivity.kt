@@ -8,16 +8,23 @@ import com.google.android.things.pio.PeripheralManagerService
 import com.madebyatomicrobot.things.drivers.PCA9685
 import com.madebyatomicrobot.walker.connector.data.*
 import com.madebyatomicrobot.walker.remote.RobotApplication
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import java.io.IOException
 import java.text.DateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
 class MainActivity : Activity() {
     companion object {
         private val TAG = MainActivity::class.java.simpleName
+
+        private val SERVO_UPDATE_PERIOD_MS = 200L
     }
 
     @Inject lateinit var connector: RemoteConnector
@@ -25,10 +32,14 @@ class MainActivity : Activity() {
     private lateinit var i2c: I2cDevice
     private lateinit var pca9685: PCA9685
 
-    private var servos: PhysicalServos? = null
-    private var robot: Robot? = null
+    private lateinit var servos: PhysicalServos
+    private lateinit var robot: Robot
+
+    private var config: ServosConfig.GlobalServosStatus? = null
 
     private lateinit var disposables: CompositeDisposable
+
+    private var watchDisposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         RobotApplication.getApp(this).component.inject(this)
@@ -46,7 +57,7 @@ class MainActivity : Activity() {
             pca9685.setPWMFreq(50.0)  // 50 Hz
 
             servos = PhysicalServos(pca9685)
-            robot = Robot(servos!!)
+            robot = Robot(servos)
         } catch (ex: IOException) {
             Log.e(TAG, "Error in onCreate", ex)
         }
@@ -71,6 +82,7 @@ class MainActivity : Activity() {
     }
 
     override fun onDestroy() {
+        endServoWatching()
         disposables.clear()
 
         try {
@@ -90,26 +102,49 @@ class MainActivity : Activity() {
     }
 
     private fun handleActions(actions: Actions) {
-        Log.v("DEBUG", "handleActions: $actions")
-        robot?.handleActions(actions)
+        robot.handleActions(actions)
         updateRobotTimestamp()
     }
 
     private fun handleServoConfig(servosConfig: ServosConfig) {
-        Log.v("DEBUG", "handleServoConfig: $servosConfig")
-        servos?.updateServoConfig(servosConfig)
+        servos.updateServoConfig(servosConfig)
+        config = servosConfig.global
+
+        val watching = config!!.watchServos
+        if (watching) {
+            watchDisposable?.dispose()
+            startServoWatching()
+        } else {
+            watchDisposable?.dispose()
+        }
+
         updateRobotTimestamp()
     }
 
+    private fun startServoWatching() {
+        watchDisposable = Observable.interval(SERVO_UPDATE_PERIOD_MS, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ publishServoPositions() })
+    }
+
+    private fun endServoWatching() {
+        watchDisposable?.dispose()
+    }
+
+    private fun publishServoPositions() {
+        connector.setServosStatus(robot.getServoStatus())
+    }
+
     private fun handleServoCommand(command: Command) {
-        Log.v("DEBUG", "handleServoCommand: $command")
-        robot?.handleCommand(command)
+        robot.handleCommand(command)
         updateRobotTimestamp()
     }
 
     private fun handleServoStatus(status: ServosStatus) {
-        Log.v("DEBUG", "handleServoStatus: $status")
-        robot?.handleServoStatus(status)
+        if (config != null && config!!.controlServos) {
+            robot.handleServoStatus(status)
+        }
         updateRobotTimestamp()
     }
 }

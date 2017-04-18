@@ -20,6 +20,7 @@ dependencies {
     compile "com.google.firebase:firebase-database:${rootProject.ext.playServicesVersion}"
 
     compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJavaVersion}"
+    compile "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
 
     testCompile "junit:junit:${rootProject.ext.junitVersion}"
 }

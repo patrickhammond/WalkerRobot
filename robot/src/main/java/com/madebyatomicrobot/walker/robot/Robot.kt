@@ -3,13 +3,14 @@ package com.madebyatomicrobot.walker.robot
 import android.animation.Animator
 import android.animation.Animator.AnimatorListener
 import android.animation.ValueAnimator
-import android.util.Log
 import com.madebyatomicrobot.walker.connector.data.Actions
 import com.madebyatomicrobot.walker.connector.data.Command
 import com.madebyatomicrobot.walker.connector.data.ServosStatus
 
 class Robot(val servos: PhysicalServos) {
     private var actions: Actions? = null
+    private var command: Command? = null
+
     private val rightHipTop: Servo = servos.servo05
     private val rightHipMiddle: Servo = servos.servo06
     private val rightHipBottom: Servo = servos.servo07
@@ -22,8 +23,6 @@ class Robot(val servos: PhysicalServos) {
     private val leftAnkle: Servo = servos.servo15
 
     private var animators: Animators? = null
-
-    private var command: Command? = null
     private var leftStep = false
 
     fun handleActions(actions: Actions) {
@@ -31,7 +30,6 @@ class Robot(val servos: PhysicalServos) {
     }
 
     fun handleServoStatus(status: ServosStatus) {
-        Log.v("DEBUG", "handleServoStatus: $status")
         servos.servo00.moveToAngle(status.servo00.position)
         servos.servo01.moveToAngle(status.servo01.position)
         servos.servo02.moveToAngle(status.servo02.position)
@@ -48,6 +46,26 @@ class Robot(val servos: PhysicalServos) {
         servos.servo13.moveToAngle(status.servo13.position)
         servos.servo14.moveToAngle(status.servo14.position)
         servos.servo15.moveToAngle(status.servo15.position)
+    }
+
+    fun getServoStatus(): ServosStatus {
+        return ServosStatus(
+                ServosStatus.Servo(servos.servo00.getAngle()),
+                ServosStatus.Servo(servos.servo01.getAngle()),
+                ServosStatus.Servo(servos.servo02.getAngle()),
+                ServosStatus.Servo(servos.servo03.getAngle()),
+                ServosStatus.Servo(servos.servo04.getAngle()),
+                ServosStatus.Servo(servos.servo05.getAngle()),
+                ServosStatus.Servo(servos.servo06.getAngle()),
+                ServosStatus.Servo(servos.servo07.getAngle()),
+                ServosStatus.Servo(servos.servo08.getAngle()),
+                ServosStatus.Servo(servos.servo09.getAngle()),
+                ServosStatus.Servo(servos.servo10.getAngle()),
+                ServosStatus.Servo(servos.servo11.getAngle()),
+                ServosStatus.Servo(servos.servo12.getAngle()),
+                ServosStatus.Servo(servos.servo13.getAngle()),
+                ServosStatus.Servo(servos.servo14.getAngle()),
+                ServosStatus.Servo(servos.servo15.getAngle()))
     }
 
     fun handleCommand(command: Command) {
@@ -67,12 +85,11 @@ class Robot(val servos: PhysicalServos) {
     }
 
     private fun switchLegWhileWalking() {
-        //leftStep = !leftStep  // FIXME
+        leftStep = !leftStep
         reset({ handleCommand() })
     }
 
     private fun reset(completeCallback: () -> Unit) {
-        Log.v("DEBUG", "action: reset")
         animators = Animators(
                 setupServoForReset(leftHipTop),
                 setupServoForReset(leftHipMiddle),
@@ -91,7 +108,6 @@ class Robot(val servos: PhysicalServos) {
     private fun setupServoForReset(servo: Servo): ValueAnimator {
         val angle = servo.getAngle()
         val movements: FloatArray = arrayOf(angle, servo.getDefaultAngle()).toFloatArray()
-
         return buildAnimator(
                 servo,
                 movements,
@@ -99,12 +115,10 @@ class Robot(val servos: PhysicalServos) {
     }
 
     private fun pause() {
-        Log.v("DEBUG", "action: pause")
         animators?.stop()
     }
 
     private fun stepForward(inverse: Boolean = false, completeCallback: () -> Unit) {
-        Log.v("DEBUG", "action: step")
         animators = Animators(
                 setupServoForWalking(leftHipTop, rightHipTop, inverse, actions!!.walk.left.hipY),
                 setupServoForWalking(leftHipMiddle, rightHipMiddle, inverse, actions!!.walk.left.hipX),
@@ -125,7 +139,7 @@ class Robot(val servos: PhysicalServos) {
             right: Servo,
             inverse: Boolean,
             config: Actions.ServoConfig): ValueAnimator {
-        val angle = (if (inverse) left else right).getAngle().toFloat()
+        val angle = (if (inverse) left else right).getAngle()
         val movements: FloatArray = config.action.split(",")
                 .map(String::toFloat)
                 .map { angle + it }
