@@ -10,17 +10,16 @@ import com.madebyatomicrobot.walker.connector.data.ServosStatus
 
 class Robot(val servos: PhysicalServos) {
     private var actions: Actions? = null
-
-    private val rightAnkle: Servo = servos.servo01
-    private val rightKnee: Servo = servos.servo00
-    private val rightHipBottom: Servo = servos.servo05
+    private val rightHipTop: Servo = servos.servo05
     private val rightHipMiddle: Servo = servos.servo06
-    private val rightHipTop: Servo = servos.servo07
-    private val leftAnkle: Servo = servos.servo14
-    private val leftKnee: Servo = servos.servo15
-    private val leftHipBottom: Servo = servos.servo10
+    private val rightHipBottom: Servo = servos.servo07
+    private val rightKnee: Servo = servos.servo01
+    private val rightAnkle: Servo = servos.servo00
+    private val leftHipTop: Servo = servos.servo10
     private val leftHipMiddle: Servo = servos.servo09
-    private val leftHipTop: Servo = servos.servo08
+    private val leftHipBottom: Servo = servos.servo08
+    private val leftKnee: Servo = servos.servo14
+    private val leftAnkle: Servo = servos.servo15
 
     private var animators: Animators? = null
 
@@ -68,7 +67,7 @@ class Robot(val servos: PhysicalServos) {
     }
 
     private fun switchLegWhileWalking() {
-        leftStep = !leftStep
+        //leftStep = !leftStep  // FIXME
         reset({ handleCommand() })
     }
 

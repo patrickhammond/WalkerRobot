@@ -57,7 +57,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:text="Hip-Top\n(10, 05)"
+                android:text="Hip-Top-Y\n(10, 05)"
                 app:layout_constraintBottom_toBottomOf="@+id/leftHipYAction"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -69,7 +69,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:text="Hip-Mid\n(09, 06)"
+                android:text="Hip-Mid-X\n(09, 06)"
                 app:layout_constraintBottom_toBottomOf="@+id/leftHipXAction"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -81,7 +81,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:text="Hip-Bot\n(08, 07)"
+                android:text="Hip-Bot-Z\n(08, 07)"
                 app:layout_constraintBottom_toBottomOf="@+id/leftHipZAction"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
